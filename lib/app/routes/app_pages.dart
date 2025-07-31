@@ -4,6 +4,8 @@ import '../modules/album_selection/bindings/album_selection_binding.dart';
 import '../modules/album_selection/views/album_selection_view.dart';
 import '../modules/all_search/bindings/all_search_binding.dart';
 import '../modules/all_search/views/all_search_view.dart';
+import '../modules/custom_bottom_navigation_bar/bindings/custom_bottom_navigation_bar_binding.dart';
+import '../modules/custom_bottom_navigation_bar/views/custom_bottom_navigation_bar_view.dart';
 import '../modules/finish/bindings/finish_binding.dart';
 import '../modules/finish/views/finish_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -14,6 +16,8 @@ import '../modules/login_in_input/bindings/login_in_input_binding.dart';
 import '../modules/login_in_input/views/login_in_input_view.dart';
 import '../modules/platforms_link/bindings/platforms_link_binding.dart';
 import '../modules/platforms_link/views/platforms_link_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
 import '../modules/splash_screen/views/splash_screen_view.dart';
 import '../modules/start_now/bindings/start_now_binding.dart';
@@ -26,7 +30,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.CUSTOM_BOTTOM_NAVIGATION_BAR;
 
   static final routes = [
     GetPage(
@@ -78,6 +82,23 @@ class AppPages {
       name: _Paths.ALL_SEARCH,
       page: () => const AllSearchView(),
       binding: AllSearchBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => const ProfileView(),
+      binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.CUSTOM_BOTTOM_NAVIGATION_BAR,
+      page: () => CustomBottomNavigationBarView(),
+      binding: CustomBottomNavigationBarBinding(),
+      children: [
+        GetPage(
+          name: _Paths.CUSTOM_BOTTOM_NAVIGATION_BAR,
+          page: () =>  CustomBottomNavigationBarView(),
+          binding: CustomBottomNavigationBarBinding(),
+        ),
+      ],
     ),
   ];
 }
