@@ -70,7 +70,9 @@ class LoginInInputView extends GetView<LoginInInputController> {
                         ),
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.offAllNamed(Routes.HOME);
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.lightBlack,
                         ),
