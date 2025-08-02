@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:tanit_tanit_app/app/data/image_path.dart';
 
 import '../controllers/splash_screen_controller.dart';
 
 class SplashScreenView extends GetView<SplashScreenController> {
   const SplashScreenView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('SplashScreenView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'SplashScreenView is working',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: SizedBox.expand(
+        child: Image.asset(ImagePath.splashScreen, fit: BoxFit.cover),
       ),
     );
   }

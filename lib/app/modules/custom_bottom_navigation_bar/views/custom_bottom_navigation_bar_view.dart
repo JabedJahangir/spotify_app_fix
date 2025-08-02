@@ -36,7 +36,7 @@ class CustomBottomNavigationBarView
           selectedItemColor: AppColors.darkBlue,
           showSelectedLabels: true,
           showUnselectedLabels: true,
-          unselectedItemColor: AppColors.gray,
+          unselectedItemColor: AppColors.grey,
           items: [
             _buildItem(0, ImagePath.house, 'Home'),
             _buildItem(1, ImagePath.messageText, 'My Chatrooms'),
@@ -55,7 +55,7 @@ class CustomBottomNavigationBarView
         iconPath,
         height: 25,
         width: 28,
-        color: isSelected ? AppColors.darkBlue : AppColors.gray,
+        color: isSelected ? AppColors.darkBlue : AppColors.grey,
       ),
       label: label,
     );
