@@ -3,21 +3,9 @@ import 'package:get/get.dart';
 class UserSignUpController extends GetxController {
   //TODO: Implement UserSignUpController
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
+  var isChecked = false.obs;
 
-  @override
-  void onReady() {
-    super.onReady();
+  void checked(){
+    isChecked.value = !isChecked.value;
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
