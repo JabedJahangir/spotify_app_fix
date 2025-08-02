@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 class ProfileController extends GetxController {
   //TODO: Implement ProfileController
 
-  final count = 0.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -18,6 +18,10 @@ class ProfileController extends GetxController {
   void onClose() {
     super.onClose();
   }
+  final RxInt selectedIndex = 0.obs;
 
-  void increment() => count.value++;
+  void valueSelected(int index) {
+    selectedIndex.value = index;
+  }
+
 }

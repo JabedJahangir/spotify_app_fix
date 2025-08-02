@@ -15,4 +15,5 @@ class AppColors{
   static const Color black = Color(0xff0D0D0D);
   static const Color lightBlack = Color(0xff20242A);
   static const Color lavender = Color(0xffE7E7FF);
+  static const Color lavenderLight = Color(0xffEBEBFF);
 }

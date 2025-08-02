@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 abstract class AppTextStyles {
-
   // 8.sp
   static TextStyle get light8 => TextStyle(fontSize: 8.sp, fontWeight: FontWeight.w300);
   static TextStyle get regular8 => TextStyle(fontSize: 8.sp, fontWeight: FontWeight.w400);
