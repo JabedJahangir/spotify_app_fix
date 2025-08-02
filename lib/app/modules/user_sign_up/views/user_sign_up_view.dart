@@ -101,6 +101,7 @@ class UserSignUpView extends GetView<UserSignUpController> {
                             controlAffinity: ListTileControlAffinity.leading,
                           ),
                         ),
+                        ElevatedButton(onPressed: (){}, child: Text('Sign Up')),
                       ],
                     ),
                   ],
