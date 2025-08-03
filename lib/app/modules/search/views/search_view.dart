@@ -23,58 +23,68 @@ class SearchView extends GetView<SearchController> {
       child: Scaffold(
         backgroundColor: AppColors.backGroundWhite,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight),
-          child: CustomAppBar(title: 'Search'),
+          preferredSize: const Size.fromHeight(kToolbarHeight),
+          child: CustomAppBar(title: 'Search',),
         ),
-        body: Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 6,
-                    offset: Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  hintText: 'Search...',
-                  hintStyle: TextStyle(color: AppColors.greyTextColor),
-                  suffixIcon: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Image.asset(
-                      ImagePath.searchNormal,
-                      height: 24,
-                      width: 24,
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 6,
+                      offset: Offset(0, 2),
                     ),
-                  ), //height width choto kore dau
-                  border: InputBorder.none,
+                  ],
+                ),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: 'Search...',
+                    hintStyle: TextStyle(color: AppColors.greyTextColor),
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.all(8.0), // height width কমানো হলো
+                      child: Image.asset(
+                        ImagePath.searchNormal,
+                        height: 18,
+                        width: 18,
+                      ),
+                    ),
+                    border: InputBorder.none,
+                  ),
                 ),
               ),
-            ),
-            TabBar(
-              unselectedLabelStyle: AppTextStyles.regular14.copyWith(color: AppColors.black),
-                tabs: [
+              TabBar(
+                unselectedLabelStyle: AppTextStyles.regular14.copyWith(color: AppColors.black),
+                labelColor: AppColors.darkBlue,
+                tabs: const [
                   Tab(text: 'All'),
                   Tab(text: 'Albums'),
                   Tab(text: 'Artists'),
                   Tab(text: 'Genres'),
-                ]),
-            Expanded(child: TabBarView(children: [
-              All(),
-              Albums(),
-              Artists(),
-              Genres(),
-            ]))
-          ],
+                ],
+              ),
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    All(),
+                    Albums(),
+                    Artists(),
+                    Genres(),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
+
