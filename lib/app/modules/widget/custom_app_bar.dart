@@ -12,6 +12,7 @@ class CustomAppBar extends StatelessWidget {
   final String? title;
   final IconData? icon;
   final Color? backGroundColor;
+  final Function()? backRoutes;
 
   const CustomAppBar({
     super.key,
@@ -20,7 +21,7 @@ class CustomAppBar extends StatelessWidget {
     this.richText1,
     this.richText2,
     this.title,
-    this.backGroundColor = AppColors.backGroundWhite,
+    this.backGroundColor = AppColors.backGroundWhite, this.backRoutes,
   });
 
   @override
