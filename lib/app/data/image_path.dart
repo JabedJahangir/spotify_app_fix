@@ -20,4 +20,5 @@ class ImagePath{
   static const String logo ='$baseUrl/logo.png';
   static const String spotify ='$baseUrl/spotify.png';
   static const String rectangle ='$baseUrl/rectangle.png';
+  static const String babyImage ='$baseUrl/baby_image.png';
 }

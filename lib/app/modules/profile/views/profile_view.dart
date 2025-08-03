@@ -5,7 +5,7 @@ import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
 import 'package:tanit_tanit_app/app/data/image_path.dart';
 import 'package:tanit_tanit_app/app/modules/profile/widget/album_card_list.dart';
 import '../controllers/profile_controller.dart';
-import '../widget/elevated_button_widget.dart';
+import '../../widget/elevated_button_widget.dart';
 import '../widget/tour_card.dart';
 
 class ProfileView extends GetView<ProfileController> {
