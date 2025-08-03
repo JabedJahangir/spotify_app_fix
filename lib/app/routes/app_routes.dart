@@ -13,7 +13,7 @@ abstract class Routes {
   static const PLATFORMS_LINK = _Paths.PLATFORMS_LINK;
   static const ALBUM_SELECTION = _Paths.ALBUM_SELECTION;
   static const ALL_SEARCH = _Paths.ALL_SEARCH;
-  static const PROFILE = _Paths.PROFILE;
+  static const ARTIST_PROFILE = _Paths.ARTIST_PROFILE;
   static const CUSTOM_BOTTOM_NAVIGATION_BAR =
       _Paths.CUSTOM_BOTTOM_NAVIGATION_BAR;
   static const MY_CHAT_ROOM = _Paths.MY_CHAT_ROOM;
@@ -34,7 +34,7 @@ abstract class _Paths {
   static const PLATFORMS_LINK = '/platforms-link';
   static const ALBUM_SELECTION = '/album-selection';
   static const ALL_SEARCH = '/all-search';
-  static const PROFILE = '/profile';
+  static const ARTIST_PROFILE = '/artist_profile';
   static const CUSTOM_BOTTOM_NAVIGATION_BAR = '/custom-bottom-navigation-bar';
   static const MY_CHAT_ROOM = '/my-chat-room';
   static const ALBUMS = '/albums';

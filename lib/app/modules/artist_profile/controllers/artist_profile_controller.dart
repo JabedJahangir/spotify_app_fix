@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class ProfileController extends GetxController {
+class ArtistProfileController extends GetxController {
 
 
 

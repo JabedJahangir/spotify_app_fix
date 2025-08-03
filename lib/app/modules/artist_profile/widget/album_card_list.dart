@@ -48,7 +48,9 @@ class AlbumCardList extends StatelessWidget {
                     Row(
                       children: [
                         Text("Michel Jaction",style: AppTextStyles.light10.copyWith(color: AppColors.black),),
-                        Image.asset(ImagePath.dotIcon,scale: 4,),
+                        const SizedBox(width: 3,),
+                        Image.asset(ImagePath.dotIcon,scale: 3,),
+                        const SizedBox(width: 3,),
                         Text("4:06 min",style: AppTextStyles.light10.copyWith(color: AppColors.black),),
                       ],
                     )

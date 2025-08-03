@@ -28,6 +28,7 @@ class ChatList extends StatelessWidget {
             child: Row(
               children: [
                 CircleAvatar(
+                  radius: 22,
                   child: Image.asset(
                     ImagePath.babyImage,
                     fit: BoxFit.cover,
@@ -40,9 +41,7 @@ class ChatList extends StatelessWidget {
                     Text("Music Name Here",style: AppTextStyles.regular16.copyWith(color: AppColors.black),),
                     Row(
                       children: [
-                        Text("Michel Jaction",style: AppTextStyles.light10.copyWith(color: AppColors.black),),
-                        Image.asset(ImagePath.dotIcon,scale: 4,),
-                        Text("4:06 min",style: AppTextStyles.light10.copyWith(color: AppColors.black),),
+                        Text("George: This one’s going platinum",style: AppTextStyles.light12.copyWith(color: AppColors.greyTextColor),),
                       ],
                     )
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
-import 'package:tanit_tanit_app/app/modules/profile/widget/album_card_list.dart';
+
+import '../../artist_profile/widget/album_card_list.dart';
 
 class Albums extends StatelessWidget {
   const Albums({super.key});
