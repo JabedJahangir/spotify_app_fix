@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-import '../modules/Albums/bindings/albums_binding.dart';
-import '../modules/Albums/views/albums_view.dart';
+import '../modules/Musics/bindings/musics_binding.dart';
+import '../modules/Musics/views/musics_view.dart';
 import '../modules/album_selection/bindings/album_selection_binding.dart';
 import '../modules/album_selection/views/album_selection_view.dart';
 import '../modules/all_search/bindings/all_search_binding.dart';
@@ -41,7 +41,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () =>  HomeView(),
+      page: () => HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -112,14 +112,14 @@ class AppPages {
       binding: MyChatRoomBinding(),
     ),
     GetPage(
-      name: _Paths.ALBUMS,
-      page: () => const AlbumsView(),
-      binding: AlbumsBinding(),
-    ),
-    GetPage(
       name: _Paths.SEARCH,
       page: () => const SearchView(),
       binding: SearchBinding(),
+    ),
+    GetPage(
+      name: _Paths.MUSICS,
+      page: () => const MusicsView(),
+      binding: MusicsBinding(),
     ),
   ];
 }

@@ -19,6 +19,7 @@ abstract class Routes {
   static const MY_CHAT_ROOM = _Paths.MY_CHAT_ROOM;
   static const ALBUMS = _Paths.ALBUMS;
   static const SEARCH = _Paths.SEARCH;
+  static const MUSICS = _Paths.MUSICS;
 }
 
 abstract class _Paths {
@@ -38,4 +39,5 @@ abstract class _Paths {
   static const MY_CHAT_ROOM = '/my-chat-room';
   static const ALBUMS = '/albums';
   static const SEARCH = '/search';
+  static const MUSICS = '/musics';
 }
