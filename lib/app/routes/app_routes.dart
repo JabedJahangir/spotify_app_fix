@@ -16,6 +16,9 @@ abstract class Routes {
   static const PROFILE = _Paths.PROFILE;
   static const CUSTOM_BOTTOM_NAVIGATION_BAR =
       _Paths.CUSTOM_BOTTOM_NAVIGATION_BAR;
+  static const MY_CHAT_ROOM = _Paths.MY_CHAT_ROOM;
+  static const ALBUMS = _Paths.ALBUMS;
+  static const SEARCH = _Paths.SEARCH;
 }
 
 abstract class _Paths {
@@ -32,4 +35,7 @@ abstract class _Paths {
   static const ALL_SEARCH = '/all-search';
   static const PROFILE = '/profile';
   static const CUSTOM_BOTTOM_NAVIGATION_BAR = '/custom-bottom-navigation-bar';
+  static const MY_CHAT_ROOM = '/my-chat-room';
+  static const ALBUMS = '/albums';
+  static const SEARCH = '/search';
 }
