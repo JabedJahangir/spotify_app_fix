@@ -82,7 +82,10 @@ class PlatformsLinkView extends GetView<PlatformsLinkController> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset(ImagePath.apple,height: 32,width: 32,),
+                      CircleAvatar(
+                          backgroundColor: AppColors.white,
+                          radius: 18,
+                          child: Image.asset(ImagePath.apple,height: 24,width: 24,)),
                       SizedBox(
                         width: MediaQuery.of(context).size.width*.01,
                       ),

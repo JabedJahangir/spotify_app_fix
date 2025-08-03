@@ -47,18 +47,29 @@ class AlbumSelectionView extends GetView<AlbumSelectionController> {
                 ),
               ),
             ),
-            ElevatedButton(
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.transparent,
+        elevation: 10,
+        child: Container(
+          height: 60,
+          child: Center(
+            child: ElevatedButton(
               onPressed: () {
                 Get.offAllNamed(Routes.CUSTOM_BOTTOM_NAVIGATION_BAR);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.darkBlue,
+                foregroundColor: AppColors.white,
               ),
               child: Text("Let's Start"),
             ),
-          ],
+          ),
         ),
       ),
+
     );
   }
 }
