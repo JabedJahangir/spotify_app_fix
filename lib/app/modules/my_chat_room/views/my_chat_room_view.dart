@@ -16,60 +16,46 @@ class MyChatRoomView extends GetView<MyChatRoomController> {
           slivers: [
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 16,
-                ),
-                child: Column(
-                  children: [
-                    Container(
-                      height: 61,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(57),
+                padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 10),
+                child: Obx(() {
+                  final selected = controller.selectedIndex.value;
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      ElevatedButtonWidget(
+                        onPressed: () {
+                          controller.valueSelected(0);
+                        },
+                        text: 'Chatrooms',
+                        fontSize: 16,
+                        height: 34,
+                        width: 103,
+                        textColor: selected == 0
+                            ? AppColors.white
+                            : AppColors.black,
+                        backgroundColor: selected == 0
+                            ? AppColors.darkBlue
+                            : AppColors.white,
                       ),
-                      child: Obx(() {
-                        final selected = controller.selectedIndex.value;
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ElevatedButtonWidget(
-                              onPressed: () {
-                                controller.valueSelected(0);
-                              },
-                              text: 'Tour',
-                              fontSize: 16,
-                              height: 37,
-                              width: 164.5,
-                              textColor: selected == 0
-                                  ? AppColors.white
-                                  : AppColors.black,
-                              backgroundColor: selected == 0
-                                  ? AppColors.darkBlue
-                                  : AppColors.white,
-                            ),
-                            const SizedBox(width: 14),
-                            ElevatedButtonWidget(
-                              onPressed: () {
-                                controller.valueSelected(1);
-                              },
-                              text: 'Albums',
-                              fontSize: 16,
-                              height: 37,
-                              width: 164.5,
-                              textColor: selected == 1
-                                  ? AppColors.white
-                                  : AppColors.black,
-                              backgroundColor: selected == 1
-                                  ? AppColors.darkBlue
-                                  : AppColors.white,
-                            ),
-                          ],
-                        );
-                      }),
-                    ),
-                  ],
-                ),
+                      const SizedBox(width: 14),
+                      ElevatedButtonWidget(
+                        onPressed: () {
+                          controller.valueSelected(1);
+                        },
+                        text: 'Subrooms',
+                        fontSize: 16,
+                        height: 34,
+                        width: 103,
+                        textColor: selected == 1
+                            ? AppColors.white
+                            : AppColors.black,
+                        backgroundColor: selected == 1
+                            ? AppColors.darkBlue
+                            : AppColors.white,
+                      ),
+                    ],
+                  );
+                }),
               ),
             ),
             Obx(() {
@@ -81,7 +67,7 @@ class MyChatRoomView extends GetView<MyChatRoomController> {
                 );
               }
               else{
-                return SliverList.builder(
+                return  SliverList.builder(
                   itemCount: 5,
                   itemBuilder: (context, index) => ChatList(),
                 );

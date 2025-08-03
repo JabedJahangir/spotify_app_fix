@@ -3,11 +3,9 @@ import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
 import 'package:tanit_tanit_app/app/data/image_path.dart';
 import 'package:tanit_tanit_app/app/modules/Musics/views/musics_view.dart';
+import 'package:tanit_tanit_app/app/modules/artist_profile/views/artist_profile_view.dart';
 import 'package:tanit_tanit_app/app/modules/my_chat_room/views/my_chat_room_view.dart';
-import 'package:tanit_tanit_app/app/modules/profile/views/profile_view.dart';
 import 'package:tanit_tanit_app/app/modules/search/views/search_view.dart';
-
-import '../../all_search/views/all_search_view.dart';
 import '../../home/views/home_view.dart';
 import '../controllers/custom_bottom_navigation_bar_controller.dart';
 
@@ -18,7 +16,7 @@ class CustomBottomNavigationBarView
   final List _pages = [
     HomeView(),
     MyChatRoomView(),
-    ProfileView(),
+    ArtistProfileView(),
     MusicsView(),
     SearchView(),
   ];

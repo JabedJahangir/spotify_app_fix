@@ -6,6 +6,8 @@ import '../modules/album_selection/bindings/album_selection_binding.dart';
 import '../modules/album_selection/views/album_selection_view.dart';
 import '../modules/all_search/bindings/all_search_binding.dart';
 import '../modules/all_search/views/all_search_view.dart';
+import '../modules/artist_profile/bindings/artist_profile_binding.dart';
+import '../modules/artist_profile/views/artist_profile_view.dart';
 import '../modules/custom_bottom_navigation_bar/bindings/custom_bottom_navigation_bar_binding.dart';
 import '../modules/custom_bottom_navigation_bar/views/custom_bottom_navigation_bar_view.dart';
 import '../modules/finish/bindings/finish_binding.dart';
@@ -20,8 +22,6 @@ import '../modules/my_chat_room/bindings/my_chat_room_binding.dart';
 import '../modules/my_chat_room/views/my_chat_room_view.dart';
 import '../modules/platforms_link/bindings/platforms_link_binding.dart';
 import '../modules/platforms_link/views/platforms_link_view.dart';
-import '../modules/profile/bindings/profile_binding.dart';
-import '../modules/profile/views/profile_view.dart';
 import '../modules/search/bindings/search_binding.dart';
 import '../modules/search/views/search_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
@@ -90,9 +90,9 @@ class AppPages {
       binding: AllSearchBinding(),
     ),
     GetPage(
-      name: _Paths.PROFILE,
-      page: () => const ProfileView(),
-      binding: ProfileBinding(),
+      name: _Paths.ARTIST_PROFILE,
+      page: () => const ArtistProfileView(),
+      binding: ArtistProfileBinding(),
     ),
     GetPage(
       name: _Paths.CUSTOM_BOTTOM_NAVIGATION_BAR,
