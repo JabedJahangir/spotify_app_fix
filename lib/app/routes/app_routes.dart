@@ -20,6 +20,7 @@ abstract class Routes {
   static const ALBUMS = _Paths.ALBUMS;
   static const SEARCH = _Paths.SEARCH;
   static const MUSICS = _Paths.MUSICS;
+  static const PROFILE = _Paths.PROFILE;
 }
 
 abstract class _Paths {
@@ -40,4 +41,5 @@ abstract class _Paths {
   static const ALBUMS = '/albums';
   static const SEARCH = '/search';
   static const MUSICS = '/musics';
+  static const PROFILE = '/profile';
 }

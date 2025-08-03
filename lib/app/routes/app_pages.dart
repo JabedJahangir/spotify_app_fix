@@ -22,6 +22,8 @@ import '../modules/my_chat_room/bindings/my_chat_room_binding.dart';
 import '../modules/my_chat_room/views/my_chat_room_view.dart';
 import '../modules/platforms_link/bindings/platforms_link_binding.dart';
 import '../modules/platforms_link/views/platforms_link_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
 import '../modules/search/bindings/search_binding.dart';
 import '../modules/search/views/search_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
@@ -120,6 +122,11 @@ class AppPages {
       name: _Paths.MUSICS,
       page: () => const MusicsView(),
       binding: MusicsBinding(),
+    ),
+    GetPage(
+      name: _Paths.PROFILE,
+      page: () => const ProfileView(),
+      binding: ProfileBinding(),
     ),
   ];
 }

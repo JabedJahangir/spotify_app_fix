@@ -16,6 +16,7 @@ ThemeData themeData() {
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: AppColors.white,
+      hintStyle: AppTextStyles.regular16.copyWith(color: AppColors.greyTextColor),
       contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(4),
