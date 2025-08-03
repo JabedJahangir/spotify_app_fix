@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
+import 'package:tanit_tanit_app/app/modules/profile/widget/album_card_list.dart';
+
 class Albums extends StatelessWidget {
   const Albums({super.key});
 
@@ -8,11 +10,15 @@ class Albums extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
-          height: MediaQuery.of(context).size.height*.02,
+        SizedBox(height: MediaQuery.of(context).size.height * .02),
+        Text("Albums", style: AppTextStyles.regular24),
+        Expanded(
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: 20,
+            itemBuilder: (context, index) => AlbumCardList(),
+          ),
         ),
-        Text("Albums",style: AppTextStyles.regular24,),
-
       ],
     );
   }

@@ -22,7 +22,6 @@ class CustomBottomNavigationBarView
     MusicsView(),
     SearchView(),
   ];
-  int index = 0;
 
   @override
   Widget build(BuildContext context) {
