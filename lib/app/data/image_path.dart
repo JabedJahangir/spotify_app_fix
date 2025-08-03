@@ -13,4 +13,6 @@ class ImagePath{
   static const String musicImage ='$baseUrl/music_image.png';
   static const String notificatonImage ='$baseUrl/notification_image.png';
   static const String personImage ='$baseUrl/person_image.png';
+  static const String arrowUP ='$baseUrl/arrowup.png';
+  static const String dotIcon ='$baseUrl/dotIcon.png';
 }
