@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/Albums/bindings/albums_binding.dart';
+import '../modules/Albums/views/albums_view.dart';
 import '../modules/album_selection/bindings/album_selection_binding.dart';
 import '../modules/album_selection/views/album_selection_view.dart';
 import '../modules/all_search/bindings/all_search_binding.dart';
@@ -14,10 +16,14 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/login_in_input/bindings/login_in_input_binding.dart';
 import '../modules/login_in_input/views/login_in_input_view.dart';
+import '../modules/my_chat_room/bindings/my_chat_room_binding.dart';
+import '../modules/my_chat_room/views/my_chat_room_view.dart';
 import '../modules/platforms_link/bindings/platforms_link_binding.dart';
 import '../modules/platforms_link/views/platforms_link_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
+import '../modules/search/bindings/search_binding.dart';
+import '../modules/search/views/search_view.dart';
 import '../modules/splash_screen/bindings/splash_screen_binding.dart';
 import '../modules/splash_screen/views/splash_screen_view.dart';
 import '../modules/start_now/bindings/start_now_binding.dart';
@@ -60,7 +66,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.USER_SIGN_UP,
-      page: () => const UserSignUpView(),
+      page: () => UserSignUpView(),
       binding: UserSignUpBinding(),
     ),
     GetPage(
@@ -95,10 +101,25 @@ class AppPages {
       children: [
         GetPage(
           name: _Paths.CUSTOM_BOTTOM_NAVIGATION_BAR,
-          page: () =>  CustomBottomNavigationBarView(),
+          page: () => CustomBottomNavigationBarView(),
           binding: CustomBottomNavigationBarBinding(),
         ),
       ],
+    ),
+    GetPage(
+      name: _Paths.MY_CHAT_ROOM,
+      page: () => const MyChatRoomView(),
+      binding: MyChatRoomBinding(),
+    ),
+    GetPage(
+      name: _Paths.ALBUMS,
+      page: () => const AlbumsView(),
+      binding: AlbumsBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEARCH,
+      page: () => const SearchView(),
+      binding: SearchBinding(),
     ),
   ];
 }
