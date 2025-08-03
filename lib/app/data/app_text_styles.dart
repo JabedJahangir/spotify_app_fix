@@ -121,4 +121,5 @@ abstract class AppTextStyles {
   static TextStyle get regular40 => TextStyle(fontSize: 40.sp, fontWeight: FontWeight.w400);
   static TextStyle get medium40 => TextStyle(fontSize: 40.sp, fontWeight: FontWeight.w500);
   static TextStyle get bold40 => TextStyle(fontSize: 40.sp, fontWeight: FontWeight.w600);
+
 }

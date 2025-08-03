@@ -1,23 +1,16 @@
 import 'package:get/get.dart';
 
 class AlbumSelectionController extends GetxController {
-  //TODO: Implement AlbumSelectionController
+  var selectedAlbums = <String>[].obs;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  void toggleSelection(String albumId) {
+    if (selectedAlbums.contains(albumId)) {
+      selectedAlbums.remove(albumId); // deselect
+    } else {
+      if (selectedAlbums.length < 3) {
+        selectedAlbums.add(albumId); // select if under limit
+      }
+    }
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
+  bool isSelected(String albumId) => selectedAlbums.contains(albumId);
 }

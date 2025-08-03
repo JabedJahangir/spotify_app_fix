@@ -9,4 +9,9 @@ class ImagePath{
   static const String mumuLogo ='$baseUrl/mumu_logo.png';
   static const String startNow ='$baseUrl/start_now.png';
   static const String googleIcon ='$baseUrl/google_icon.png';
+  static const String finish ='$baseUrl/finish.png';
+  static const String apple ='$baseUrl/apple.png';
+  static const String logo ='$baseUrl/logo.png';
+  static const String spotify ='$baseUrl/spotify.png';
+  static const String rectangle ='$baseUrl/rectangle.png';
 }

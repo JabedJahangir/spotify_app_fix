@@ -1,10 +1,14 @@
+import 'package:dotted_border/dotted_border.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
 import 'package:tanit_tanit_app/app/modules/widget/custom_app_bar.dart';
+import 'package:tanit_tanit_app/app/routes/app_pages.dart';
 
+import '../../widget/custom_drop_down.dart';
 import '../controllers/user_sign_up_controller.dart';
 
 class UserSignUpView extends GetView<UserSignUpController> {
@@ -27,8 +31,38 @@ class UserSignUpView extends GetView<UserSignUpController> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircleAvatar(child: Icon(Icons.add)),
+                    DottedBorder(
+                      borderType: BorderType.Circle,
+                      color: Color(0xFF3465C2),
+                      dashPattern: [4, 3],
+                      strokeWidth: 1,
+                      child: Container(
+                        width: 64,
+                        height: 64,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFECECEC),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Center(
+                          child: Container(
+                            width: 32,
+                            height: 32,
+                            decoration: BoxDecoration(
+                              color: Color(0xFFDBE7FF),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              Icons.add,
+                              size: 20,
+                              color: Colors.blueAccent,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 8),
                     Text('Profile Picture'),
+                    SizedBox(height: 8),
                     Container(
                       height: 33,
                       width: 153,
@@ -46,7 +80,9 @@ class UserSignUpView extends GetView<UserSignUpController> {
                           child: TextFormField(
                             decoration: InputDecoration(
                               hintText: 'First Name',
-                              hintStyle: AppTextStyles.regular16.copyWith(color: AppColors.lightGrey)
+                              hintStyle: AppTextStyles.regular16.copyWith(
+                                color: AppColors.greyTextColor,
+                              ),
                             ),
                           ),
                         ),
@@ -55,8 +91,10 @@ class UserSignUpView extends GetView<UserSignUpController> {
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: TextFormField(
                             decoration: InputDecoration(
-                                hintText: 'Last Name',
-                                hintStyle: AppTextStyles.regular16.copyWith(color: AppColors.lightGrey)
+                              hintText: 'Last Name',
+                              hintStyle: AppTextStyles.regular16.copyWith(
+                                color: AppColors.greyTextColor,
+                              ),
                             ),
                           ),
                         ),
@@ -65,18 +103,58 @@ class UserSignUpView extends GetView<UserSignUpController> {
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: TextFormField(
                             decoration: InputDecoration(
-                                hintText: 'User Name',
-                                hintStyle: AppTextStyles.regular16.copyWith(color: AppColors.lightGrey)
+                              hintText: 'User Name',
+                              hintStyle: AppTextStyles.regular16.copyWith(
+                                color: AppColors.greyTextColor,
+                              ),
                             ),
                           ),
                         ),
+                        Text('Date of Birth'),
+                        SizedBox(height: 8),
+                        Row(
+                          children: [
+                            Obx(
+                              () => CustomDropDown(
+                                items: controller.months,
+                                selectedValue: controller.selectedMonth.value,
+                                hintText: 'Month',
+                                onChanged: (val) =>
+                                    controller.selectedMonth(val!),
+                              ),
+                            ),
+                            SizedBox(width: 8),
+                            Obx(
+                              () => CustomDropDown(
+                                items: controller.days,
+                                selectedValue: controller.selectedDay.value,
+                                hintText: 'Day',
+                                onChanged: (val) =>
+                                    controller.selectedMonth(val!),
+                              ),
+                            ),
+                            SizedBox(width: 8),
+                            Obx(
+                              () => CustomDropDown(
+                                items: controller.years,
+                                selectedValue: controller.selectedYear.value,
+                                hintText: 'Year',
+                                onChanged: (val) =>
+                                    controller.selectedMonth(val!),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 12),
                         Text('Email'),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: TextFormField(
                             decoration: InputDecoration(
-                                hintText: 'Email',
-                                hintStyle: AppTextStyles.regular16.copyWith(color: AppColors.lightGrey)
+                              hintText: 'Email',
+                              hintStyle: AppTextStyles.regular16.copyWith(
+                                color: AppColors.greyTextColor,
+                              ),
                             ),
                           ),
                         ),
@@ -85,13 +163,15 @@ class UserSignUpView extends GetView<UserSignUpController> {
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: TextFormField(
                             decoration: InputDecoration(
-                                hintText: 'Password',
-                                hintStyle: AppTextStyles.regular16.copyWith(color: AppColors.lightGrey)
+                              hintText: 'Password',
+                              hintStyle: AppTextStyles.regular16.copyWith(
+                                color: AppColors.greyTextColor,
+                              ),
                             ),
                           ),
                         ),
                         Obx(
-                              () => CheckboxListTile(
+                          () => CheckboxListTile(
                             contentPadding: EdgeInsets.zero,
                             title: Text('Remember Me'),
                             value: controller.isChecked.value,
@@ -101,7 +181,16 @@ class UserSignUpView extends GetView<UserSignUpController> {
                             controlAffinity: ListTileControlAffinity.leading,
                           ),
                         ),
-                        ElevatedButton(onPressed: (){}, child: Text('Sign Up')),
+                        ElevatedButton(
+                          onPressed: () {
+                            Get.toNamed(Routes.FINISH);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.lightBlack,
+                            foregroundColor: AppColors.white,
+                          ),
+                          child: Text('Sign Up'),
+                        ),
                       ],
                     ),
                   ],
