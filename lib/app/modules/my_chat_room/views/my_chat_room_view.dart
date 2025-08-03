@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
+import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
 import 'package:tanit_tanit_app/app/modules/my_chat_room/widget/chat_list.dart';
 import 'package:tanit_tanit_app/app/modules/widget/elevated_button_widget.dart';
 import '../controllers/my_chat_room_controller.dart';
 
 class MyChatRoomView extends GetView<MyChatRoomController> {
   const MyChatRoomView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +18,10 @@ class MyChatRoomView extends GetView<MyChatRoomController> {
           slivers: [
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 10,
+                ),
                 child: Obx(() {
                   final selected = controller.selectedIndex.value;
                   return Row(
@@ -59,23 +64,62 @@ class MyChatRoomView extends GetView<MyChatRoomController> {
               ),
             ),
             Obx(() {
-              final selectedIndex=controller.selectedIndex.value;
-              if(selectedIndex==0){
-                return  SliverList.builder(
+              final selectedIndex = controller.selectedIndex.value;
+              if (selectedIndex == 0) {
+                return SliverList.builder(
+                  itemCount: 15,
+                  itemBuilder: (context, index) {
+                    if (index == 14) {
+                      return Column(
+                        children: [
+                          SizedBox(width: double.infinity, child: ChatList()),
+                          ElevatedButtonMethod,
+                        ],
+                      );
+                    } else {
+                      return ChatList();
+                    }
+                  },
+                );
+              } else {
+                return SliverList.builder(
                   itemCount: 5,
-                  itemBuilder: (context, index) => ChatList(),
+                  itemBuilder: (context, index) {
+                    if (index == 4) {
+                      return Column(
+                        children: [
+                          SizedBox(width: double.infinity, child: ChatList()),
+                          ElevatedButtonMethod,
+                        ],
+                      );
+                    } else {
+                      return ChatList();
+                    }
+                  },
                 );
               }
-              else{
-                return  SliverList.builder(
-                  itemCount: 5,
-                  itemBuilder: (context, index) => ChatList(),
-                );
-              }
-            },)
+            }),
           ],
         ),
-      )
+      ),
+    );
+  }
+
+  Padding get ElevatedButtonMethod {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: ElevatedButtonWidget(
+        prefixIcon: Icon(Icons.add, color: AppColors.white, size: 20),
+        text: 'Create a Subroom',
+        onPressed: () {},
+        backgroundColor: AppColors.darkBlue,
+        fontSize: 16,
+        textColor: AppColors.white,
+        height: 56,
+        width: double.infinity,
+        fontWeight: FontWeight.w400,
+        borderRadius: BorderRadius.circular(120),
+      ),
     );
   }
 }
