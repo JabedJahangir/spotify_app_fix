@@ -63,13 +63,14 @@ class MyChatRoomView extends GetView<MyChatRoomController> {
                 }),
               ),
             ),
-            Obx(() {
-              final selectedIndex = controller.selectedIndex.value;
-              if (selectedIndex == 0) {
-                return SliverList.builder(
-                  itemCount: 15,
-                  itemBuilder: (context, index) {
-                    if (index == 14) {
+            SliverToBoxAdapter(
+              child: Obx(() {
+                final selectedIndex = controller.selectedIndex.value;
+                final itemCount = selectedIndex == 0 ? 15 : 5;
+
+                return Column(
+                  children: List.generate(itemCount, (index) {
+                    if (index == itemCount - 1) {
                       return Column(
                         children: [
                           SizedBox(width: double.infinity, child: ChatList()),
@@ -79,26 +80,11 @@ class MyChatRoomView extends GetView<MyChatRoomController> {
                     } else {
                       return ChatList();
                     }
-                  },
+                  }),
                 );
-              } else {
-                return SliverList.builder(
-                  itemCount: 5,
-                  itemBuilder: (context, index) {
-                    if (index == 4) {
-                      return Column(
-                        children: [
-                          SizedBox(width: double.infinity, child: ChatList()),
-                          ElevatedButtonMethod,
-                        ],
-                      );
-                    } else {
-                      return ChatList();
-                    }
-                  },
-                );
-              }
-            }),
+              }),
+            ),
+
           ],
         ),
       ),

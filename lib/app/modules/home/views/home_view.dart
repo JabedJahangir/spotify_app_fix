@@ -6,6 +6,7 @@ import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
 import 'package:tanit_tanit_app/app/modules/home/widget/album_card.dart';
 import 'package:tanit_tanit_app/app/modules/home/widget/home_carousel_slider.dart';
 import 'package:tanit_tanit_app/app/modules/widget/custom_app_bar.dart';
+import 'package:tanit_tanit_app/app/routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -61,7 +62,11 @@ class HomeView extends GetView<HomeController> {
                         crossAxisSpacing: 8,
                       ),
                       itemBuilder: (context, index) {
-                        return AlbumCard();
+                        return GestureDetector(
+                            onTap: (){
+                              Get.toNamed(Routes.ARTIST_PROFILE);
+                            },
+                            child: AlbumCard());
                       },
                     ),
                   ],
