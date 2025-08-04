@@ -22,4 +22,5 @@ class ImagePath{
   static const String rectangle ='$baseUrl/rectangle.png';
   static const String babyImage ='$baseUrl/baby_image.png';
   static const String profile1 ='$baseUrl/profile1.png';
+  static const String ellipsisVertical ='$baseUrl/ellipsis-vertical.png';
 }

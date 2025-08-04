@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/album/bindings/album_binding.dart';
 import '../modules/album/views/album_view.dart';
+import '../modules/album_chat_room/bindings/album_chat_room_binding.dart';
+import '../modules/album_chat_room/views/album_chat_room_view.dart';
 import '../modules/album_selection/bindings/album_selection_binding.dart';
 import '../modules/album_selection/views/album_selection_view.dart';
 import '../modules/all_search/bindings/all_search_binding.dart';
@@ -129,6 +131,11 @@ class AppPages {
       name: _Paths.ALBUM,
       page: () => const AlbumView(),
       binding: AlbumBinding(),
+    ),
+    GetPage(
+      name: _Paths.ALBUM_CHAT_ROOM,
+      page: () => const AlbumChatRoomView(),
+      binding: AlbumChatRoomBinding(),
     ),
     GetPage(
       name: _Paths.SUB_CHAT_ROOM,

@@ -161,7 +161,12 @@ class ProfileView extends GetView<ProfileController> {
                                         Icons.star_border_outlined,
                                         color: AppColors.greyTextColor,
                                       ),
-                                      Text('Favorite Albums',style: AppTextStyles.regular16.copyWith(color: AppColors.greyTextColor))
+                                      Text(
+                                        'Favorite Albums',
+                                        style: AppTextStyles.regular16.copyWith(
+                                          color: AppColors.greyTextColor,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                   Text(
@@ -183,12 +188,65 @@ class ProfileView extends GetView<ProfileController> {
                               padding: const EdgeInsets.all(16.0),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     'Play In Background',
                                     style: AppTextStyles.regular16.copyWith(
                                       color: AppColors.greyTextColor,
+                                    ),
+                                  ),
+
+                                  SizedBox(
+                                    height: 30,
+                                    width: 50,
+                                    child: Obx(
+                                      () => GestureDetector(
+                                        onTap:
+                                            controller.togglePlayInBackground,
+                                        child: Container(
+                                          height: 25,
+                                          width: 46,
+                                          decoration: BoxDecoration(
+                                            color: AppColors.darkBlue,
+                                            borderRadius: BorderRadius.circular(
+                                              45,
+                                            ),
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Container(
+                                                height: 15,
+                                                width: 15,
+                                                decoration: BoxDecoration(
+                                                  color:
+                                                      controller
+                                                          .isPlayInBackground
+                                                          .value
+                                                      ? AppColors.white
+                                                      : AppColors.darkBlue,
+                                                  shape: BoxShape.circle,
+                                                ),
+                                              ),
+                                              Container(
+                                                height: 15,
+                                                width: 15,
+                                                decoration: BoxDecoration(
+                                                  color:
+                                                      controller
+                                                          .isPlayInBackground
+                                                          .value
+                                                      ? AppColors.darkBlue
+                                                      : AppColors.white,
+                                                  shape: BoxShape.circle,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ],
