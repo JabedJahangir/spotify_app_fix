@@ -30,6 +30,8 @@ import '../modules/splash_screen/bindings/splash_screen_binding.dart';
 import '../modules/splash_screen/views/splash_screen_view.dart';
 import '../modules/start_now/bindings/start_now_binding.dart';
 import '../modules/start_now/views/start_now_view.dart';
+import '../modules/sub_chat_room/bindings/sub_chat_room_binding.dart';
+import '../modules/sub_chat_room/views/sub_chat_room_view.dart';
 import '../modules/user_sign_up/bindings/user_sign_up_binding.dart';
 import '../modules/user_sign_up/views/user_sign_up_view.dart';
 
@@ -127,6 +129,11 @@ class AppPages {
       name: _Paths.ALBUM,
       page: () => const AlbumView(),
       binding: AlbumBinding(),
+    ),
+    GetPage(
+      name: _Paths.SUB_CHAT_ROOM,
+      page: () => const SubChatRoomView(),
+      binding: SubChatRoomBinding(),
     ),
   ];
 }
