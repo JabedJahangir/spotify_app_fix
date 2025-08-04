@@ -1,144 +1,91 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:tanit_tanit_app/app/data/app_colors.dart';
+import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
+import 'package:tanit_tanit_app/app/data/image_path.dart';
+import 'package:tanit_tanit_app/app/modules/widget/custom_app_bar.dart';
 
 import '../controllers/album_chat_room_controller.dart';
 
 class AlbumChatRoomView extends GetView<AlbumChatRoomController> {
   const AlbumChatRoomView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('AlbumChatRoomView'),
-        centerTitle: true,
+      backgroundColor: AppColors.backGroundWhite,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: CustomAppBar(title: "Chatroom Name"),
       ),
-      body: Center(
-        child: Container(
-          width: 362,
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image.network("https://placehold.co/88x88", width: 88, height: 88, fit: BoxFit.cover),
-                  ),
-                  const SizedBox(width: 14),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              width: double.infinity,
+              decoration: ShapeDecoration(
+                color: Colors.lightGreenAccent,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    Row(
                       children: [
-                        Row(
-                          children: [
-                            const Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Song name here...',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontFamily: 'DM Sans',
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                  Text(
-                                    'Album Name here',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 16,
-                                      fontFamily: 'DM Sans',
-                                      fontWeight: FontWeight.w300,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              width: 32,
-                              height: 32,
-                              decoration: const BoxDecoration(
-                                color: Color(0xFFE5E6FF),
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                          ],
+                        Container(
+                          width: 90,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Image.asset(
+                            ImagePath.rectangle,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                        const SizedBox(height: 16),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: List.generate(3, (_) {
-                            return Container(
-                              width: 24,
-                              height: 24,
-                              decoration: BoxDecoration(shape: BoxShape.circle),
-                            );
-                          }),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Song name here',
+                                style: AppTextStyles.medium20,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                              ),
+                              Text(
+                                'Album Name here',
+                                style: AppTextStyles.light16,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                              ),
+                              Row(
+                                children: [
+                                  SizedBox(),
+                                  IconButton(onPressed: (){}, icon: Icon(Icons.skip_previous_outlined,size: 30,)),
+                                  IconButton(onPressed: (){}, icon: Icon(Icons.pause_outlined,size: 30,)),
+                                  IconButton(onPressed: (){}, icon: Icon(Icons.skip_next_outlined,size: 30,)),
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                ],
+                    Text('Hello')
+                  ],
+                ),
               ),
-              const SizedBox(height: 24),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Stack(
-                    children: [
-                      Container(
-                        height: 6,
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFD9D9D9),
-                          borderRadius: BorderRadius.circular(24),
-                        ),
-                      ),
-                      Container(
-                        height: 6,
-                        width: 121,
-                        decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            begin: Alignment(0.88, 0.5),
-                            end: Alignment(0.38, 0.5),
-                            colors: [Color(0xFFB359FF), Color(0x66D8AAFF)],
-                          ),
-                          borderRadius: BorderRadius.circular(24),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 4),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('1:50',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 12,
-                              fontFamily: 'DM Sans',
-                              fontWeight: FontWeight.w500)),
-                      Text('5:56',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 12,
-                              fontFamily: 'DM Sans',
-                              fontWeight: FontWeight.w500)),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        )
+            ),
+          ],
+        ),
       ),
     );
   }
