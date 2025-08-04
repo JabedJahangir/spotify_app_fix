@@ -22,6 +22,7 @@ abstract class Routes {
   static const MUSICS = _Paths.MUSICS;
   static const PROFILE = _Paths.PROFILE;
   static const ALBUM = _Paths.ALBUM;
+  static const ALBUM_CHAT_ROOM = _Paths.ALBUM_CHAT_ROOM;
 }
 
 abstract class _Paths {
@@ -44,4 +45,5 @@ abstract class _Paths {
   static const MUSICS = '/musics';
   static const PROFILE = '/profile';
   static const ALBUM = '/album';
+  static const ALBUM_CHAT_ROOM = '/album-chat-room';
 }

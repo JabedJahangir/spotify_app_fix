@@ -5,9 +5,9 @@ import '../../../data/app_colors.dart';
 import '../../../data/app_text_styles.dart';
 
 class AlbumCardList extends StatelessWidget {
-  const AlbumCardList({
-    super.key,
-  });
+  final bool? isTrue;
+
+  const AlbumCardList({super.key, this.isTrue = false});
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +18,7 @@ class AlbumCardList extends StatelessWidget {
         color: AppColors.white,
         margin: EdgeInsets.symmetric(vertical: 10),
 
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: SizedBox(
           width: 200,
           height: 64,
@@ -40,24 +38,41 @@ class AlbumCardList extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                const SizedBox(width: 12,),
+                const SizedBox(width: 12),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Music Name Here",style: AppTextStyles.regular16.copyWith(color: AppColors.black),),
+                    Text(
+                      "Music Name Here",
+                      style: AppTextStyles.regular16.copyWith(
+                        color: AppColors.black,
+                      ),
+                    ),
                     Row(
                       children: [
-                        Text("Michel Jaction",style: AppTextStyles.light10.copyWith(color: AppColors.black),),
-                        const SizedBox(width: 3,),
-                        Image.asset(ImagePath.dotIcon,scale: 3,),
-                        const SizedBox(width: 3,),
-                        Text("4:06 min",style: AppTextStyles.light10.copyWith(color: AppColors.black),),
+                        Text(
+                          "Michel Jaction",
+                          style: AppTextStyles.light10.copyWith(
+                            color: AppColors.black,
+                          ),
+                        ),
+                        const SizedBox(width: 3),
+                        Image.asset(ImagePath.dotIcon, scale: 3),
+                        const SizedBox(width: 3),
+                        Text(
+                          "4:06 min",
+                          style: AppTextStyles.light10.copyWith(
+                            color: AppColors.black,
+                          ),
+                        ),
                       ],
-                    )
-
+                    ),
                   ],
-                )
-
+                ),
+                Spacer(),
+                isTrue!
+                    ? Image.asset(ImagePath.ellipsisVertical,height: 24,width: 24,fit: BoxFit.cover,)
+                    : SizedBox(),
               ],
             ),
           ),
