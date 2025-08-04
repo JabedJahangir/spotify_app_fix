@@ -12,6 +12,7 @@ class CustomAppBar extends StatelessWidget {
   final String? title;
   final IconData? icon;
   final Color? backGroundColor;
+  final Color? titleColor;
   final Function()? backRoutes;
 
   const CustomAppBar({
@@ -21,7 +22,9 @@ class CustomAppBar extends StatelessWidget {
     this.richText1,
     this.richText2,
     this.title,
-    this.backGroundColor = AppColors.backGroundWhite, this.backRoutes,
+    this.backGroundColor = AppColors.backGroundWhite,
+    this.backRoutes,
+    this.titleColor = AppColors.black,
   });
 
   @override
@@ -38,10 +41,13 @@ class CustomAppBar extends StatelessWidget {
           child: image != null
               ? ClipOval(child: Image.asset(image!, fit: BoxFit.cover))
               : IconButton(
-              onPressed: (){
-                Get.back();
-              },
-              icon:Icon(Icons.arrow_back), color: AppColors.white, iconSize: 24,),
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: Icon(Icons.arrow_back),
+                  color: AppColors.white,
+                  iconSize: 24,
+                ),
         ),
       ),
       title: RichText(
@@ -67,7 +73,7 @@ class CustomAppBar extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w500,
-                  color: AppColors.black,
+                  color: titleColor,
                 ),
               ),
       ),

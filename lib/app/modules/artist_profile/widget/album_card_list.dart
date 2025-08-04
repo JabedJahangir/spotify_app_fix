@@ -6,8 +6,10 @@ import '../../../data/app_text_styles.dart';
 
 class AlbumCardList extends StatelessWidget {
   final bool? isTrue;
+  final String? image;
+  final Function()? onTap;
 
-  const AlbumCardList({super.key, this.isTrue = false});
+  const AlbumCardList({super.key, this.isTrue = false, this.image = ImagePath.ellipsisVertical, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +73,9 @@ class AlbumCardList extends StatelessWidget {
                 ),
                 Spacer(),
                 isTrue!
-                    ? Image.asset(ImagePath.ellipsisVertical,height: 24,width: 24,fit: BoxFit.cover,)
+                    ? GestureDetector(
+                    onTap: onTap,
+                    child: Image.asset(image!,height: 24,width: 24,fit: BoxFit.cover,))
                     : SizedBox(),
               ],
             ),
