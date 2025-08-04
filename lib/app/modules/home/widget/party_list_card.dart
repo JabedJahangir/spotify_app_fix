@@ -3,8 +3,8 @@ import 'package:tanit_tanit_app/app/data/app_colors.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
 import 'package:tanit_tanit_app/app/data/image_path.dart';
 
-class AlbumCard extends StatelessWidget {
-  const AlbumCard({super.key});
+class PartyListCard extends StatelessWidget {
+  const PartyListCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,18 +28,29 @@ class AlbumCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 14),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Music Album Name',
-                    style: AppTextStyles.regular14.copyWith(
-                      color: AppColors.black,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        "Parties name",
+                        style: AppTextStyles.regular14.copyWith(
+                          color: AppColors.black,
+                        ),
+                      ),
+                      Spacer(),
+                      Text(
+                        "11.30 PM",
+                        style: AppTextStyles.light8.copyWith(
+                          color: AppColors.black,
+                        ),
+                      ),
+                    ],
                   ),
                   Text(
-                    "Michel Jaction",
+                    '1 Feb, 2025',
                     style: AppTextStyles.light10.copyWith(
                       color: AppColors.darkGrey,
                     ),

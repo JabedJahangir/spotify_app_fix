@@ -20,7 +20,7 @@ class HomeCarouselSlider extends StatelessWidget {
           options: CarouselOptions(
             height: 135,
             viewportFraction: 1,
-            enlargeCenterPage: false,
+            enlargeCenterPage: true,
             onPageChanged: (int page, _) {
               _selectedSlider.value = page;
             },

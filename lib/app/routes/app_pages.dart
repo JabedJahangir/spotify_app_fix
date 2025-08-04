@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-
 import '../modules/album/bindings/album_binding.dart';
 import '../modules/album/views/album_view.dart';
 import '../modules/album_chat_room/bindings/album_chat_room_binding.dart';
@@ -38,19 +37,13 @@ import '../modules/user_sign_up/bindings/user_sign_up_binding.dart';
 import '../modules/user_sign_up/views/user_sign_up_view.dart';
 part 'app_routes.dart';
 
-
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SUB_CHAT_ROOM;
-
+  static const INITIAL = Routes.MY_CHAT_ROOM;
 
   static final routes = [
-    GetPage(
-      name: _Paths.HOME,
-      page: () => HomeView(),
-      binding: HomeBinding(),
-    ),
+    GetPage(name: _Paths.HOME, page: () => HomeView(), binding: HomeBinding()),
     GetPage(
       name: _Paths.SPLASH_SCREEN,
       page: () => const SplashScreenView(),
@@ -140,7 +133,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SUB_CHAT_ROOM,
-      page: () =>  SubChatRoomView(),
+      page: () => SubChatRoomView(),
       binding: SubChatRoomBinding(),
     ),
   ];

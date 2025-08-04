@@ -21,7 +21,6 @@ class ArtistProfileView extends GetView<ArtistProfileController> {
             SliverToBoxAdapter(
               child: Column(
                 children: [
-                  const SizedBox(height: 40),
                   CircleAvatar(
                     radius: 70,
                     backgroundColor: Colors.white,
@@ -116,7 +115,7 @@ class ArtistProfileView extends GetView<ArtistProfileController> {
               final selectedIndex=controller.selectedIndex.value;
               if(selectedIndex==0){
                 return  SliverList.builder(
-                  itemCount: 5,
+                  itemCount: 10,
                   itemBuilder: (context, index) => TourCard(),
                 );
               }
