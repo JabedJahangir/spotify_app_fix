@@ -20,4 +20,5 @@ class AppColors{
   static const Color lavender = Color(0xffE7E7FF);
   static const Color lavenderLight = Color(0xffEBEBFF);
   static const Color greyTextColor = Color(0xFF7F7F7F);
+  static const Color Magnolia = Color(0xFFF5F5FF);
 }
