@@ -1,23 +1,7 @@
 import 'package:get/get.dart';
 
 class SubChatRoomController extends GetxController {
-  //TODO: Implement SubChatRoomController
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
+  var isSearching = false.obs;
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

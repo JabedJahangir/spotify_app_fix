@@ -36,13 +36,14 @@ import '../modules/sub_chat_room/bindings/sub_chat_room_binding.dart';
 import '../modules/sub_chat_room/views/sub_chat_room_view.dart';
 import '../modules/user_sign_up/bindings/user_sign_up_binding.dart';
 import '../modules/user_sign_up/views/user_sign_up_view.dart';
-
 part 'app_routes.dart';
+
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.ALBUM_CHAT_ROOM;
+  static const INITIAL = Routes.SUB_CHAT_ROOM;
+
 
   static final routes = [
     GetPage(
@@ -139,7 +140,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SUB_CHAT_ROOM,
-      page: () => const SubChatRoomView(),
+      page: () =>  SubChatRoomView(),
       binding: SubChatRoomBinding(),
     ),
   ];
