@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class MusicsController extends GetxController {
-  //TODO: Implement MusicsController
+class AlbumController extends GetxController {
+  //TODO: Implement AlbumController
 
   final count = 0.obs;
   @override

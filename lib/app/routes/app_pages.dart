@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
-import '../modules/Musics/bindings/musics_binding.dart';
-import '../modules/Musics/views/musics_view.dart';
+
+import '../modules/album/bindings/album_binding.dart';
+import '../modules/album/views/album_view.dart';
 import '../modules/album_selection/bindings/album_selection_binding.dart';
 import '../modules/album_selection/views/album_selection_view.dart';
 import '../modules/all_search/bindings/all_search_binding.dart';
@@ -118,14 +119,14 @@ class AppPages {
       binding: SearchBinding(),
     ),
     GetPage(
-      name: _Paths.MUSICS,
-      page: () => const MusicsView(),
-      binding: MusicsBinding(),
-    ),
-    GetPage(
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.ALBUM,
+      page: () => const AlbumView(),
+      binding: AlbumBinding(),
     ),
   ];
 }
