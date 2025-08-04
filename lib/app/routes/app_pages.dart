@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-
 import '../modules/Musics/bindings/musics_binding.dart';
 import '../modules/Musics/views/musics_view.dart';
 import '../modules/album_selection/bindings/album_selection_binding.dart';
