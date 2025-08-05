@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
+import 'package:tanit_tanit_app/app/modules/widget/build_labeled_input.dart';
 import 'package:tanit_tanit_app/app/modules/widget/custom_app_bar.dart';
 import 'package:tanit_tanit_app/app/routes/app_pages.dart';
 
@@ -18,103 +19,110 @@ class LoginInInputView extends GetView<LoginInInputController> {
     return Scaffold(
       backgroundColor: AppColors.darkBlue,
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(kToolbarHeight),
+        preferredSize: Size.fromHeight(kToolbarHeight.h),
         child: CustomAppBar(backGroundColor: AppColors.darkBlue),
       ),
       body: CustomScrollView(
         slivers: [
           SliverFillRemaining(
-            hasScrollBody: false,
+            hasScrollBody: true, // allow scrolling if content is bigger
             child: Center(
-              child: Container(
-                width: MediaQuery.of(context).size.width * 0.9,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: AppColors.backGroundWhite,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(24),
+              child: SingleChildScrollView(   // scrollable content
+                child: Container(
+                  width: 0.9.sw,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16.r),
+                    color: AppColors.backGroundWhite,
+                  ),
+                  padding: EdgeInsets.all(24.w),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text('Email'),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8, bottom: 16),
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            hintText: 'Your Email',
-                            fillColor: AppColors.white,
-                          ),
-                        ),
-                      ),
-                      Text('Password'),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8, bottom: 16),
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            hintText: 'Password',
-                            fillColor: AppColors.white,
-                          ),
-                        ),
-                      ),
+                      CustomBuildLabeledInput('Email'),
+                      SizedBox(height: 16.h),
+                      CustomBuildLabeledInput('Password'),
+                      SizedBox(height: 12.h),
                       Obx(
-                        () => CheckboxListTile(
+                            () => CheckboxListTile(
                           contentPadding: EdgeInsets.zero,
-                          title: Text('Forgot your password'),
+                          title: Text(
+                            'Forgot your password',
+                            style: AppTextStyles.regular16.copyWith(
+                              color: AppColors.greyTextColor,
+                              fontSize: 16.sp,
+                            ),
+                          ),
                           value: controller.isChecked.value,
-                          onChanged: (val) {
-                            controller.checked();
-                          },
+                          onChanged: (val) => controller.checked(),
                           controlAffinity: ListTileControlAffinity.leading,
                         ),
                       ),
-                      ElevatedButton(
-                        onPressed: () {
-                          Get.offAllNamed(Routes.CUSTOM_BOTTOM_NAVIGATION_BAR);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.lightBlack,
-                        ),
-                        child: Text(
-                          'Log In',
-                          style: TextStyle(color: AppColors.white),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: Center(
-                          child: Text(
-                            'Or',
-                            style: AppTextStyles.regular16.copyWith(
-                              color: AppColors.grey,
+                      SizedBox(height: 16.h),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 48.h,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Get.offAllNamed(Routes.CUSTOM_BOTTOM_NAVIGATION_BAR);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.lightBlack,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.r),
                             ),
+                          ),
+                          child: Text(
+                            'Log In',
+                            style: AppTextStyles.regular16.copyWith(color: AppColors.white),
                           ),
                         ),
                       ),
-                      ElevatedButton(onPressed: (){},
+                      SizedBox(height: 16.h),
+                      Center(
+                        child: Text(
+                          'Or',
+                          style: AppTextStyles.regular16.copyWith(
+                            color: AppColors.grey,
+                            fontSize: 16.sp,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 16.h),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 48.h,
+                        child: ElevatedButton(
+                          onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.backGroundGrey
+                            backgroundColor: AppColors.backGroundGrey,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.r),
+                            ),
                           ),
                           child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: AppColors.white,
-                            child: Image.asset(
-                              ImagePath.googleIcon,
-                              width: 24.w,
-                              height: 24.h,
-                            ),
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: AppColors.white,
+                                radius: 16.r,
+                                child: Image.asset(
+                                  ImagePath.googleIcon,
+                                  width: 24.w,
+                                  height: 24.h,
+                                ),
+                              ),
+                              SizedBox(width: 10.w),
+                              Text(
+                                'Login In With Google',
+                                style: AppTextStyles.regular16.copyWith(
+                                  color: AppColors.grey,
+                                  fontSize: 16.sp,
+                                ),
+                              ),
+                            ],
                           ),
-                          SizedBox(width: 10.w),
-                          Text(
-                            'Login In With Google',
-                            style: TextStyle(color: AppColors.grey),
-                          ),
-                        ],
-                      ))
+                        ),
+                      ),
                     ],
                   ),
                 ),
