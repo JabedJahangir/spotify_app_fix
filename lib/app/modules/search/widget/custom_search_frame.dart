@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../data/app_text_styles.dart';
 import '../../../data/image_path.dart';
@@ -9,19 +10,28 @@ class CustomSearchFrame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 20,top: 16,bottom: 16),
+      padding: EdgeInsets.only(right: 20.w, top: 16.h, bottom: 16.h),
       child: SizedBox(
-        height: MediaQuery.of(context).size.height*.1,
-        width: MediaQuery.of(context).size.width*.13,
+        width: 60.w, // Adjusted to a responsive size
         child: Column(
           children: [
-            CircleAvatar(
-              maxRadius: 30,
-              backgroundImage: AssetImage(ImagePath.personImage),
-              backgroundColor: Colors.transparent,
+            Expanded(
+              child: SizedBox(
+                height: 8.h,
+                child: CircleAvatar(
+                  maxRadius: 30.r, // Adjusted to a responsive size
+                  backgroundImage: AssetImage(ImagePath.personImage),
+                  backgroundColor: Colors.transparent,
+                ),
+              ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height * .01),
-            Text('Cardi B', style: AppTextStyles.light12),
+            SizedBox(height: 8.h), // Adjusted to a responsive size
+            Text(
+              'Cardi B',
+              style: AppTextStyles.light12.copyWith(fontSize: 12.sp),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            ),
           ],
         ),
       ),

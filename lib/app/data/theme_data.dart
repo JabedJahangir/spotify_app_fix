@@ -10,7 +10,9 @@ ThemeData themeData() {
         elevation: 0,
         foregroundColor: AppColors.black,
         minimumSize: const Size(double.infinity, 56),
-        textStyle: AppTextStyles.medium16.copyWith(color: AppColors.black,),
+        textStyle: AppTextStyles.medium16.copyWith(
+          color: AppColors.black,
+        ),
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(

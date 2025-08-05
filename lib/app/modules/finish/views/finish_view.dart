@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
@@ -31,7 +32,7 @@ class FinishView extends GetView<FinishController> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height*0.1,
                   ),
-                  Image.asset(ImagePath.finish, height: 170, width: 290),
+                  Image.asset(ImagePath.finish, height: 170.h, width: 290.w),
                   Text(
                     'Welcome to MUMU',
                     style: AppTextStyles.bold24.copyWith(color: AppColors.white),

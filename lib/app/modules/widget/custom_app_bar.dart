@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
 import 'package:tanit_tanit_app/app/data/image_path.dart';
@@ -31,58 +32,53 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: backGroundColor,
-      leadingWidth: 56,
+      leadingWidth: 56.w,
       leading: Padding(
         padding: EdgeInsets.only(left: 16),
-        child: CircleAvatar(
-          // choto hoye jay
-          radius: 28,
-          backgroundColor: AppColors.blue,
-          child: image != null
-              ? ClipOval(child: Image.asset(image!, fit: BoxFit.cover))
-              : IconButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  icon: Icon(Icons.arrow_back),
-                  color: AppColors.white,
-                  iconSize: 24,
-                ),
+        child: Stack(
+          children: [
+            CircleAvatar(
+              radius: 28.r,
+              backgroundColor: AppColors.blue,
+              child: image != null
+                  ? ClipOval(child: Image.asset(image!, fit: BoxFit.cover))
+                  : IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                icon: Center(child: Icon(Icons.arrow_back,size: 24.h,)),
+                color: AppColors.white,
+                iconSize: 24.h,
+              ),
+            ),
+          ],
         ),
       ),
       title: RichText(
         text: richText1 != null
             ? TextSpan(
-                children: [
-                  TextSpan(
-                    text: richText1,
-                    style: TextStyle(color: AppColors.darkBlue, fontSize: 16),
-                  ),
-                  TextSpan(
-                    text: richText2,
-                    style: TextStyle(
-                      color: AppColors.darkBlue,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ],
-              )
+          children: [
+            TextSpan(
+              text: richText1,
+              style: AppTextStyles.regular16.copyWith(color: AppColors.darkBlue),
+            ),
+            TextSpan(
+              text: richText2,
+              style: AppTextStyles.bold24.copyWith(color: AppColors.darkBlue),
+            ),
+          ],
+        )
             : TextSpan(
-                text: title,
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                  color: titleColor,
-                ),
-              ),
+          text: title,
+          style: AppTextStyles.medium24,
+        ),
       ),
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 16),
           child: GestureDetector(
             onTap: () {},
-            child: Icon(icon, color: AppColors.darkBlue, size: 40),
+            child: Icon(icon, color: AppColors.darkBlue, size: 40.sp),
           ),
         ),
       ],

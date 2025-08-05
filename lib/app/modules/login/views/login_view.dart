@@ -18,77 +18,88 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.darkBlue,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(ImagePath.mumuLogo, height: 90.h, width: 95.w),
-                SizedBox(height: 50.h),
-                ElevatedButton(onPressed: () {
-                  Get.toNamed(Routes.LOGIN_IN_INPUT);
-                }, child: Text('Log In With Email')),
-                SizedBox(height: 20.h),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.darkBlue,
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(color: AppColors.white),
-                      borderRadius: BorderRadius.circular(32),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: AppColors.white,
-                        child: Image.asset(
-                          ImagePath.googleIcon,
-                          width: 24.w,
-                          height: 24.h,
-                        ),
-                      ),
-                      SizedBox(width: 10.w),
-                      Text(
-                        'Login In With Google',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 20.w),
-                Row(
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "Don't have an account?",
-                      style: AppTextStyles.regular12.copyWith(color: AppColors.white),
-                    ),
-                    TextButton(
+                    Image.asset(ImagePath.mumuLogo, height: 90.h, width: 95.w),
+                    SizedBox(height: 50.h),
+                    ElevatedButton(
                       onPressed: () {
-                        Get.toNamed(Routes.USER_SIGN_UP);
+                        Get.toNamed(Routes.LOGIN_IN_INPUT);
                       },
                       child: Text(
-                        'Sign Up',
-                        style: AppTextStyles.regular12.copyWith(
-                          color: AppColors.white,
-                          decoration: TextDecoration.underline,
-                          decorationColor: AppColors.white,
-                          decorationThickness: 1.1,
+                        'Log In With Email',
+                        style: AppTextStyles.regular16,
+                      ),
+                    ),
+                    SizedBox(height: 20.h),
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.darkBlue,
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(color: AppColors.white),
+                          borderRadius: BorderRadius.circular(32),
                         ),
                       ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: AppColors.white,
+                            child: Image.asset(
+                              ImagePath.googleIcon,
+                              width: 24.w,
+                              height: 24.h,
+                            ),
+                          ),
+                          SizedBox(width: 10.w),
+                          Text(
+                            'Login In With Google',
+                            style: AppTextStyles.regular16.copyWith(color: AppColors.white),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 20.h),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Don't have an account?",
+                          style: AppTextStyles.regular12.copyWith(color: AppColors.white),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Get.toNamed(Routes.USER_SIGN_UP);
+                          },
+                          child: Text(
+                            'Sign Up',
+                            style: AppTextStyles.regular12.copyWith(
+                              color: AppColors.white,
+                              decoration: TextDecoration.underline,
+                              decorationColor: AppColors.white,
+                              decorationThickness: 1.1,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
   }
+
 }

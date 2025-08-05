@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
@@ -17,61 +18,72 @@ class AlbumSelectionView extends GetView<AlbumSelectionController> {
     return Scaffold(
       backgroundColor: AppColors.backGroundWhite,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(kToolbarHeight),
-        child: CustomAppBar(),
+        preferredSize: Size.fromHeight(kToolbarHeight.h),
+        child: const CustomAppBar(),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Your Sound, Your Community', style: AppTextStyles.bold24),
-            Text(
-              'Select 3 albums to join their chatrooms and get started',
-              style: AppTextStyles.regular16.copyWith(
-                color: AppColors.greyTextColor,
-              ),
-            ),
-            Expanded(
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: .7,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
+      body: CustomScrollView(
+        slivers: [
+          SliverPadding(
+            padding: EdgeInsets.all(16.w),
+            sliver: SliverList(
+              delegate: SliverChildListDelegate([
+                Text(
+                  'Your Sound, Your Community',
+                  style: AppTextStyles.bold24.copyWith(fontSize: 24.sp),
                 ),
-                itemCount: 10,
-                itemBuilder: (context, index) => GestureDetector(
-                  onTap: () {},
-                  child: CustomGriedViewAlbum(albumId: 'album_$index'),
+                SizedBox(height: 8.h),
+                Text(
+                  'Select 3 albums to join their chatrooms and get started',
+                  style: AppTextStyles.regular16.copyWith(
+                    fontSize: 16.sp,
+                    color: AppColors.greyTextColor,
+                  ),
                 ),
-              ),
+                SizedBox(height: 16.h),
+                GridView.builder(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.7,
+                    mainAxisSpacing: 10.h,
+                    crossAxisSpacing: 10.w,
+                  ),
+                  itemCount: 10,
+                  itemBuilder: (context, index) => GestureDetector(
+                    onTap: () {},
+                    child: CustomGriedViewAlbum(albumId: 'album_$index'),
+                  ),
+                ),
+              ]),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.transparent,
         elevation: 10,
-        child: Container(
-          height: 60,
+        child: SizedBox(
+          height: 60.h,
           child: Center(
-            child: ElevatedButton(
-              onPressed: () {
-                Get.offAllNamed(Routes.CUSTOM_BOTTOM_NAVIGATION_BAR);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.darkBlue,
-                foregroundColor: AppColors.white,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
+              child: ElevatedButton(
+                onPressed: () {
+                  Get.offAllNamed(Routes.CUSTOM_BOTTOM_NAVIGATION_BAR);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.darkBlue,
+                  foregroundColor: AppColors.white,
+                  minimumSize: Size(double.infinity, 48.h),
+                  textStyle: TextStyle(fontSize: 16.sp),
+                ),
+                child: const Text("Let's Start"),
               ),
-              child: Text("Let's Start"),
             ),
           ),
         ),
       ),
-
     );
   }
 }
-
-
