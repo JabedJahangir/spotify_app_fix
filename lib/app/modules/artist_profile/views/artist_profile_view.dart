@@ -115,7 +115,7 @@ class ArtistProfileView extends GetView<ArtistProfileController> {
               final selectedIndex=controller.selectedIndex.value;
               if(selectedIndex==0){
                 return  SliverList.builder(
-                  itemCount: 10,
+                  itemCount: 3,
                   itemBuilder: (context, index) => TourCard(),
                 );
               }

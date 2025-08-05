@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tanit_tanit_app/app/data/image_path.dart';
 
 import '../../../data/app_colors.dart';
@@ -31,11 +32,10 @@ class AlbumCardList extends StatelessWidget {
                   borderRadius: const BorderRadius.vertical(
                     top: Radius.circular(8),
                     bottom: Radius.circular(8),
+
                   ),
                   child: Image.asset(
-                    ImagePath.personImage,
-                    height: 48,
-                    width: 48,
+                    ImagePath.personImage,scale: 3,
                     fit: BoxFit.cover,
                   ),
                 ),
