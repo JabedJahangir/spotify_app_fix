@@ -4,6 +4,7 @@ import 'package:tanit_tanit_app/app/data/app_colors.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
 import 'package:tanit_tanit_app/app/modules/my_chat_room/widget/chat_list.dart';
 import 'package:tanit_tanit_app/app/modules/widget/elevated_button_widget.dart';
+import 'package:tanit_tanit_app/app/routes/app_pages.dart';
 import '../controllers/my_chat_room_controller.dart';
 
 class MyChatRoomView extends GetView<MyChatRoomController> {
@@ -75,12 +76,20 @@ class MyChatRoomView extends GetView<MyChatRoomController> {
                   if (index == 14) {
                     return Column(
                       children: [
-                        SizedBox(width: double.infinity, child: ChatList()),
+                        SizedBox(width: double.infinity, child: InkWell(
+                            onTap: (){
+                              Get.toNamed(Routes.ALBUM_CHAT_ROOM);
+                            },
+                            child: ChatList())),
                         ElevatedButtonMethod,
                       ],
                     );
                   } else {
-                    return ChatList();
+                    return InkWell(
+                        onTap:(){
+                          Get.toNamed(Routes.ALBUM_CHAT_ROOM);
+                        },
+                        child: ChatList());
                   }
                 },
               );
@@ -91,12 +100,20 @@ class MyChatRoomView extends GetView<MyChatRoomController> {
                   if (index == 4) {
                     return Column(
                       children: [
-                        SizedBox(width: double.infinity, child: ChatList()),
+                        SizedBox(width: double.infinity, child: InkWell(
+                          onTap: (){
+                            Get.toNamed(Routes.ALBUM_CHAT_ROOM);
+                          },
+                            child: ChatList())),
                         ElevatedButtonMethod,
                       ],
                     );
                   } else {
-                    return ChatList();
+                    return InkWell(
+                        onTap: (){
+                          Get.toNamed(Routes.ALBUM_CHAT_ROOM);
+                        },
+                        child: ChatList());
                   }
                 },
               );
@@ -113,7 +130,9 @@ class MyChatRoomView extends GetView<MyChatRoomController> {
       child: ElevatedButtonWidget(
         prefixIcon: Icon(Icons.add, color: AppColors.white, size: 20),
         text: 'Create a Subroom',
-        onPressed: () {},
+        onPressed: () {
+          Get.toNamed(Routes.SUB_CHAT_ROOM);
+        },
         backgroundColor: AppColors.darkBlue,
         fontSize: 16,
         textColor: AppColors.white,

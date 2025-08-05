@@ -1,6 +1,7 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
@@ -35,18 +36,18 @@ class UserSignUpView extends GetView<UserSignUpController> {
                       borderType: BorderType.Circle,
                       color: Color(0xFF3465C2),
                       dashPattern: [4, 3],
-                      strokeWidth: 1,
+                      strokeWidth: 1.w,
                       child: Container(
-                        width: 64,
-                        height: 64,
+                        width: 64.w,
+                        height: 64.h,
                         decoration: BoxDecoration(
                           color: Color(0xFFECECEC),
                           shape: BoxShape.circle,
                         ),
                         child: Center(
                           child: Container(
-                            width: 32,
-                            height: 32,
+                            width: 32.w,
+                            height: 32.h,
                             decoration: BoxDecoration(
                               color: Color(0xFFDBE7FF),
                               shape: BoxShape.circle,
@@ -60,16 +61,16 @@ class UserSignUpView extends GetView<UserSignUpController> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 8),
+                    SizedBox(height: 8.h),
                     Text('Profile Picture'),
-                    SizedBox(height: 8),
+                    SizedBox(height: 8.h),
                     Container(
-                      height: 33,
-                      width: 153,
+                      height: 33.h,
+                      width: 153.w,
                       color: AppColors.backGroundGrey,
                       child: Center(child: Text('Upload an Image')),
                     ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 20.h),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,7 +112,7 @@ class UserSignUpView extends GetView<UserSignUpController> {
                           ),
                         ),
                         Text('Date of Birth'),
-                        SizedBox(height: 8),
+                        SizedBox(height: 8.h),
                         Row(
                           children: [
                             Obx(
@@ -123,7 +124,7 @@ class UserSignUpView extends GetView<UserSignUpController> {
                                     controller.selectedMonth(val!),
                               ),
                             ),
-                            SizedBox(width: 8),
+                            SizedBox(width: 8.w),
                             Obx(
                               () => CustomDropDown(
                                 items: controller.days,
@@ -133,7 +134,7 @@ class UserSignUpView extends GetView<UserSignUpController> {
                                     controller.selectedMonth(val!),
                               ),
                             ),
-                            SizedBox(width: 8),
+                            SizedBox(width: 8.w),
                             Obx(
                               () => CustomDropDown(
                                 items: controller.years,
@@ -145,7 +146,7 @@ class UserSignUpView extends GetView<UserSignUpController> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 12),
+                        SizedBox(height: 12.h),
                         Text('Email'),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),

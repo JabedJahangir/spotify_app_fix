@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
@@ -103,11 +104,11 @@ class LoginInInputView extends GetView<LoginInInputController> {
                             backgroundColor: AppColors.white,
                             child: Image.asset(
                               ImagePath.googleIcon,
-                              width: 24,
-                              height: 24,
+                              width: 24.w,
+                              height: 24.h,
                             ),
                           ),
-                          SizedBox(width: 10),
+                          SizedBox(width: 10.w),
                           Text(
                             'Login In With Google',
                             style: TextStyle(color: AppColors.grey),

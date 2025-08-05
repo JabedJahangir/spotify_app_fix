@@ -11,6 +11,7 @@ class Artists extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
             height: MediaQuery.of(context).size.height*.02,

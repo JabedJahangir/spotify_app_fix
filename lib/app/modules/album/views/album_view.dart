@@ -21,7 +21,7 @@ class AlbumView extends GetView<AlbumController> {
         child: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height*.9,
+              height: MediaQuery.of(context).size.height*.84,
               child: ListView.builder(
                 physics: ScrollPhysics(),
                 itemCount: 20,

@@ -10,16 +10,20 @@ class CustomSearchFrame extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(right: 20,top: 16,bottom: 16),
-      child: Column(
-        children: [
-          CircleAvatar(
-            maxRadius: 30,
-            backgroundImage: AssetImage(ImagePath.personImage),
-            backgroundColor: Colors.transparent,
-          ),
-          SizedBox(height: MediaQuery.of(context).size.height * .01),
-          Text('Cardi B', style: AppTextStyles.light12),
-        ],
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height*.1,
+        width: MediaQuery.of(context).size.width*.13,
+        child: Column(
+          children: [
+            CircleAvatar(
+              maxRadius: 30,
+              backgroundImage: AssetImage(ImagePath.personImage),
+              backgroundColor: Colors.transparent,
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height * .01),
+            Text('Cardi B', style: AppTextStyles.light12),
+          ],
+        ),
       ),
     );
   }

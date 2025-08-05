@@ -7,19 +7,18 @@ class SongsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: MediaQuery.of(context).size.height * .6,
-          child: ListView.builder(
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          ListView.builder(
             shrinkWrap: true,
             physics: ScrollPhysics(),
             itemBuilder: (context, index) =>
                 AlbumCardList(isTrue: true, image: ImagePath.heart),
             itemCount: 10,
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
