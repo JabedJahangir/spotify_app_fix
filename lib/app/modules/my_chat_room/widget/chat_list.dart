@@ -15,13 +15,12 @@ class ChatList extends StatelessWidget {
       child: Card(
         elevation: 1.2,
         color: AppColors.white,
-        margin: EdgeInsets.symmetric(vertical: 8),
+        margin: EdgeInsets.symmetric(vertical: 7),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
         child: SizedBox(
-          width: 200,
-          height: 64,
+          width: double.infinity,
           child: Padding(
             padding: const EdgeInsets.all(10),
             child: Row(

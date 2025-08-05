@@ -28,7 +28,7 @@ class AlbumCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
+              padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 3),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

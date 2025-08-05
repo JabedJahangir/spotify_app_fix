@@ -22,8 +22,7 @@ class AlbumCardList extends StatelessWidget {
 
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: SizedBox(
-          width: 200,
-          height: 64,
+          width: double.infinity,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(

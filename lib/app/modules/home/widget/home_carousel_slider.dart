@@ -20,7 +20,8 @@ class HomeCarouselSlider extends StatelessWidget {
           options: CarouselOptions(
             height: 135,
             viewportFraction: 1,
-            enlargeCenterPage: true,
+            aspectRatio: 16/9,
+            enlargeCenterPage: false,
             onPageChanged: (int page, _) {
               _selectedSlider.value = page;
             },
@@ -30,6 +31,7 @@ class HomeCarouselSlider extends StatelessWidget {
               builder: (BuildContext context) {
                 return Container(
                   width: MediaQuery.of(context).size.width,
+                  margin: EdgeInsets.symmetric(horizontal: 4),
                   decoration: BoxDecoration(
                     color: AppColors.darkBlue,
                     borderRadius: BorderRadius.circular(8),
@@ -68,6 +70,7 @@ class HomeCarouselSlider extends StatelessWidget {
                                 onPressed: () {},
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.white,
+                                  padding: EdgeInsets.symmetric(horizontal:2)
                                 ),
                                 child: Center(
                                   child: Text(

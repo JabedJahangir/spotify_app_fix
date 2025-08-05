@@ -9,7 +9,7 @@ class TourCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16,),
       child: Card(
         color: AppColors.white,
         elevation: 1,
@@ -17,9 +17,8 @@ class TourCard extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         child: SizedBox(
           width: double.infinity,
-          height: 90,
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
+            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
             child: Row(
               children: [
                 ClipRRect(
@@ -29,19 +28,19 @@ class TourCard extends StatelessWidget {
                   ),
                   child: Image.asset(
                     ImagePath.notificatonImage,
-                    height: 48,
+                    height: 50,
                     width: 48,
                     fit: BoxFit.cover,
                   ),
                 ),
-                const SizedBox(width: 12),
+                const SizedBox(width: 10),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       "Dhaka, Bangladesh",
                       style: AppTextStyles.regular16.copyWith(
-                        color: AppColors.black,
+                        color: AppColors.black,letterSpacing: 0.1,
                       ),
                     ),
                     Text(
@@ -72,7 +71,7 @@ class TourCard extends StatelessWidget {
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.lightBlue,
-                      padding: EdgeInsets.symmetric(horizontal: 12),
+                      padding: EdgeInsets.symmetric(horizontal: 6),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
@@ -82,7 +81,7 @@ class TourCard extends StatelessWidget {
                         Text(
                           'Buy Ticket',
                           style: AppTextStyles.medium12.copyWith(
-                            color: AppColors.white,
+                            color: AppColors.white,letterSpacing: 0.01,
                           ),
                         ),
                         Spacer(),

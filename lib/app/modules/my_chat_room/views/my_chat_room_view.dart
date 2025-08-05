@@ -25,7 +25,7 @@ class MyChatRoomView extends GetView<MyChatRoomController> {
         slivers: [
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: Obx(() {
                 final selected = controller.selectedIndex.value;
                 return Row(
@@ -36,9 +36,9 @@ class MyChatRoomView extends GetView<MyChatRoomController> {
                         controller.valueSelected(0);
                       },
                       text: 'Chatrooms',
-                      fontSize: 16,
+                      fontSize: 14,
                       height: 34,
-                      width: 103,
+                      width: MediaQuery.of(context).size.width*0.29,
                       textColor: selected == 0
                           ? AppColors.white
                           : AppColors.black,
@@ -52,7 +52,7 @@ class MyChatRoomView extends GetView<MyChatRoomController> {
                         controller.valueSelected(1);
                       },
                       text: 'Subrooms',
-                      fontSize: 16,
+                      fontSize: 14,
                       height: 34,
                       width: 103,
                       textColor: selected == 1

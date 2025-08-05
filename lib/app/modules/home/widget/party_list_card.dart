@@ -28,7 +28,7 @@ class PartyListCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 14),
+              padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -37,14 +37,14 @@ class PartyListCard extends StatelessWidget {
                       Text(
                         "Parties name",
                         style: AppTextStyles.regular14.copyWith(
-                          color: AppColors.black,
+                          color: AppColors.black,letterSpacing: 0.01,
                         ),
                       ),
                       Spacer(),
                       Text(
                         "11.30 PM",
                         style: AppTextStyles.light8.copyWith(
-                          color: AppColors.black,
+                          color: AppColors.black,letterSpacing: 0.01,
                         ),
                       ),
                     ],
