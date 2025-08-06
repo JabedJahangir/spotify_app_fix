@@ -14,7 +14,7 @@ class ChatRoomsTab extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SizedBox(
-          height: 350.h,
+          height: 400.h,
           child: ListView.builder(
             physics: ScrollPhysics(),
             shrinkWrap: true,

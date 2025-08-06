@@ -32,18 +32,13 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: backGroundColor,
-      toolbarHeight: MediaQuery.of(context).orientation == Orientation.portrait ? 50.h : 44.h,
-      leadingWidth: MediaQuery.of(context).orientation == Orientation.portrait
-          ? 56.w
-          : 48.w,
+      leadingWidth: 56.w,
       leading: Padding(
         padding: EdgeInsets.only(left: 16),
         child: Stack(
           children: [
             CircleAvatar(
-              radius: MediaQuery.of(context).orientation == Orientation.portrait
-                  ? 28.r
-                  : 20.r,
+              radius: 28.r,
               backgroundColor: AppColors.blue,
               child: image != null
                   ? ClipOval(child: Image.asset(image!, fit: BoxFit.cover))
@@ -54,19 +49,11 @@ class CustomAppBar extends StatelessWidget {
                       icon: Center(
                         child: Icon(
                           Icons.arrow_back,
-                          size:
-                              MediaQuery.of(context).orientation ==
-                                  Orientation.portrait
-                              ? 24.h
-                              : 14.h,
+                          size: 24.h,
                         ),
                       ),
                       color: AppColors.white,
-                      iconSize:
-                          MediaQuery.of(context).orientation ==
-                              Orientation.portrait
-                          ? 24.h
-                          : 16.h,
+                      iconSize:24.h,
                     ),
             ),
           ],
@@ -80,11 +67,7 @@ class CustomAppBar extends StatelessWidget {
                     text: richText1,
                     style: AppTextStyles.regular16.copyWith(
                       color: AppColors.darkBlue,
-                      fontSize:
-                          MediaQuery.of(context).orientation ==
-                              Orientation.portrait
-                          ? 16.sp
-                          : 14.sp,
+                      fontSize: 16.h,
                     ),
                   ),
                   TextSpan(
@@ -92,11 +75,7 @@ class CustomAppBar extends StatelessWidget {
                     style: AppTextStyles.bold24.copyWith(
                       color: AppColors.darkBlue,
                       overflow: TextOverflow.ellipsis,
-                      fontSize:
-                          MediaQuery.of(context).orientation ==
-                              Orientation.portrait
-                          ? 24.sp
-                          : 20.sp,
+                      fontSize: 20.sp,
                     ),
                   ),
                 ],
@@ -105,10 +84,7 @@ class CustomAppBar extends StatelessWidget {
                 text: title,
                 style: AppTextStyles.medium24.copyWith(
                   color: titleColor,
-                  fontSize:
-                      MediaQuery.of(context).orientation == Orientation.portrait
-                      ? 24.sp
-                      : 20.sp,
+                  fontSize: 24.h,
                 ),
               ),
       ),
@@ -120,10 +96,7 @@ class CustomAppBar extends StatelessWidget {
             child: Icon(
               icon,
               color: AppColors.darkBlue,
-
-              size: MediaQuery.of(context).orientation == Orientation.portrait
-                  ? 40.sp
-                  : 32.sp,
+              size: 40.sp,
             ),
           ),
         ),

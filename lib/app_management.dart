@@ -10,14 +10,8 @@ class AppManagement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) =>
-          OrientationBuilder(builder: (context, orientation) {
-            final designSize = orientation == Orientation.portrait
-                ? const Size(375, 812)
-                : const Size(812, 375);
-            return ScreenUtilInit(
-              designSize: designSize,
+    return ScreenUtilInit(
+              designSize: Size(375, 812),
               minTextAdapt: true,
               splitScreenMode: true,
               builder: (context, child) => GetMaterialApp(
@@ -28,7 +22,5 @@ class AppManagement extends StatelessWidget {
                 theme: themeData(),
               ),
             );
-          }),
-    );
   }
 }
