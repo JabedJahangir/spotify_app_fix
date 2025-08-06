@@ -31,6 +31,7 @@ class SearchView extends GetView<SearchController> {
         backgroundColor: AppColors.backGroundWhite,
         appBar: AppBar(
           title: Text('Search'),
+          backgroundColor: AppColors.backGroundWhite,
           titleTextStyle: AppTextStyles.medium24.copyWith(color: AppColors.black),
         ),
         body: SingleChildScrollView(
@@ -60,8 +61,8 @@ class SearchView extends GetView<SearchController> {
                       padding: EdgeInsets.all(8.w),
                       child: Image.asset(
                         ImagePath.searchNormal,
-                        height: 18.h,
-                        width: 18.w,
+                        height: MediaQuery.of(context).orientation == Orientation.portrait ? 18.h : 60.h,
+                        width: MediaQuery.of(context).orientation == Orientation.portrait ? 18.h : 60.h,
                       ),
                     ),
                     border: InputBorder.none,

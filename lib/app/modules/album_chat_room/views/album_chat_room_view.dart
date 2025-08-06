@@ -70,7 +70,7 @@ class AlbumChatRoomView extends GetView<AlbumChatRoomController> {
                         Get.toNamed(Routes.SUB_CHAT_ROOM);
                       },
                       child: Container(
-                        height: 42.h,
+                        height: MediaQuery.of(context).orientation == Orientation.portrait ? 42.h : 70.h,
                         width: 120.w,
                         decoration: BoxDecoration(
                           color: AppColors.shadeBlue,
@@ -111,7 +111,7 @@ class AlbumChatRoomPlayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      width: MediaQuery.of(context).orientation == Orientation.portrait ? double.infinity : 300.w,
       decoration: ShapeDecoration(
         color: AppColors.white,
         shape: RoundedRectangleBorder(
@@ -129,7 +129,7 @@ class AlbumChatRoomPlayer extends StatelessWidget {
               children: [
                 Container(
                   width: 90.w,
-                  height: 90.h,
+                  height: MediaQuery.of(context).orientation == Orientation.portrait ? 90.h : 200.h,
                   decoration: ShapeDecoration(
                     image: DecorationImage(
                       image: AssetImage(ImagePath.rectangle),

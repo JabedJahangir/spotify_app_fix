@@ -13,7 +13,7 @@ class All extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.only(left: 16,right: 16),
+        padding: const EdgeInsets.only(left: 16, right: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -32,7 +32,8 @@ class All extends StatelessWidget {
                     label: Text(
                       'wokka wokka',
                       overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.regular16.copyWith(fontSize: 16.sp),
+                      maxLines: 1,
+                      style: AppTextStyles.light14.copyWith(fontSize: 16.sp),
                     ),
                     backgroundColor: AppColors.white,
                     shape: RoundedRectangleBorder(
@@ -48,7 +49,9 @@ class All extends StatelessWidget {
               style: AppTextStyles.regular24.copyWith(fontSize: 24.sp),
             ),
             SizedBox(
-              height: 120.sp,
+              height: MediaQuery.of(context).orientation == Orientation.portrait
+                  ? 100.h
+                  : 250.h,
               child: ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -63,7 +66,9 @@ class All extends StatelessWidget {
               style: AppTextStyles.regular24.copyWith(fontSize: 24.sp),
             ),
             SizedBox(
-              height: 120.sp,
+              height: MediaQuery.of(context).orientation == Orientation.portrait
+                  ? 100.h
+                  : 250.h,
               child: ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -78,7 +83,9 @@ class All extends StatelessWidget {
               style: AppTextStyles.regular24.copyWith(fontSize: 24.sp),
             ),
             SizedBox(
-              height: 120.sp,
+              height: MediaQuery.of(context).orientation == Orientation.portrait
+                  ? 100.h
+                  : 250.h,
               child: ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,

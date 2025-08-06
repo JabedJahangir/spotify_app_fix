@@ -12,23 +12,28 @@ class CustomSearchFrame extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(right: 20.w, top: 16.h, bottom: 16.h),
       child: SizedBox(
-        width: 45.w,
+        width: 50.w,
         height: 60.h,
         child: Column(
           children: [
             Expanded(
               child: CircleAvatar(
-                radius: 30.r,
+                radius: MediaQuery.of(context).orientation == Orientation.portrait ? 50.r : 80.r,
                 backgroundImage: AssetImage(ImagePath.personImage),
                 backgroundColor: Colors.transparent,
               ),
             ),
             SizedBox(height: 8.h),
-            Text(
-              'Cardi B',
-              style: AppTextStyles.light12.copyWith(fontSize: 12.sp),
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
+            SizedBox(
+              width: 50.w,
+              child: Center(
+                child: Text(
+                  'Cardi Bvfgf',
+                  style: AppTextStyles.light12,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                ),
+              ),
             ),
           ],
         ),

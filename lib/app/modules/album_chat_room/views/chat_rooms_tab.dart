@@ -35,7 +35,7 @@ class ChatRoomsTab extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 16),
                             child: Container(
-                              height: 30.h,
+                              height: MediaQuery.of(context).orientation == Orientation.portrait ? 30.h : 60.h,
                               width: 200.w,
                               decoration: BoxDecoration(color: AppColors.white),
                               child: Text(
@@ -68,7 +68,7 @@ class ChatRoomsTab extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 16),
                             child: Container(
-                              height: 30.h,
+                              height: MediaQuery.of(context).orientation == Orientation.portrait ? 30.h : 60.h,
                               width: 200.w,
                               decoration: BoxDecoration(color: AppColors.white),
                               child: Text(
@@ -91,14 +91,14 @@ class ChatRoomsTab extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(bottom: 50),
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).orientation == Orientation.portrait ? 50 : 20),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(height: 35.h, width: 230.w, child: SearchBar()),
+              SizedBox(height: MediaQuery.of(context).orientation == Orientation.portrait ? 35.h : 65.h, width: 230.w, child: SearchBar()),
               SizedBox(width: MediaQuery.of(context).size.width * .03),
               Container(
-                height: 40.h,
+                height: MediaQuery.of(context).orientation == Orientation.portrait ? 40.h : 70.h,
                 width: 100.w,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(45),

@@ -22,7 +22,7 @@ class ProfileView extends GetView<ProfileController> {
             child: Column(
               children: [
                 Container(
-                  height: 300.h,
+                  height: MediaQuery.of(context).orientation == Orientation.portrait ? 220.h : 350.h,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -205,14 +205,14 @@ class ProfileView extends GetView<ProfileController> {
                                   ),
 
                                   SizedBox(
-                                    height: 30.h,
+                                    height: MediaQuery.of(context).orientation == Orientation.portrait ? 30.h : 60.h,
                                     width: 50.w,
                                     child: Obx(
                                       () => GestureDetector(
                                         onTap:
                                             controller.togglePlayInBackground,
                                         child: Container(
-                                          height: 25.h,
+                                          height: MediaQuery.of(context).orientation == Orientation.portrait ? 25.h : 40.h,
                                           width: 46.w,
                                           decoration: BoxDecoration(
                                             color: AppColors.darkBlue,
@@ -225,8 +225,8 @@ class ProfileView extends GetView<ProfileController> {
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
                                               Container(
-                                                height: 15.h,
-                                                width: 15.w,
+                                                height: MediaQuery.of(context).orientation == Orientation.portrait ? 20.h : 30.h,
+                                                width: MediaQuery.of(context).orientation == Orientation.portrait ? 20.w : 20.w,
                                                 decoration: BoxDecoration(
                                                   color:
                                                       controller
@@ -238,8 +238,8 @@ class ProfileView extends GetView<ProfileController> {
                                                 ),
                                               ),
                                               Container(
-                                                height: 15.h,
-                                                width: 15.w,
+                                                height: MediaQuery.of(context).orientation == Orientation.portrait ? 20.h : 30.h,
+                                                width: MediaQuery.of(context).orientation == Orientation.portrait ? 20.w : 20.w,
                                                 decoration: BoxDecoration(
                                                   color:
                                                       controller

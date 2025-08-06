@@ -16,15 +16,20 @@ class Genres extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height*.02,
-            ),
-            Text('Genres',style: AppTextStyles.regular24,),
+            SizedBox(height: MediaQuery.of(context).size.height * .02),
+            Text('Genres', style: AppTextStyles.regular24),
             Wrap(
-              children: List.generate(12,(index){
-                return CustomSearchFrame();
+              children: List.generate(12, (index) {
+                return SizedBox(
+                    height: MediaQuery.of(context).orientation == Orientation.portrait
+                        ? 110.h
+                        : 300.h,
+                    width: MediaQuery.of(context).orientation == Orientation.portrait
+                        ? 66.w
+                        : 69.w,
+                    child: CustomSearchFrame());
               }),
-            )
+            ),
           ],
         ),
       ),

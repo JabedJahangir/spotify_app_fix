@@ -20,7 +20,14 @@ class Artists extends StatelessWidget {
             SizedBox(height: 16.h),
             Wrap(
               children: List.generate(12,(index){
-                return CustomSearchFrame();
+                return SizedBox(
+                    height: MediaQuery.of(context).orientation == Orientation.portrait
+                        ? 110.h
+                        : 300.h,
+                    width: MediaQuery.of(context).orientation == Orientation.portrait
+                        ? 66.w
+                        : 69.w,
+                    child: CustomSearchFrame());
               }),
             )
           ],
