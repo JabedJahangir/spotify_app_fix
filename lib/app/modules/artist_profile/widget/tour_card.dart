@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
 import 'package:tanit_tanit_app/app/data/image_path.dart';
@@ -18,7 +19,7 @@ class TourCard extends StatelessWidget {
         child: SizedBox(
           width: double.infinity,
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+            padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 10),
             child: Row(
               children: [
                 ClipRRect(
@@ -27,13 +28,11 @@ class TourCard extends StatelessWidget {
                     bottom: Radius.circular(8),
                   ),
                   child: Image.asset(
-                    ImagePath.notificatonImage,
-                    height: 50,
-                    width: 48,
+                    ImagePath.notificatonImage,scale: 3,
                     fit: BoxFit.cover,
                   ),
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(width: 6),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -65,28 +64,28 @@ class TourCard extends StatelessWidget {
                 ),
                 Spacer(),
                 SizedBox(
-                  height: 34,
-                  width: 102,
+                   height: 44.h,
+                  width: 92.w,
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.lightBlue,
-                      padding: EdgeInsets.symmetric(horizontal: 6),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
+                      backgroundColor: AppColors.darkBlue,
+                      padding: EdgeInsets.symmetric(horizontal: 6,),
                     ),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Buy Ticket',
-                          style: AppTextStyles.medium12.copyWith(
-                            color: AppColors.white,letterSpacing: 0.01,
+                    child: Center(
+                      child: Row(
+                        children: [
+                          Text(
+                            'Buy Ticket',
+                            style: AppTextStyles.regular12.copyWith(
+                              color: AppColors.white,
+                              letterSpacing: 0.01,
+                            ),
                           ),
-                        ),
-                        Spacer(),
-                        Image.asset(ImagePath.arrowUP, scale: 3),
-                      ],
+                          const SizedBox(width: 3,),
+                          Image.asset(ImagePath.arrowUP, scale: 3),
+                        ],
+                      ),
                     ),
                   ),
                 ),
