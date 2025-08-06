@@ -29,78 +29,74 @@ class AlbumChatRoomView extends GetView<AlbumChatRoomController> {
             titleColor: AppColors.white,
           ),
         ),
-        body: CustomScrollView(
-          slivers: [
-            SliverFillRemaining(
-              hasScrollBody: true,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                AlbumChatRoomPlayer(),
+                SizedBox(height: 20.h),
+                Row(
                   children: [
-                    AlbumChatRoomPlayer(),
-                    SizedBox(height: 20),
-                    Row(
-                      children: [
-                        TabBar(
-                          labelColor: AppColors.black,
-                          unselectedLabelColor: AppColors.white,
-                          isScrollable: true,
-                          labelPadding: EdgeInsets.symmetric(
-                            vertical: 8,
-                            horizontal: 26,
-                          ),
-                          indicator: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius: BorderRadius.circular(45),
-                          ),
-                          indicatorPadding: EdgeInsetsGeometry.symmetric(
-                            vertical: 0,
-                            horizontal: -24,
-                          ),
-                          dividerColor: Colors.transparent,
-                          tabAlignment: TabAlignment.start,
-                          tabs: [
-                            Text('Songs', style: AppTextStyles.light14),
-                            Text('Chatroom', style: AppTextStyles.light14),
-                          ],
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * .02,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Get.toNamed(Routes.SUB_CHAT_ROOM);
-                          },
-                          child: Container(
-                            height: 42,
-                            width: 120,
-                            decoration: BoxDecoration(
-                              color: AppColors.shadeBlue,
-                              borderRadius: BorderRadius.circular(45),
-                            ),
-                            child: Center(
-                              child: Text(
-                                '+ SubRoom',
-                                style: AppTextStyles.light14.copyWith(
-                                  color: AppColors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
+                    TabBar(
+                      labelColor: AppColors.black,
+                      unselectedLabelColor: AppColors.white,
+                      isScrollable: true,
+                      labelPadding: EdgeInsets.symmetric(
+                        vertical: 8,
+                        horizontal: 26,
+                      ),
+                      indicator: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(45),
+                      ),
+                      indicatorPadding: EdgeInsetsGeometry.symmetric(
+                        vertical: 0,
+                        horizontal: -24,
+                      ),
+                      dividerColor: Colors.transparent,
+                      tabAlignment: TabAlignment.start,
+                      tabs: [
+                        Text('Songs', style: AppTextStyles.light14),
+                        Text('Chatroom', style: AppTextStyles.light14),
                       ],
                     ),
-                    Expanded(
-                      child: TabBarView(
-                        children: [SongsTab(), ChatRoomsTab()],
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * .02,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(Routes.SUB_CHAT_ROOM);
+                      },
+                      child: Container(
+                        height: 42.h,
+                        width: 120.w,
+                        decoration: BoxDecoration(
+                          color: AppColors.shadeBlue,
+                          borderRadius: BorderRadius.circular(45),
+                        ),
+                        child: Center(
+                          child: Text(
+                            '+ SubRoom',
+                            style: AppTextStyles.light14.copyWith(
+                              color: AppColors.white,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ],
                 ),
-              ),
+                SizedBox(
+                  height: 500.h,
+                  child: TabBarView(
+                    children: [SongsTab(), ChatRoomsTab()],
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
@@ -115,7 +111,7 @@ class AlbumChatRoomPlayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width * 1,
+      width: double.infinity,
       decoration: ShapeDecoration(
         color: AppColors.white,
         shape: RoundedRectangleBorder(
@@ -132,8 +128,8 @@ class AlbumChatRoomPlayer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  width: MediaQuery.of(context).size.width*.19,
-                  height: MediaQuery.of(context).size.height*.1,
+                  width: 90.w,
+                  height: 90.h,
                   decoration: ShapeDecoration(
                     image: DecorationImage(
                       image: AssetImage(ImagePath.rectangle),
@@ -143,6 +139,9 @@ class AlbumChatRoomPlayer extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
+                ),
+                SizedBox(
+                  width: 5.w,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -160,9 +159,7 @@ class AlbumChatRoomPlayer extends StatelessWidget {
                       maxLines: 1,
                     ),
                     SizedBox(
-                      width:
-                          MediaQuery.of(context).size.width *
-                          .54,
+                      width: 180.w,
                       child: Row(
                         mainAxisAlignment:
                             MainAxisAlignment.spaceAround,
@@ -202,7 +199,7 @@ class AlbumChatRoomPlayer extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 8),
               child: Container(
                 width: double.infinity,
-                height: 6,
+                height: 6.h,
                 decoration: ShapeDecoration(
                   color: const Color(0xFFD9D9D9),
                   shape: RoundedRectangleBorder(
@@ -216,8 +213,8 @@ class AlbumChatRoomPlayer extends StatelessWidget {
                   spacing: 10,
                   children: [
                     Container(
-                      width: 121,
-                      height: 6,
+                      width: 121.w,
+                      height: 6.h,
                       decoration: ShapeDecoration(
                         gradient: LinearGradient(
                           begin: Alignment(0.88, 0.50),
@@ -243,21 +240,11 @@ class AlbumChatRoomPlayer extends StatelessWidget {
               children: [
                 Text(
                   '1:50',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 12.sp,
-                    fontFamily: 'DM Sans',
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: AppTextStyles.medium12
                 ),
                 Text(
                   '5:56',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 12,
-                    fontFamily: 'DM Sans',
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: AppTextStyles.medium12
                 ),
               ],
             ),

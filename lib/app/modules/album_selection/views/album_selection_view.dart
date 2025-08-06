@@ -45,7 +45,7 @@ class AlbumSelectionView extends GetView<AlbumSelectionController> {
                   physics: NeverScrollableScrollPhysics(),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    childAspectRatio: 0.7,
+                    childAspectRatio: 0.55,
                     mainAxisSpacing: 10.h,
                     crossAxisSpacing: 10.w,
                   ),

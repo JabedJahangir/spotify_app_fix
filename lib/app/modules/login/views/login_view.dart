@@ -86,7 +86,7 @@ class LoginView extends GetView<LoginController> {
                               color: AppColors.white,
                               decoration: TextDecoration.underline,
                               decorationColor: AppColors.white,
-                              decorationThickness: 1.1,
+                              decorationThickness: 1.1.sp,
                             ),
                           ),
                         ),

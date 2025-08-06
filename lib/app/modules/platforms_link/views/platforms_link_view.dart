@@ -14,8 +14,6 @@ class PlatformsLinkView extends GetView<PlatformsLinkController> {
 
   @override
   Widget build(BuildContext context) {
-    // Make sure to initialize ScreenUtil in your app's entry point (main.dart)
-    // ScreenUtil.init(context);
 
     return Scaffold(
       backgroundColor: AppColors.backGroundWhite,

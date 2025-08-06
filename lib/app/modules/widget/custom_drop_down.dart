@@ -51,14 +51,14 @@ class CustomDropDown extends StatelessWidget {
         style: AppTextStyles.regular16.copyWith(
           color: AppColors.greyTextColor,
         ),
-        iconStyleData: const IconStyleData(
+        iconStyleData:  IconStyleData(
           icon: Icon(
             Icons.keyboard_arrow_down_outlined,
-            size: 24,
+            size: 24.sp,
             color: AppColors.greyTextColor,
           ),
         ),
-        dropdownStyleData: const DropdownStyleData(maxHeight: 250),
+        dropdownStyleData:  DropdownStyleData(maxHeight: 250.h),
       ),
     );
   }

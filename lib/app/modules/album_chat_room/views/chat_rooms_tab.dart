@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
 import 'package:tanit_tanit_app/app/data/image_path.dart';
@@ -22,50 +23,56 @@ class ChatRoomsTab extends StatelessWidget {
               alignment: index.isEven ? Alignment.centerLeft : Alignment.centerRight,
               child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: index.isEven ? Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  CircleAvatar(
-                    backgroundImage: AssetImage(ImagePath.personImage),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Container(
-                      height: 40,
-                      width: 290,
-                      decoration: BoxDecoration(color: AppColors.white),
-                      child: Text(
-                        "Message $index",
-                        style: AppTextStyles.light14.copyWith(
-                          color: index.isEven ? Colors.black : Colors.white,
+              child: index.isEven ? SizedBox(
+                width: double.infinity,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: AssetImage(ImagePath.personImage),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Container(
+                        height: 40.h,
+                        width: double.infinity, 
+                        decoration: BoxDecoration(color: AppColors.white),
+                        child: Text(
+                          "Message $index",
+                          style: AppTextStyles.light14.copyWith(
+                            color: index.isEven ? Colors.black : Colors.white,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Text('5:16',style: AppTextStyles.light8.copyWith(color: AppColors.white),)
-                ],
-              ) : Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text('5:16',style: AppTextStyles.light8.copyWith(color: AppColors.white),),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Container(
-                      height: 40,
-                      width: 290,
-                      decoration: BoxDecoration(color: AppColors.white),
-                      child: Text(
-                        "Message $index",
-                        style: AppTextStyles.light14.copyWith(
-                          color: index.isEven ? Colors.black : Colors.blue,
+                    Text('5:16',style: AppTextStyles.light8.copyWith(color: AppColors.white),)
+                  ],
+                ),
+              ) : SizedBox(
+                width: double.infinity,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text('5:16',style: AppTextStyles.light8.copyWith(color: AppColors.white),),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Container(
+                        height: 40.h,
+                        width: 290.w,
+                        decoration: BoxDecoration(color: AppColors.white),
+                        child: Text(
+                          "Message $index",
+                          style: AppTextStyles.light14.copyWith(
+                            color: index.isEven ? Colors.black : Colors.blue,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  CircleAvatar(
-                    backgroundImage: AssetImage(ImagePath.personImage),
-                  ),
-                ],
+                    CircleAvatar(
+                      backgroundImage: AssetImage(ImagePath.personImage),
+                    ),
+                  ],
+                ),
               ),
                         ),
             ),),
@@ -75,16 +82,16 @@ class ChatRoomsTab extends StatelessWidget {
           child: Row(
             children: [
               SizedBox(
-                height: 40,
-                width: 280,
+                height: 40.h,
+                width: 280.w,
                 child: SearchBar(
 
                 ),
               ),
               SizedBox(width: MediaQuery.of(context).size.width * .03),
               Container(
-                height: 40,
-                width: 100,
+                height: 40.h,
+                width: 100.w,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(45),
                   color: AppColors.blue,

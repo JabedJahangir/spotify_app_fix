@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
@@ -21,7 +22,7 @@ class ProfileView extends GetView<ProfileController> {
             child: Column(
               children: [
                 Container(
-                  height: 250,
+                  height: 300.h,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -33,10 +34,10 @@ class ProfileView extends GetView<ProfileController> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       CircleAvatar(
-                        radius: 70,
+                        radius: 70.r,
                         backgroundColor: Colors.white,
                         child: CircleAvatar(
-                          radius: 65,
+                          radius: 65.r,
                           backgroundImage: AssetImage(ImagePath.personImage),
                         ),
                       ),
@@ -55,7 +56,7 @@ class ProfileView extends GetView<ProfileController> {
                     ],
                   ),
                 ),
-                const SizedBox(height: 10),
+                SizedBox(height: 10.h),
                 Container(
                   decoration: BoxDecoration(
                     color: AppColors.white,
@@ -77,6 +78,9 @@ class ProfileView extends GetView<ProfileController> {
                               ),
                               fillColor: AppColors.backGroundWhite,
                               hintText: '@melodylover22',
+                              hintStyle: AppTextStyles.regular16.copyWith(
+                                color: AppColors.greyTextColor,
+                              ),
                             ),
                           ),
                         ),
@@ -91,6 +95,9 @@ class ProfileView extends GetView<ProfileController> {
                               ),
                               fillColor: AppColors.backGroundWhite,
                               hintText: 'Living life one beat at a time.',
+                              hintStyle: AppTextStyles.regular16.copyWith(
+                                color: AppColors.greyTextColor,
+                              ),
                             ),
                           ),
                         ),
@@ -198,19 +205,19 @@ class ProfileView extends GetView<ProfileController> {
                                   ),
 
                                   SizedBox(
-                                    height: 30,
-                                    width: 50,
+                                    height: 30.h,
+                                    width: 50.w,
                                     child: Obx(
                                       () => GestureDetector(
                                         onTap:
                                             controller.togglePlayInBackground,
                                         child: Container(
-                                          height: 25,
-                                          width: 46,
+                                          height: 25.h,
+                                          width: 46.w,
                                           decoration: BoxDecoration(
                                             color: AppColors.darkBlue,
                                             borderRadius: BorderRadius.circular(
-                                              45,
+                                              45.r,
                                             ),
                                           ),
                                           child: Row(
@@ -218,8 +225,8 @@ class ProfileView extends GetView<ProfileController> {
                                                 MainAxisAlignment.spaceEvenly,
                                             children: [
                                               Container(
-                                                height: 15,
-                                                width: 15,
+                                                height: 15.h,
+                                                width: 15.w,
                                                 decoration: BoxDecoration(
                                                   color:
                                                       controller
@@ -231,8 +238,8 @@ class ProfileView extends GetView<ProfileController> {
                                                 ),
                                               ),
                                               Container(
-                                                height: 15,
-                                                width: 15,
+                                                height: 15.h,
+                                                width: 15.w,
                                                 decoration: BoxDecoration(
                                                   color:
                                                       controller
@@ -263,7 +270,7 @@ class ProfileView extends GetView<ProfileController> {
                               child: Row(
                                 children: [
                                   Icon(Icons.logout),
-                                  SizedBox(width: 5),
+                                  SizedBox(width: 5.w),
                                   Text(
                                     'Log out',
                                     style: AppTextStyles.regular16.copyWith(

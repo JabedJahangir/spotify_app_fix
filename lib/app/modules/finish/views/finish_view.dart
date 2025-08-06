@@ -29,13 +29,13 @@ class FinishView extends GetView<FinishController> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height*0.1,
-                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.1),
                   Image.asset(ImagePath.finish, height: 170.h, width: 290.w),
                   Text(
                     'Welcome to MUMU',
-                    style: AppTextStyles.bold24.copyWith(color: AppColors.white),
+                    style: AppTextStyles.bold24.copyWith(
+                      color: AppColors.white,
+                    ),
                   ),
                   Text(
                     'Your favorite music. Your community. Your thoughts. All in one space.',
@@ -44,12 +44,13 @@ class FinishView extends GetView<FinishController> {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height*0.4,
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.4),
+                  ElevatedButton(
+                    onPressed: () {
+                      Get.toNamed(Routes.PLATFORMS_LINK);
+                    },
+                    child: Text('Finish'),
                   ),
-                  ElevatedButton(onPressed: (){
-                    Get.toNamed(Routes.PLATFORMS_LINK);
-                  }, child: Text('Finish'))
                 ],
               ),
             ),
