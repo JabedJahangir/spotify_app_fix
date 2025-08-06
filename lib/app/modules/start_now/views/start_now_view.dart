@@ -15,63 +15,60 @@ class StartNowView extends GetView<StartNowController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.darkBlue,
-      body:  SafeArea(
-    child: CustomScrollView(
-    slivers: [
-    SliverFillRemaining(
-      hasScrollBody: false,
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: Image.asset(ImagePath.startNow, fit: BoxFit.cover),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              vertical: 50.h,
-              horizontal: 16.w,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const SizedBox(),
-                Image.asset(
-                  ImagePath.mumuLogo,
-                  width: 140.w,
-                  height: 130.h,
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  height: 48.h,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.r),
-                      ),
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            SliverFillRemaining(
+              hasScrollBody: false,
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: Image.asset(ImagePath.startNow, fit: BoxFit.cover),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 50.h,
+                      horizontal: 16.w,
                     ),
-                    onPressed: () {
-                      Get.offAllNamed(Routes.LOGIN);
-                    },
-                    child: Text(
-                      'Start Now',
-                      style: AppTextStyles.regular16.copyWith(
-                        color: AppColors.darkBlue,
-                      ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const SizedBox(),
+                        Image.asset(
+                          ImagePath.mumuLogo,
+                          width: 140.w,
+                          height: 130.h,
+                        ),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 48.h,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.r),
+                              ),
+                            ),
+                            onPressed: () {
+                              Get.offAllNamed(Routes.LOGIN);
+                            },
+                            child: Text(
+                              'Start Now',
+                              style: AppTextStyles.regular16.copyWith(
+                                color: AppColors.darkBlue,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
-    ),]
-    ,
-    )
-    ,
-    )
-    ,
-
     );
   }
 }

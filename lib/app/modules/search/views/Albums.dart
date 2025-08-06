@@ -12,7 +12,10 @@ class Albums extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(height: MediaQuery.of(context).size.height * .02),
-        Text("Albums", style: AppTextStyles.regular24),
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Text("Albums", style: AppTextStyles.regular24),
+        ),
         Expanded(
           child: ListView.builder(
             shrinkWrap: true,

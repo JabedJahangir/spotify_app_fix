@@ -14,9 +14,6 @@ class PlatformsLinkView extends GetView<PlatformsLinkController> {
 
   @override
   Widget build(BuildContext context) {
-    // Make sure to initialize ScreenUtil in your app's entry point (main.dart)
-    // ScreenUtil.init(context);
-
     return Scaffold(
       backgroundColor: AppColors.backGroundWhite,
       appBar: PreferredSize(
@@ -40,7 +37,6 @@ class PlatformsLinkView extends GetView<PlatformsLinkController> {
                   'Connect your account so we can discover the albums and artists that shape your vibe.',
                   style: AppTextStyles.regular16.copyWith(
                     color: AppColors.greyTextColor,
-                    fontSize: 16.sp,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -63,7 +59,6 @@ class PlatformsLinkView extends GetView<PlatformsLinkController> {
                         'Log In with Spotify',
                         style: AppTextStyles.medium16.copyWith(
                           color: AppColors.white,
-                          fontSize: 16.sp,
                         ),
                       ),
                     ],
@@ -88,7 +83,6 @@ class PlatformsLinkView extends GetView<PlatformsLinkController> {
                         'Log In with Deezer',
                         style: AppTextStyles.medium16.copyWith(
                           color: AppColors.white,
-                          fontSize: 16.sp,
                         ),
                       ),
                     ],
@@ -121,7 +115,6 @@ class PlatformsLinkView extends GetView<PlatformsLinkController> {
                         'Log In with Apple',
                         style: AppTextStyles.medium16.copyWith(
                           color: AppColors.white,
-                          fontSize: 16.sp,
                         ),
                       ),
                     ],

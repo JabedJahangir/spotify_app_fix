@@ -7,36 +7,31 @@ import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
 import '../widget/custom_search_frame.dart';
 
 class All extends StatelessWidget {
-  All({super.key});
+  const All({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Make sure ScreenUtil.init() is called in your app entry point
-
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        padding: const EdgeInsets.only(left: 16,right: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 20.h),
-
             Text(
               'Recent Searches',
               style: AppTextStyles.regular24.copyWith(fontSize: 24.sp),
             ),
-
             Padding(
               padding: EdgeInsets.symmetric(vertical: 16.h),
               child: Wrap(
-                spacing: 12.w, // horizontal spacing
-                runSpacing: 12.h, // vertical spacing
+                spacing: 12.w,
+                runSpacing: 12.h,
                 children: List.generate(10, (index) {
                   return Chip(
                     label: Text(
                       'wokka wokka',
                       overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
                       style: AppTextStyles.regular16.copyWith(fontSize: 16.sp),
                     ),
                     backgroundColor: AppColors.white,
@@ -48,14 +43,12 @@ class All extends StatelessWidget {
                 }),
               ),
             ),
-
             Text(
               'Artists',
               style: AppTextStyles.regular24.copyWith(fontSize: 24.sp),
             ),
-
             SizedBox(
-              height: 140.h,
+              height: 120.sp,
               child: ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
@@ -64,34 +57,28 @@ class All extends StatelessWidget {
                 itemBuilder: (context, index) => CustomSearchFrame(),
               ),
             ),
-
             SizedBox(height: 20.h),
-
             Text(
               'Genres',
               style: AppTextStyles.regular24.copyWith(fontSize: 24.sp),
             ),
-
             SizedBox(
-              height: 140.h,
+              height: 120.sp,
               child: ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 itemCount: 5,
-                shrinkWrap: true,
                 itemBuilder: (context, index) => CustomSearchFrame(),
               ),
             ),
-
             SizedBox(height: 20.h),
-
             Text(
               'Albums',
               style: AppTextStyles.regular24.copyWith(fontSize: 24.sp),
             ),
-
             SizedBox(
-              height: 140.h,
+              height: 120.sp,
               child: ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,

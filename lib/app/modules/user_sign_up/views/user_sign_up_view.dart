@@ -71,49 +71,58 @@ class UserSignUpView extends GetView<UserSignUpController> {
               CustomBuildLabeledInput('Last Name'),
               CustomBuildLabeledInput('User Name'),
               Align(
-                  alignment: AlignmentDirectional.centerStart,
-                  child: Text('Date of Birth', style: AppTextStyles.regular12)),
+                alignment: AlignmentDirectional.centerStart,
+                child: Text('Date of Birth', style: AppTextStyles.regular12),
+              ),
               SizedBox(height: 8.h),
               Row(
                 children: [
                   Expanded(
-                    child: Obx(() => CustomDropDown(
-                      items: controller.months,
-                      selectedValue: controller.selectedMonth.value,
-                      hintText: 'Month',
-                      onChanged: (val) => controller.selectedMonth(val!),
-                    )),
+                    child: Obx(
+                      () => CustomDropDown(
+                        items: controller.months,
+                        selectedValue: controller.selectedMonth.value,
+                        hintText: 'Month',
+                        onChanged: (val) => controller.selectedMonth(val!),
+                      ),
+                    ),
                   ),
                   SizedBox(width: 8.w),
                   Expanded(
-                    child: Obx(() => CustomDropDown(
-                      items: controller.days,
-                      selectedValue: controller.selectedDay.value,
-                      hintText: 'Day',
-                      onChanged: (val) => controller.selectedDay(val!),
-                    )),
+                    child: Obx(
+                      () => CustomDropDown(
+                        items: controller.days,
+                        selectedValue: controller.selectedDay.value,
+                        hintText: 'Day',
+                        onChanged: (val) => controller.selectedDay(val!),
+                      ),
+                    ),
                   ),
                   SizedBox(width: 8.w),
                   Expanded(
-                    child: Obx(() => CustomDropDown(
-                      items: controller.years,
-                      selectedValue: controller.selectedYear.value,
-                      hintText: 'Year',
-                      onChanged: (val) => controller.selectedYear(val!),
-                    )),
+                    child: Obx(
+                      () => CustomDropDown(
+                        items: controller.years,
+                        selectedValue: controller.selectedYear.value,
+                        hintText: 'Year',
+                        onChanged: (val) => controller.selectedYear(val!),
+                      ),
+                    ),
                   ),
                 ],
               ),
               SizedBox(height: 12.h),
               CustomBuildLabeledInput('Email'),
               CustomBuildLabeledInput('Password'),
-              Obx(() => CheckboxListTile(
-                contentPadding: EdgeInsets.zero,
-                title:  Text('Remember Me',style: AppTextStyles.regular16,),
-                value: controller.isChecked.value,
-                onChanged: (val) => controller.checked(),
-                controlAffinity: ListTileControlAffinity.leading,
-              )),
+              Obx(
+                () => CheckboxListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text('Remember Me', style: AppTextStyles.regular16),
+                  value: controller.isChecked.value,
+                  onChanged: (val) => controller.checked(),
+                  controlAffinity: ListTileControlAffinity.leading,
+                ),
+              ),
               SizedBox(height: 10.h),
               SizedBox(
                 width: double.infinity,
@@ -134,7 +143,4 @@ class UserSignUpView extends GetView<UserSignUpController> {
       ),
     );
   }
-
 }
-
-

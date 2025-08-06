@@ -63,7 +63,9 @@ class LoginView extends GetView<LoginController> {
                           SizedBox(width: 10.w),
                           Text(
                             'Login In With Google',
-                            style: AppTextStyles.regular16.copyWith(color: AppColors.white),
+                            style: AppTextStyles.regular16.copyWith(
+                              color: AppColors.white,
+                            ),
                           ),
                         ],
                       ),
@@ -74,7 +76,9 @@ class LoginView extends GetView<LoginController> {
                       children: [
                         Text(
                           "Don't have an account?",
-                          style: AppTextStyles.regular12.copyWith(color: AppColors.white),
+                          style: AppTextStyles.regular12.copyWith(
+                            color: AppColors.white,
+                          ),
                         ),
                         TextButton(
                           onPressed: () {
@@ -86,7 +90,7 @@ class LoginView extends GetView<LoginController> {
                               color: AppColors.white,
                               decoration: TextDecoration.underline,
                               decorationColor: AppColors.white,
-                              decorationThickness: 1.1,
+                              decorationThickness: 1.1.sp,
                             ),
                           ),
                         ),
@@ -101,5 +105,4 @@ class LoginView extends GetView<LoginController> {
       ),
     );
   }
-
 }

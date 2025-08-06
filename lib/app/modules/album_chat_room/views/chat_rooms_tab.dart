@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
 import 'package:tanit_tanit_app/app/data/image_path.dart';
@@ -13,78 +14,92 @@ class ChatRoomsTab extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height*.5,
+          height: 400.h,
           child: ListView.builder(
             physics: ScrollPhysics(),
             shrinkWrap: true,
             itemCount: 10,
             itemBuilder: (context, index) => Align(
-              alignment: index.isEven ? Alignment.centerLeft : Alignment.centerRight,
+              alignment: index.isEven
+                  ? Alignment.centerLeft
+                  : Alignment.centerRight,
               child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: index.isEven ? Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  CircleAvatar(
-                    backgroundImage: AssetImage(ImagePath.personImage),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Container(
-                      height: 40,
-                      width: 290,
-                      decoration: BoxDecoration(color: AppColors.white),
-                      child: Text(
-                        "Message $index",
-                        style: AppTextStyles.light14.copyWith(
-                          color: index.isEven ? Colors.black : Colors.white,
-                        ),
+                padding: const EdgeInsets.all(16.0),
+                child: index.isEven
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          CircleAvatar(
+                            backgroundImage: AssetImage(ImagePath.personImage),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Container(
+                              height: 30.h,
+                              width: 200.w,
+                              decoration: BoxDecoration(color: AppColors.white),
+                              child: Text(
+                                "Message $index",
+                                style: AppTextStyles.light14.copyWith(
+                                  color: index.isEven
+                                      ? Colors.black
+                                      : Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Text(
+                            '5:16',
+                            style: AppTextStyles.light8.copyWith(
+                              color: AppColors.white,
+                            ),
+                          ),
+                        ],
+                      )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            '5:16',
+                            style: AppTextStyles.light8.copyWith(
+                              color: AppColors.white,
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Container(
+                              height: 30.h,
+                              width: 200.w,
+                              decoration: BoxDecoration(color: AppColors.white),
+                              child: Text(
+                                "Message $index",
+                                style: AppTextStyles.light14.copyWith(
+                                  color: index.isEven
+                                      ? Colors.black
+                                      : Colors.blue,
+                                ),
+                              ),
+                            ),
+                          ),
+                          CircleAvatar(
+                            backgroundImage: AssetImage(ImagePath.personImage),
+                          ),
+                        ],
                       ),
-                    ),
-                  ),
-                  Text('5:16',style: AppTextStyles.light8.copyWith(color: AppColors.white),)
-                ],
-              ) : Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text('5:16',style: AppTextStyles.light8.copyWith(color: AppColors.white),),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Container(
-                      height: 40,
-                      width: 290,
-                      decoration: BoxDecoration(color: AppColors.white),
-                      child: Text(
-                        "Message $index",
-                        style: AppTextStyles.light14.copyWith(
-                          color: index.isEven ? Colors.black : Colors.blue,
-                        ),
-                      ),
-                    ),
-                  ),
-                  CircleAvatar(
-                    backgroundImage: AssetImage(ImagePath.personImage),
-                  ),
-                ],
               ),
-                        ),
-            ),),
+            ),
+          ),
         ),
         Padding(
-          padding: EdgeInsets.only(bottom: 20),
+          padding: EdgeInsets.only(bottom: 50),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SizedBox(
-                height: 40,
-                width: 280,
-                child: SearchBar(
-
-                ),
-              ),
+              SizedBox(height: 35.h, width: 230.w, child: SearchBar()),
               SizedBox(width: MediaQuery.of(context).size.width * .03),
               Container(
-                height: 40,
-                width: 100,
+                height: 40.h,
+                width: 100.w,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(45),
                   color: AppColors.blue,
@@ -98,7 +113,14 @@ class ChatRoomsTab extends StatelessWidget {
                         color: AppColors.white,
                       ),
                     ),
-                    IconButton(onPressed: (){}, icon: Icon(Icons.send_outlined,color: AppColors.white,))
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.send_outlined,
+                        color: AppColors.white,
+                        size: 16.sp,
+                      ),
+                    ),
                   ],
                 ),
               ),

@@ -15,6 +15,8 @@ class CustomGriedViewAlbum extends GetView<AlbumSelectionController> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 150.h,
+      width: 180.w,
       decoration: ShapeDecoration(
         color: AppColors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
@@ -24,11 +26,16 @@ class CustomGriedViewAlbum extends GetView<AlbumSelectionController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(
-              ImagePath.rectangle,
-              height: 160.h, // approx 16% of typical screen height, adjust if needed
-              width: 140.w,  // approx 35% of typical screen width for 400 width, adjust accordingly
-              fit: BoxFit.cover,
+            Container(
+              height: 160.h,
+              width: 160.w,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16.r),
+                image: DecorationImage(
+                  image: AssetImage(ImagePath.rectangle),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
             SizedBox(height: 8.h),
             Text(
@@ -53,29 +60,26 @@ class CustomGriedViewAlbum extends GetView<AlbumSelectionController> {
                   ),
                 ),
                 Obx(
-                      () => GestureDetector(
+                  () => GestureDetector(
                     onTap: () => controller.toggleSelection(albumId),
                     child: Container(
                       width: 20.w,
                       height: 20.h,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        border: Border.all(
-                          color: Colors.blue, // Border color
-                          width: 1.w,
-                        ),
+                        border: Border.all(color: Colors.blue, width: 1.w),
                       ),
                       child: controller.isSelected(albumId)
                           ? Center(
-                        child: Container(
-                          width: 10.w,
-                          height: 10.h,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.blue, // Filled color when selected
-                          ),
-                        ),
-                      )
+                              child: Container(
+                                width: 10.w,
+                                height: 10.h,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                            )
                           : null,
                     ),
                   ),

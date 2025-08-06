@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../data/app_text_styles.dart';
 import '../widget/custom_search_frame.dart';
 
 class Artists extends StatelessWidget {
@@ -9,21 +10,21 @@ class Artists extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: MediaQuery.of(context).size.height*.02,
-          ),
-          Text('Artists',style: AppTextStyles.medium24,),
-          Wrap(
-            runSpacing: 10,
-            children: List.generate(12,(index){
-              return CustomSearchFrame();
-            }),
-          )
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 20.h),
+            Text('Artists', style: AppTextStyles.regular24.copyWith(fontSize: 24.sp)),
+            SizedBox(height: 16.h),
+            Wrap(
+              children: List.generate(12,(index){
+                return CustomSearchFrame();
+              }),
+            )
+          ],
+        ),
       ),
     );
   }

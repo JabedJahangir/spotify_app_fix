@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
 import 'package:tanit_tanit_app/app/data/image_path.dart';
@@ -51,8 +52,8 @@ class CustomBottomNavigationBarView
     return BottomNavigationBarItem(
       icon: Image.asset(
         iconPath,
-        height: 25,
-        width: 28,
+        height: 25.h,
+        width: 28.w,
         color: isSelected ? AppColors.darkBlue : AppColors.grey,
       ),
       label: label,
