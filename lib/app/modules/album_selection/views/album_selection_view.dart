@@ -21,44 +21,46 @@ class AlbumSelectionView extends GetView<AlbumSelectionController> {
         preferredSize: Size.fromHeight(kToolbarHeight.h),
         child: const CustomAppBar(),
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverPadding(
-            padding: EdgeInsets.all(16.w),
-            sliver: SliverList(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: CustomScrollView(
+          slivers: [
+            SliverList(
               delegate: SliverChildListDelegate([
                 Text(
                   'Your Sound, Your Community',
-                  style: AppTextStyles.bold24.copyWith(fontSize: 24.sp),
+                  style: AppTextStyles.bold24.copyWith(),
                 ),
                 SizedBox(height: 8.h),
                 Text(
                   'Select 3 albums to join their chatrooms and get started',
                   style: AppTextStyles.regular16.copyWith(
-                    fontSize: 16.sp,
                     color: AppColors.greyTextColor,
                   ),
                 ),
                 SizedBox(height: 16.h),
-                GridView.builder(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.55,
-                    mainAxisSpacing: 10.h,
-                    crossAxisSpacing: 10.w,
-                  ),
-                  itemCount: 10,
-                  itemBuilder: (context, index) => GestureDetector(
-                    onTap: () {},
-                    child: CustomGriedViewAlbum(albumId: 'album_$index'),
-                  ),
-                ),
               ]),
             ),
-          ),
-        ],
+            SliverToBoxAdapter(
+              child: GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: MediaQuery.of(context).orientation == Orientation.portrait ? 2 : 3,
+                  childAspectRatio: 0.63,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                ),
+                itemCount: 10,
+                itemBuilder: (context, index) => GestureDetector(
+                  onTap: () {},
+                  child: CustomGriedViewAlbum(albumId: 'album_$index'),
+                ),
+              ),
+            ),
+
+          ],
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.transparent,
@@ -67,7 +69,7 @@ class AlbumSelectionView extends GetView<AlbumSelectionController> {
           height: 60.h,
           child: Center(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
+              padding: EdgeInsets.symmetric(horizontal: 24),
               child: ElevatedButton(
                 onPressed: () {
                   Get.offAllNamed(Routes.CUSTOM_BOTTOM_NAVIGATION_BAR);
@@ -76,7 +78,6 @@ class AlbumSelectionView extends GetView<AlbumSelectionController> {
                   backgroundColor: AppColors.darkBlue,
                   foregroundColor: AppColors.white,
                   minimumSize: Size(double.infinity, 48.h),
-                  textStyle: TextStyle(fontSize: 16.sp),
                 ),
                 child: const Text("Let's Start"),
               ),

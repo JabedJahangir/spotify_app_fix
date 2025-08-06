@@ -34,31 +34,31 @@ class CustomDropDown extends StatelessWidget {
         ),
         value: selectedValue,
         items: items
-            .map((item) => DropdownMenuItem(
-          value: item,
-          child: Text(
-            item,
-            style: AppTextStyles.regular16.copyWith(
-              color: AppColors.greyTextColor,
-            ),
-          ),
-        ))
+            .map(
+              (item) => DropdownMenuItem(
+                value: item,
+                child: Text(
+                  item,
+                  style: AppTextStyles.regular16.copyWith(
+                    color: AppColors.greyTextColor,
+                  ),
+                ),
+              ),
+            )
             .toList(),
         onChanged: onChanged,
         buttonStyleData: ButtonStyleData(
           decoration: BoxDecoration(color: AppColors.white),
         ),
-        style: AppTextStyles.regular16.copyWith(
-          color: AppColors.greyTextColor,
-        ),
-        iconStyleData:  IconStyleData(
+        style: AppTextStyles.regular16.copyWith(color: AppColors.greyTextColor),
+        iconStyleData: IconStyleData(
           icon: Icon(
             Icons.keyboard_arrow_down_outlined,
             size: 24.sp,
             color: AppColors.greyTextColor,
           ),
         ),
-        dropdownStyleData:  DropdownStyleData(maxHeight: 250.h),
+        dropdownStyleData: DropdownStyleData(maxHeight: 250.h),
       ),
     );
   }

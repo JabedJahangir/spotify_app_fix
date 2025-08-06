@@ -15,8 +15,9 @@ Widget CustomBuildLabeledInput(String label) {
         TextFormField(
           decoration: InputDecoration(
             hintText: label,
-            hintStyle: AppTextStyles.regular16
-                .copyWith(color: AppColors.greyTextColor),
+            hintStyle: AppTextStyles.regular16.copyWith(
+              color: AppColors.greyTextColor,
+            ),
           ),
         ),
       ],

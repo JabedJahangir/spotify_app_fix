@@ -27,7 +27,8 @@ class LoginInInputView extends GetView<LoginInInputController> {
           SliverFillRemaining(
             hasScrollBody: true, // allow scrolling if content is bigger
             child: Center(
-              child: SingleChildScrollView(   // scrollable content
+              child: SingleChildScrollView(
+                // scrollable content
                 child: Container(
                   width: 0.9.sw,
                   decoration: BoxDecoration(
@@ -43,13 +44,12 @@ class LoginInInputView extends GetView<LoginInInputController> {
                       CustomBuildLabeledInput('Password'),
                       SizedBox(height: 12.h),
                       Obx(
-                            () => CheckboxListTile(
+                        () => CheckboxListTile(
                           contentPadding: EdgeInsets.zero,
                           title: Text(
                             'Forgot your password',
                             style: AppTextStyles.regular16.copyWith(
                               color: AppColors.greyTextColor,
-                              fontSize: 16.sp,
                             ),
                           ),
                           value: controller.isChecked.value,
@@ -63,7 +63,9 @@ class LoginInInputView extends GetView<LoginInInputController> {
                         height: 48.h,
                         child: ElevatedButton(
                           onPressed: () {
-                            Get.offAllNamed(Routes.CUSTOM_BOTTOM_NAVIGATION_BAR);
+                            Get.offAllNamed(
+                              Routes.CUSTOM_BOTTOM_NAVIGATION_BAR,
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.lightBlack,
@@ -73,7 +75,9 @@ class LoginInInputView extends GetView<LoginInInputController> {
                           ),
                           child: Text(
                             'Log In',
-                            style: AppTextStyles.regular16.copyWith(color: AppColors.white),
+                            style: AppTextStyles.regular16.copyWith(
+                              color: AppColors.white,
+                            ),
                           ),
                         ),
                       ),
@@ -83,7 +87,6 @@ class LoginInInputView extends GetView<LoginInInputController> {
                           'Or',
                           style: AppTextStyles.regular16.copyWith(
                             color: AppColors.grey,
-                            fontSize: 16.sp,
                           ),
                         ),
                       ),
@@ -116,7 +119,6 @@ class LoginInInputView extends GetView<LoginInInputController> {
                                 'Login In With Google',
                                 style: AppTextStyles.regular16.copyWith(
                                   color: AppColors.grey,
-                                  fontSize: 16.sp,
                                 ),
                               ),
                             ],

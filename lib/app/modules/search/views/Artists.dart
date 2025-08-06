@@ -10,23 +10,21 @@ class Artists extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 20.h),
-          Text('Artists', style: AppTextStyles.regular24.copyWith(fontSize: 24.sp)),
-          SizedBox(height: 16.h),
-          Wrap(
-            spacing: 2,
-            runSpacing: 10,
-            children: List.generate(12,(index){
-              return SizedBox(
-                  width: 80.w,
-                  height: 100.h,
-                  child: CustomSearchFrame());
-            }),
-          )
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 20.h),
+            Text('Artists', style: AppTextStyles.regular24.copyWith(fontSize: 24.sp)),
+            SizedBox(height: 16.h),
+            Wrap(
+              children: List.generate(12,(index){
+                return CustomSearchFrame();
+              }),
+            )
+          ],
+        ),
       ),
     );
   }

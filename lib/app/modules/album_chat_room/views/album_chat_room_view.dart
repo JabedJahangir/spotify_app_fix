@@ -140,9 +140,7 @@ class AlbumChatRoomPlayer extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: 5.w,
-                ),
+
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -158,35 +156,32 @@ class AlbumChatRoomPlayer extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
                     ),
-                    SizedBox(
-                      width: 180.w,
-                      child: Row(
-                        mainAxisAlignment:
-                            MainAxisAlignment.spaceAround,
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.skip_previous_outlined,
-                              size: MediaQuery.of(context).size.width*.1,
-                            ),
+                    Row(
+                      mainAxisAlignment:
+                          MainAxisAlignment.spaceAround,
+                      children: [
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.skip_previous_outlined,
+                            size: MediaQuery.of(context).size.width*.1,
                           ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.pause_outlined,
-                              size: MediaQuery.of(context).size.width*.1,
-                            ),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.pause_outlined,
+                            size: MediaQuery.of(context).size.width*.1,
                           ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.skip_next_outlined,
-                              size: MediaQuery.of(context).size.width*.1,
-                            ),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.skip_next_outlined,
+                            size: MediaQuery.of(context).size.width*.1,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

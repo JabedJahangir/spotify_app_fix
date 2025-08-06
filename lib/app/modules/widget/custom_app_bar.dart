@@ -32,24 +32,42 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: backGroundColor,
-      leadingWidth: 56.w,
+      toolbarHeight: MediaQuery.of(context).orientation == Orientation.portrait ? 50.h : 44.h,
+      leadingWidth: MediaQuery.of(context).orientation == Orientation.portrait
+          ? 56.w
+          : 48.w,
       leading: Padding(
         padding: EdgeInsets.only(left: 16),
         child: Stack(
           children: [
             CircleAvatar(
-              radius: 28.r,
+              radius: MediaQuery.of(context).orientation == Orientation.portrait
+                  ? 28.r
+                  : 20.r,
               backgroundColor: AppColors.blue,
               child: image != null
                   ? ClipOval(child: Image.asset(image!, fit: BoxFit.cover))
                   : IconButton(
-                onPressed: () {
-                  Get.back();
-                },
-                icon: Center(child: Icon(Icons.arrow_back,size: 24.h,)),
-                color: AppColors.white,
-                iconSize: 24.h,
-              ),
+                      onPressed: () {
+                        Get.back();
+                      },
+                      icon: Center(
+                        child: Icon(
+                          Icons.arrow_back,
+                          size:
+                              MediaQuery.of(context).orientation ==
+                                  Orientation.portrait
+                              ? 24.h
+                              : 14.h,
+                        ),
+                      ),
+                      color: AppColors.white,
+                      iconSize:
+                          MediaQuery.of(context).orientation ==
+                              Orientation.portrait
+                          ? 24.h
+                          : 16.h,
+                    ),
             ),
           ],
         ),
@@ -57,28 +75,56 @@ class CustomAppBar extends StatelessWidget {
       title: RichText(
         text: richText1 != null
             ? TextSpan(
-          children: [
-            TextSpan(
-              text: richText1,
-              style: AppTextStyles.regular16.copyWith(color: AppColors.darkBlue),
-            ),
-            TextSpan(
-              text: richText2,
-              style: AppTextStyles.bold24.copyWith(color: AppColors.darkBlue),
-            ),
-          ],
-        )
+                children: [
+                  TextSpan(
+                    text: richText1,
+                    style: AppTextStyles.regular16.copyWith(
+                      color: AppColors.darkBlue,
+                      fontSize:
+                          MediaQuery.of(context).orientation ==
+                              Orientation.portrait
+                          ? 16.sp
+                          : 14.sp,
+                    ),
+                  ),
+                  TextSpan(
+                    text: richText2,
+                    style: AppTextStyles.bold24.copyWith(
+                      color: AppColors.darkBlue,
+                      overflow: TextOverflow.ellipsis,
+                      fontSize:
+                          MediaQuery.of(context).orientation ==
+                              Orientation.portrait
+                          ? 24.sp
+                          : 20.sp,
+                    ),
+                  ),
+                ],
+              )
             : TextSpan(
-          text: title,
-          style: AppTextStyles.medium24,
-        ),
+                text: title,
+                style: AppTextStyles.medium24.copyWith(
+                  color: titleColor,
+                  fontSize:
+                      MediaQuery.of(context).orientation == Orientation.portrait
+                      ? 24.sp
+                      : 20.sp,
+                ),
+              ),
       ),
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 16),
           child: GestureDetector(
             onTap: () {},
-            child: Icon(icon, color: AppColors.darkBlue, size: 40.sp),
+            child: Icon(
+              icon,
+              color: AppColors.darkBlue,
+
+              size: MediaQuery.of(context).orientation == Orientation.portrait
+                  ? 40.sp
+                  : 32.sp,
+            ),
           ),
         ),
       ],

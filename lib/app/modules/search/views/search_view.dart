@@ -29,69 +29,67 @@ class SearchView extends GetView<SearchController> {
       length: 4,
       child: Scaffold(
         backgroundColor: AppColors.backGroundWhite,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight.h),
-          child: const CustomAppBar(title: 'Search'),
+        appBar: AppBar(
+          title: Text('Search'),
+          titleTextStyle: AppTextStyles.medium24.copyWith(color: AppColors.black),
         ),
-        body: Column( // <-- Removed Padding from here
-          children: [
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(30.r),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 6.r,
-                    offset: Offset(0, 2.h),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30.r),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 6.r,
+                      offset: Offset(0, 2.h),
+                    ),
+                  ],
+                ),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    hintText: 'Search...',
+                    hintStyle: AppTextStyles.regular16.copyWith(
+                      color: AppColors.greyTextColor,
+                    ),
+                    suffixIcon: Padding(
+                      padding: EdgeInsets.all(8.w),
+                      child: Image.asset(
+                        ImagePath.searchNormal,
+                        height: 18.h,
+                        width: 18.w,
+                      ),
+                    ),
+                    border: InputBorder.none,
                   ),
+                  style: AppTextStyles.regular16.copyWith(fontSize: 16.sp),
+                ),
+              ),
+              TabBar(
+                unselectedLabelStyle: AppTextStyles.regular14.copyWith(
+                  color: AppColors.black,
+                  fontSize: 14.sp,
+                ),
+                labelStyle: AppTextStyles.regular14.copyWith(
+                  color: AppColors.darkBlue,
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+                labelColor: AppColors.darkBlue,
+                indicatorColor: AppColors.darkBlue,
+                tabs: const [
+                  Tab(text: 'All'),
+                  Tab(text: 'Albums'),
+                  Tab(text: 'Artists'),
+                  Tab(text: 'Genres'),
                 ],
               ),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  hintText: 'Search...',
-                  hintStyle: AppTextStyles.regular16.copyWith(
-                    color: AppColors.greyTextColor,
-                    fontSize: 16.sp,
-                  ),
-                  suffixIcon: Padding(
-                    padding: EdgeInsets.all(8.w),
-                    child: Image.asset(
-                      ImagePath.searchNormal,
-                      height: 18.h,
-                      width: 18.w,
-                    ),
-                  ),
-                  border: InputBorder.none,
-                ),
-                style: AppTextStyles.regular16.copyWith(fontSize: 16.sp),
-              ),
-            ),
-            TabBar(
-              unselectedLabelStyle: AppTextStyles.regular14.copyWith(
-                color: AppColors.black,
-                fontSize: 14.sp,
-              ),
-              labelStyle: AppTextStyles.regular14.copyWith(
-                color: AppColors.darkBlue,
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w600,
-              ),
-              labelColor: AppColors.darkBlue,
-              indicatorColor: AppColors.darkBlue,
-              tabs: const [
-                Tab(text: 'All'),
-                Tab(text: 'Albums'),
-                Tab(text: 'Artists'),
-                Tab(text: 'Genres'),
-              ],
-            ),
-            SizedBox(height: 8.h),
-            Expanded(
-              child: Padding( // <-- Moved Padding here to wrap the TabBarView
-                padding: EdgeInsets.symmetric(horizontal: 16.w),
+              SizedBox(
+                height: 440.h,
                 child: TabBarView(
                   children: [
                     All(),
@@ -101,8 +99,8 @@ class SearchView extends GetView<SearchController> {
                   ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

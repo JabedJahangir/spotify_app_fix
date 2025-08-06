@@ -15,7 +15,7 @@ class CustomGriedViewAlbum extends GetView<AlbumSelectionController> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 230.h,
+      height: 150.h,
       width: 180.w,
       decoration: ShapeDecoration(
         color: AppColors.white,
