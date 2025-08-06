@@ -45,7 +45,7 @@ class AlbumChatRoomView extends GetView<AlbumChatRoomController> {
                       isScrollable: true,
                       labelPadding: EdgeInsets.symmetric(
                         vertical: 8,
-                        horizontal: 26,
+                        horizontal: 18,
                       ),
                       indicator: BoxDecoration(
                         color: AppColors.white,
@@ -53,7 +53,7 @@ class AlbumChatRoomView extends GetView<AlbumChatRoomController> {
                       ),
                       indicatorPadding: EdgeInsetsGeometry.symmetric(
                         vertical: 0,
-                        horizontal: -24,
+                        horizontal: -10,
                       ),
                       dividerColor: Colors.transparent,
                       tabAlignment: TabAlignment.start,
@@ -71,7 +71,7 @@ class AlbumChatRoomView extends GetView<AlbumChatRoomController> {
                       },
                       child: Container(
                         height: MediaQuery.of(context).orientation == Orientation.portrait ? 42.h : 70.h,
-                        width: 120.w,
+                        width: 110.w,
                         decoration: BoxDecoration(
                           color: AppColors.shadeBlue,
                           borderRadius: BorderRadius.circular(45),
