@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+
 import '../modules/album/bindings/album_binding.dart';
 import '../modules/album/views/album_view.dart';
 import '../modules/album_chat_room/bindings/album_chat_room_binding.dart';
@@ -15,6 +16,8 @@ import '../modules/finish/bindings/finish_binding.dart';
 import '../modules/finish/views/finish_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/listening_party/bindings/listening_party_binding.dart';
+import '../modules/listening_party/views/listening_party_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/login_in_input/bindings/login_in_input_binding.dart';
@@ -35,6 +38,7 @@ import '../modules/sub_chat_room/bindings/sub_chat_room_binding.dart';
 import '../modules/sub_chat_room/views/sub_chat_room_view.dart';
 import '../modules/user_sign_up/bindings/user_sign_up_binding.dart';
 import '../modules/user_sign_up/views/user_sign_up_view.dart';
+
 part 'app_routes.dart';
 
 class AppPages {
@@ -135,6 +139,11 @@ class AppPages {
       name: _Paths.SUB_CHAT_ROOM,
       page: () => SubChatRoomView(),
       binding: SubChatRoomBinding(),
+    ),
+    GetPage(
+      name: _Paths.LISTENING_PARTY,
+      page: () => const ListeningPartyView(),
+      binding: ListeningPartyBinding(),
     ),
   ];
 }

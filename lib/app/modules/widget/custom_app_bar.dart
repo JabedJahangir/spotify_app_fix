@@ -15,6 +15,7 @@ class CustomAppBar extends StatelessWidget {
   final Color? backGroundColor;
   final Color? titleColor;
   final Function()? backRoutes;
+  final Function()? iconPath;
 
   const CustomAppBar({
     super.key,
@@ -25,7 +26,7 @@ class CustomAppBar extends StatelessWidget {
     this.title,
     this.backGroundColor = AppColors.backGroundWhite,
     this.backRoutes,
-    this.titleColor = AppColors.black,
+    this.titleColor = AppColors.black, this.iconPath,
   });
 
   @override
@@ -92,7 +93,7 @@ class CustomAppBar extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 16),
           child: GestureDetector(
-            onTap: () {},
+            onTap: iconPath,
             child: Icon(
               icon,
               color: AppColors.darkBlue,
