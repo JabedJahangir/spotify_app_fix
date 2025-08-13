@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
 import 'package:tanit_tanit_app/app/data/image_path.dart';
+import 'package:tanit_tanit_app/app/routes/app_pages.dart';
 
 import '../../data/app_colors.dart';
 
@@ -15,7 +16,7 @@ class CustomAppBar extends StatelessWidget {
   final Color? backGroundColor;
   final Color? titleColor;
   final Function()? backRoutes;
-  final Function()? iconPath;
+  final String? iconPath;
 
   const CustomAppBar({
     super.key,
@@ -26,7 +27,8 @@ class CustomAppBar extends StatelessWidget {
     this.title,
     this.backGroundColor = AppColors.backGroundWhite,
     this.backRoutes,
-    this.titleColor = AppColors.black, this.iconPath,
+    this.titleColor = AppColors.black,
+    this.iconPath,
   });
 
   @override
@@ -47,14 +49,9 @@ class CustomAppBar extends StatelessWidget {
                       onPressed: () {
                         Get.back();
                       },
-                      icon: Center(
-                        child: Icon(
-                          Icons.arrow_back,
-                          size: 24.h,
-                        ),
-                      ),
+                      icon: Center(child: Icon(Icons.arrow_back, size: 24.h)),
                       color: AppColors.white,
-                      iconSize:24.h,
+                      iconSize: 24.h,
                     ),
             ),
           ],
@@ -93,12 +90,10 @@ class CustomAppBar extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 16),
           child: GestureDetector(
-            onTap: iconPath,
-            child: Icon(
-              icon,
-              color: AppColors.darkBlue,
-              size: 40.sp,
-            ),
+            onTap: () {
+              Get.toNamed(iconPath!);
+            },
+            child: Icon(icon, color: AppColors.darkBlue, size: 40.sp),
           ),
         ),
       ],

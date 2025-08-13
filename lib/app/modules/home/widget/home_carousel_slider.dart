@@ -19,7 +19,7 @@ class HomeCarouselSlider extends StatelessWidget {
       children: [
         CarouselSlider(
           options: CarouselOptions(
-            height: 184.h,
+            height: 150.h,
             viewportFraction: 1,
             aspectRatio: 16 / 9,
             enlargeCenterPage: false,

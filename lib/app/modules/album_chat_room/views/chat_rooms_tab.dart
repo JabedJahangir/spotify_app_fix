@@ -41,6 +41,7 @@ class ChatRoomsTab extends GetView<AlbumChatRoomController> {
                             index: index,
                             isSender: isSender,
                             backGroundColor: AppColors.indigo,
+                      textColor: AppColors.white,
                           ),
                   ),
                 );
@@ -61,7 +62,7 @@ class ChatRoomsTab extends GetView<AlbumChatRoomController> {
                     MediaQuery.of(context).orientation == Orientation.portrait
                     ? 35.h
                     : 65.h,
-                width: 230.w,
+                width: 220.w,
                 child: TextField(
                   controller: controller.textController,
                   decoration: const InputDecoration(
@@ -92,7 +93,7 @@ class ChatRoomsTab extends GetView<AlbumChatRoomController> {
                     children: [
                       Text(
                         'Send  ',
-                        style: AppTextStyles.light12.copyWith(
+                        style: AppTextStyles.regular14.copyWith(
                           color: AppColors.white,
                         ),
                       ),

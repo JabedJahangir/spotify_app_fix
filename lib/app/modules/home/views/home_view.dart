@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
 import 'package:tanit_tanit_app/app/data/image_path.dart';
+import 'package:tanit_tanit_app/app/modules/all_search/views/all_search_view.dart';
 import 'package:tanit_tanit_app/app/modules/home/widget/album_card.dart';
 import 'package:tanit_tanit_app/app/modules/home/widget/home_carousel_slider.dart';
 import 'package:tanit_tanit_app/app/modules/home/widget/party_list_card.dart';
@@ -12,7 +13,6 @@ import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   HomeView({super.key});
-
   final ValueNotifier<int> _selectedSlider = ValueNotifier(0);
 
   @override
@@ -22,13 +22,16 @@ class HomeView extends GetView<HomeController> {
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(child: CustomAppBar(
-              backGroundColor: AppColors.backGroundWhite,
-              image: ImagePath.personImage,
-              richText1: 'Hello, ',
-              richText2: 'Remon Howlader',
-              icon: Icons.notifications_none,
-            )),
+            SliverToBoxAdapter(
+              child: CustomAppBar(
+                backGroundColor: AppColors.backGroundWhite,
+                image: ImagePath.personImage,
+                richText1: 'Hello, ',
+                richText2: 'Remon Howlader',
+                icon: Icons.notifications_none,
+                iconPath: Routes.ALL_SEARCH,
+              ),
+            ),
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -53,15 +56,31 @@ class HomeView extends GetView<HomeController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Trending Albums',
-                      style: AppTextStyles.bold16.copyWith(
-                        color: AppColors.darkBlue,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Trending Albums',
+                          style: AppTextStyles.bold16.copyWith(
+                            color: AppColors.darkBlue,
+                          ),
+                        ),
+                        Obx(
+                          () => GestureDetector(
+                            onTap: controller.toggleShowAll,
+                            child: Text(
+                              controller.showAll.value ? 'See all' : 'See less',
+                              style: AppTextStyles.regular16.copyWith(
+                                color: AppColors.greyTextColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 10,),
-                    GridView.builder(
-                      itemCount: 6,
+                    const SizedBox(height: 10),
+                    Obx(() => GridView.builder(
+                      itemCount: controller.showAll.value ? 2 : 6,
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -77,7 +96,7 @@ class HomeView extends GetView<HomeController> {
                           child: AlbumCard(),
                         );
                       },
-                    ),
+                    ),)
                   ],
                 ),
               ),
@@ -88,15 +107,31 @@ class HomeView extends GetView<HomeController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Weekly Listening Parties',
-                      style: AppTextStyles.bold16.copyWith(
-                        color: AppColors.darkBlue,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Weekly Listening Parties',
+                          style: AppTextStyles.bold16.copyWith(
+                            color: AppColors.darkBlue,
+                          ),
+                        ),
+                        Obx(
+                              () => GestureDetector(
+                            onTap: controller.toggleShowAll,
+                            child: Text(
+                              controller.showAll.value ? 'See all' : 'See less',
+                              style: AppTextStyles.regular16.copyWith(
+                                color: AppColors.greyTextColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 10,),
+                    const SizedBox(height: 10),
                     GridView.builder(
-                      itemCount: 4,
+                      itemCount: controller.showAll.value ? 2 : 6,
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(

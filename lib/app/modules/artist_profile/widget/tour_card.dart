@@ -64,7 +64,7 @@ class TourCard extends StatelessWidget {
                 ),
                 Spacer(),
                 SizedBox(
-                   height: 44.h,
+                   height: 42.h,
                   width: 92.w,
                   child: ElevatedButton(
                     onPressed: () {},

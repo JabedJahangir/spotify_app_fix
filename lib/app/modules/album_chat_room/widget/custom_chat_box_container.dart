@@ -8,16 +8,19 @@ import '../../../data/image_path.dart';
 import '../controllers/album_chat_room_controller.dart';
 
 class CustomChatBoxContainer extends GetView<AlbumChatRoomController> {
+
   const CustomChatBoxContainer({
     super.key,
     required this.index,
     this.isSender = false,
     this.backGroundColor,
+    this.textColor = AppColors.black,
   });
 
   final int index;
   final bool isSender;
   final Color? backGroundColor;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +43,8 @@ class CustomChatBoxContainer extends GetView<AlbumChatRoomController> {
               controller.messages[index],
               softWrap: true,
               overflow: TextOverflow.visible,
-              style: AppTextStyles.light14.copyWith(
-                color: Colors.black,
+              style: AppTextStyles.regular14.copyWith(
+                color: textColor,
               ),
             ),
           ),

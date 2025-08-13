@@ -58,8 +58,8 @@ class AlbumChatRoomView extends GetView<AlbumChatRoomController> {
                     dividerColor: Colors.transparent,
                     tabAlignment: TabAlignment.start,
                     tabs: [
-                      Text('Songs', style: AppTextStyles.light14),
-                      Text('Chatroom', style: AppTextStyles.light14),
+                      Text('Songs', style: AppTextStyles.regular14),
+                      Text('Chatroom', style: AppTextStyles.regular14),
                     ],
                   ),
                   SizedBox(
@@ -79,7 +79,7 @@ class AlbumChatRoomView extends GetView<AlbumChatRoomController> {
                       child: Center(
                         child: Text(
                           '+ SubRoom',
-                          style: AppTextStyles.light14.copyWith(
+                          style: AppTextStyles.regular14.copyWith(
                             color: AppColors.white,
                           ),
                         ),

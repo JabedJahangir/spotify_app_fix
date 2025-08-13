@@ -14,61 +14,74 @@ class AllSearchView extends GetView<AllSearchController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.backGroundWhite,
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
-            SliverToBoxAdapter(child: Column(children: [CustomAppBar()])),
+            SliverToBoxAdapter(
+              child: Column(children: [CustomAppBar(title: "Notification")]),
+            ),
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 14),
                 child: Column(
                   children: [
                     ListView.builder(
-                       shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemCount: 15,
-                        itemBuilder: (context,index){
-                          return Card(
-                            elevation: 1.2,
-                            margin: EdgeInsets.symmetric(vertical: 10),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: SizedBox(
-                              width:double.infinity,
-                              height: 64,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  children: [
-                                    ClipRRect(
-                                      borderRadius: const BorderRadius.vertical(
-                                        top: Radius.circular(8),
-                                        bottom: Radius.circular(8),
-                                      ),
-                                      child: Image.asset(
-                                        ImagePath.notificatonImage,
-                                        height: 48,
-                                        width: 48,
-                                        fit: BoxFit.cover,
-                                      ),
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                      itemCount: 15,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          elevation: 1.2,
+                          margin: EdgeInsets.symmetric(vertical: 10),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: SizedBox(
+                            width: double.infinity,
+                            height: 64,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: const BorderRadius.vertical(
+                                      top: Radius.circular(8),
+                                      bottom: Radius.circular(8),
                                     ),
-                                    const SizedBox(width: 12,),
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text("New Release Alert",style: AppTextStyles.regular16.copyWith(color: AppColors.black),),
-                                        Text("Fresh sounds just landed. Dive in now!",style: AppTextStyles.light10.copyWith(color: AppColors.black),),
-                                      ],
-                                    )
-
-                                  ],
-                                ),
+                                    child: Image.asset(
+                                      ImagePath.notificatonImage,
+                                      height: 48,
+                                      width: 48,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  const SizedBox(width: 12),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "New Release Alert",
+                                        style: AppTextStyles.regular16.copyWith(
+                                          color: AppColors.black,
+                                        ),
+                                      ),
+                                      Text(
+                                        "Fresh sounds just landed. Dive in now!",
+                                        style: AppTextStyles.light10.copyWith(
+                                          color: AppColors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
-                          );
-                        })
-
+                          ),
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
