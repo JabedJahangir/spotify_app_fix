@@ -13,6 +13,7 @@ import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   HomeView({super.key});
+
   final ValueNotifier<int> _selectedSlider = ValueNotifier(0);
 
   @override
@@ -79,24 +80,26 @@ class HomeView extends GetView<HomeController> {
                       ],
                     ),
                     const SizedBox(height: 10),
-                    Obx(() => GridView.builder(
-                      itemCount: controller.showAll.value ? 2 : 6,
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 6,
-                        crossAxisSpacing: 8,
+                    Obx(
+                      () => GridView.builder(
+                        itemCount: controller.showAll.value ? 2 : 6,
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 6,
+                          crossAxisSpacing: 8,
+                        ),
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              Get.toNamed(Routes.ARTIST_PROFILE);
+                            },
+                            child: AlbumCard(),
+                          );
+                        },
                       ),
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            Get.toNamed(Routes.ARTIST_PROFILE);
-                          },
-                          child: AlbumCard(),
-                        );
-                      },
-                    ),)
+                    ),
                   ],
                 ),
               ),
@@ -117,10 +120,12 @@ class HomeView extends GetView<HomeController> {
                           ),
                         ),
                         Obx(
-                              () => GestureDetector(
-                            onTap: controller.toggleShowAll,
+                          () => GestureDetector(
+                            onTap: controller.toggleShowLess,
                             child: Text(
-                              controller.showAll.value ? 'See all' : 'See less',
+                              controller.showLess.value
+                                  ? 'See all'
+                                  : 'See less',
                               style: AppTextStyles.regular16.copyWith(
                                 color: AppColors.greyTextColor,
                               ),
@@ -130,23 +135,25 @@ class HomeView extends GetView<HomeController> {
                       ],
                     ),
                     const SizedBox(height: 10),
-                    GridView.builder(
-                      itemCount: controller.showAll.value ? 2 : 6,
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 6,
-                        crossAxisSpacing: 8,
+                    Obx(
+                      () => GridView.builder(
+                        itemCount: controller.showLess.value ? 2 : 6,
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 6,
+                          crossAxisSpacing: 8,
+                        ),
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              Get.toNamed(Routes.ARTIST_PROFILE);
+                            },
+                            child: PartyListCard(),
+                          );
+                        },
                       ),
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            Get.toNamed(Routes.ARTIST_PROFILE);
-                          },
-                          child: PartyListCard(),
-                        );
-                      },
                     ),
                   ],
                 ),

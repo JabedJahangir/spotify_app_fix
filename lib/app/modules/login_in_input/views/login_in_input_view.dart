@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
-import 'package:tanit_tanit_app/app/modules/widget/build_labeled_input.dart';
 import 'package:tanit_tanit_app/app/modules/widget/custom_app_bar.dart';
 import 'package:tanit_tanit_app/app/routes/app_pages.dart';
 
 import '../../../data/app_text_styles.dart';
 import '../../../data/image_path.dart';
 import '../controllers/login_in_input_controller.dart';
+import 'login_form.dart';
 
 class LoginInInputView extends GetView<LoginInInputController> {
   const LoginInInputView({super.key});
@@ -39,9 +38,7 @@ class LoginInInputView extends GetView<LoginInInputController> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomBuildLabeledInput('Email'),
-                      SizedBox(height: 16.h),
-                      CustomBuildLabeledInput('Password'),
+                      Login_Form(),
                       SizedBox(height: 12.h),
                       Obx(
                         () => CheckboxListTile(
@@ -63,9 +60,10 @@ class LoginInInputView extends GetView<LoginInInputController> {
                         height: 48.h,
                         child: ElevatedButton(
                           onPressed: () {
-                            Get.offAllNamed(
-                              Routes.CUSTOM_BOTTOM_NAVIGATION_BAR,
-                            );
+                            if (controller.formKey.currentState!.validate()) {
+                              // Form is valid, proceed with login
+                              controller.login();
+                            }
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.lightBlack,
@@ -136,3 +134,4 @@ class LoginInInputView extends GetView<LoginInInputController> {
     );
   }
 }
+

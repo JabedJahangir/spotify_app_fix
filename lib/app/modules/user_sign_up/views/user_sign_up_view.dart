@@ -4,10 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
+import 'package:tanit_tanit_app/app/modules/user_sign_up/views/sign_up_form.dart';
 import 'package:tanit_tanit_app/app/modules/widget/custom_app_bar.dart';
 import 'package:tanit_tanit_app/app/routes/app_pages.dart';
-
-import '../../widget/build_labeled_input.dart';
 import '../../widget/custom_drop_down.dart';
 import '../controllers/user_sign_up_controller.dart';
 
@@ -67,53 +66,7 @@ class UserSignUpView extends GetView<UserSignUpController> {
                 child: const Center(child: Text('Upload an Image')),
               ),
               SizedBox(height: 20.h),
-              CustomBuildLabeledInput('First Name'),
-              CustomBuildLabeledInput('Last Name'),
-              CustomBuildLabeledInput('User Name'),
-              Align(
-                alignment: AlignmentDirectional.centerStart,
-                child: Text('Date of Birth', style: AppTextStyles.regular12),
-              ),
-              SizedBox(height: 8.h),
-              Row(
-                children: [
-                  Expanded(
-                    child: Obx(
-                      () => CustomDropDown(
-                        items: controller.months,
-                        selectedValue: controller.selectedMonth.value,
-                        hintText: 'Month',
-                        onChanged: (val) => controller.selectedMonth(val!),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 8.w),
-                  Expanded(
-                    child: Obx(
-                      () => CustomDropDown(
-                        items: controller.days,
-                        selectedValue: controller.selectedDay.value,
-                        hintText: 'Day',
-                        onChanged: (val) => controller.selectedDay(val!),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 8.w),
-                  Expanded(
-                    child: Obx(
-                      () => CustomDropDown(
-                        items: controller.years,
-                        selectedValue: controller.selectedYear.value,
-                        hintText: 'Year',
-                        onChanged: (val) => controller.selectedYear(val!),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 12.h),
-              CustomBuildLabeledInput('Email'),
-              CustomBuildLabeledInput('Password'),
+              SignUpForm(controller: controller),
               Obx(
                 () => CheckboxListTile(
                   contentPadding: EdgeInsets.zero,
@@ -128,7 +81,11 @@ class UserSignUpView extends GetView<UserSignUpController> {
                 width: double.infinity,
                 height: 48.h,
                 child: ElevatedButton(
-                  onPressed: () => Get.toNamed(Routes.FINISH),
+                  onPressed: () {
+                    if(controller.formKey.currentState!.validate()){
+                      controller.signUp();
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.lightBlack,
                     foregroundColor: AppColors.white,
@@ -144,3 +101,4 @@ class UserSignUpView extends GetView<UserSignUpController> {
     );
   }
 }
+
