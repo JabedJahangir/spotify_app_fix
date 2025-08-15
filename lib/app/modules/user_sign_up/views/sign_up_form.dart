@@ -93,6 +93,12 @@ class SignUpForm extends GetView<UserSignUpController> {
               Expanded(
                 child: Obx(
                   () => CustomDropDown(
+                    validator: (value){
+                      if(value == null){
+                        return 'Please select an option';
+                      } else null;
+                      return null;
+                    },
                     items: controller.months,
                     selectedValue: controller.selectedMonth.value,
                     hintText: 'Month',
@@ -104,6 +110,7 @@ class SignUpForm extends GetView<UserSignUpController> {
               Expanded(
                 child: Obx(
                   () => CustomDropDown(
+                    validator: (value) => value == null ? 'Please select an option' : null,
                     items: controller.days,
                     selectedValue: controller.selectedDay.value,
                     hintText: 'Day',
@@ -115,6 +122,7 @@ class SignUpForm extends GetView<UserSignUpController> {
               Expanded(
                 child: Obx(
                   () => CustomDropDown(
+                    validator: (value) => value == null ? 'Please select an option' : null,
                     items: controller.years,
                     selectedValue: controller.selectedYear.value,
                     hintText: 'Year',

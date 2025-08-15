@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -17,6 +19,9 @@ class ProfileView extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
+    Future<void> _signOut () async {
+      await FirebaseAuth.instance.signOut();
+    };
     return Scaffold(
       backgroundColor: AppColors.backGroundWhite,
       body: SafeArea(
@@ -80,21 +85,24 @@ class ProfileView extends GetView<ProfileController> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 24),
-                          child: Container(
-                            color: AppColors.backGroundWhite,
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Row(
-                                children: [
-                                  Icon(Icons.logout),
-                                  SizedBox(width: 5.w),
-                                  Text(
-                                    'Log out',
-                                    style: AppTextStyles.regular16.copyWith(
-                                      color: AppColors.greyTextColor,
+                          child: GestureDetector(
+                            onTap: _signOut,
+                            child: Container(
+                              color: AppColors.backGroundWhite,
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.logout),
+                                    SizedBox(width: 5.w),
+                                    Text(
+                                      'Log out',
+                                      style: AppTextStyles.regular16.copyWith(
+                                        color: AppColors.greyTextColor,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),

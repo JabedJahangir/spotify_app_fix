@@ -14,6 +14,8 @@ import '../modules/custom_bottom_navigation_bar/bindings/custom_bottom_navigatio
 import '../modules/custom_bottom_navigation_bar/views/custom_bottom_navigation_bar_view.dart';
 import '../modules/finish/bindings/finish_binding.dart';
 import '../modules/finish/views/finish_view.dart';
+import '../modules/forgot_password/bindings/forgot_password_binding.dart';
+import '../modules/forgot_password/views/forgot_password_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/listening_party/bindings/listening_party_binding.dart';
@@ -24,6 +26,8 @@ import '../modules/login_in_input/bindings/login_in_input_binding.dart';
 import '../modules/login_in_input/views/login_in_input_view.dart';
 import '../modules/my_chat_room/bindings/my_chat_room_binding.dart';
 import '../modules/my_chat_room/views/my_chat_room_view.dart';
+import '../modules/new_password/bindings/new_password_binding.dart';
+import '../modules/new_password/views/new_password_view.dart';
 import '../modules/platforms_link/bindings/platforms_link_binding.dart';
 import '../modules/platforms_link/views/platforms_link_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
@@ -38,6 +42,8 @@ import '../modules/sub_chat_room/bindings/sub_chat_room_binding.dart';
 import '../modules/sub_chat_room/views/sub_chat_room_view.dart';
 import '../modules/user_sign_up/bindings/user_sign_up_binding.dart';
 import '../modules/user_sign_up/views/user_sign_up_view.dart';
+import '../modules/verify_email_address/bindings/verify_email_address_binding.dart';
+import '../modules/verify_email_address/views/verify_email_address_view.dart';
 
 part 'app_routes.dart';
 
@@ -144,6 +150,21 @@ class AppPages {
       name: _Paths.LISTENING_PARTY,
       page: () => const ListeningPartyView(),
       binding: ListeningPartyBinding(),
+    ),
+    GetPage(
+      name: _Paths.FORGOT_PASSWORD,
+      page: () => ForgotPasswordView(),
+      binding: ForgotPasswordBinding(),
+    ),
+    GetPage(
+      name: _Paths.VERIFY_EMAIL_ADDRESS,
+      page: () => const VerifyEmailAddressView(),
+      binding: VerifyEmailAddressBinding(),
+    ),
+    GetPage(
+      name: _Paths.NEW_PASSWORD,
+      page: () => const NewPasswordView(),
+      binding: NewPasswordBinding(),
     ),
   ];
 }

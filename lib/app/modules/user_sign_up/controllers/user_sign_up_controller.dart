@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/routes/app_pages.dart';
 
@@ -39,9 +41,8 @@ class UserSignUpController extends GetxController {
   final userNameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
-
-
+  FirebaseAuth auth = FirebaseAuth.instance;
+  var loading = false.obs;
 
   void checked() {
     isChecked.value = !isChecked.value;
@@ -52,8 +53,34 @@ class UserSignUpController extends GetxController {
   void selectDay(String item) => selectedDay.value = item;
 
   void selectYear(String item) => selectedYear.value = item;
-  
-  void signUp(){
-    Get.toNamed(Routes.FINISH);
+
+  void signUp() async {
+    if (!formKey.currentState!.validate()) return;
+    loading.value = true;
+    try {
+      await auth.createUserWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+      Get.offAllNamed(Routes.FINISH);
+    } on FirebaseAuthException catch (e) {
+      Get.snackbar(
+        "Sign Up Failed",
+        e.message ?? "Unknown error occurred",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.black,
+        colorText: Colors.white,
+      );
+    } catch (e) {
+      Get.snackbar(
+        "Error",
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.black,
+        colorText: Colors.white,
+      );
+    } finally{
+      loading.value = false;
+    }
   }
 }

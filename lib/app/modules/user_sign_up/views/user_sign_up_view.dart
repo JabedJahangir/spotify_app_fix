@@ -6,8 +6,6 @@ import 'package:tanit_tanit_app/app/data/app_colors.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
 import 'package:tanit_tanit_app/app/modules/user_sign_up/views/sign_up_form.dart';
 import 'package:tanit_tanit_app/app/modules/widget/custom_app_bar.dart';
-import 'package:tanit_tanit_app/app/routes/app_pages.dart';
-import '../../widget/custom_drop_down.dart';
 import '../controllers/user_sign_up_controller.dart';
 
 class UserSignUpView extends GetView<UserSignUpController> {
@@ -81,10 +79,9 @@ class UserSignUpView extends GetView<UserSignUpController> {
                 width: double.infinity,
                 height: 48.h,
                 child: ElevatedButton(
-                  onPressed: () {
-                    if(controller.formKey.currentState!.validate()){
-                      controller.signUp();
-                    }
+                  onPressed: controller.loading.value ? null :
+                  (){
+                    controller.signUp();
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.lightBlack,

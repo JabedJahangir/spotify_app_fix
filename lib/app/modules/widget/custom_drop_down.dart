@@ -12,19 +12,21 @@ class CustomDropDown extends StatelessWidget {
   final String? selectedValue;
   final String hintText;
   final void Function(String?) onChanged;
+  final String? Function(String?)? validator;
 
   const CustomDropDown({
     super.key,
     required this.items,
     required this.selectedValue,
     required this.hintText,
-    required this.onChanged,
+    required this.onChanged, this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
     return DropdownButtonHideUnderline(
-      child: DropdownButton2<String>(
+      child: DropdownButtonFormField2<String>(
+        validator: validator,
         isExpanded: true,
         hint: Text(
           hintText,

@@ -10,6 +10,7 @@ class SplashScreenView extends GetView<SplashScreenController> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(SplashScreenController());
     return Scaffold(
       body: SizedBox.expand(
         child: Image.asset(ImagePath.splashScreen, fit: BoxFit.cover),

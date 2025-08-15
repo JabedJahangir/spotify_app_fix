@@ -40,36 +40,30 @@ class LoginInInputView extends GetView<LoginInInputController> {
                     children: [
                       Login_Form(),
                       SizedBox(height: 12.h),
-                      Obx(
-                        () => CheckboxListTile(
-                          contentPadding: EdgeInsets.zero,
-                          title: Text(
-                            'Forgot your password',
+                       InkWell(
+                         onTap: (){
+                           Get.toNamed(Routes.FORGOT_PASSWORD);
+                         },
+                         child: Text(
+                            'Forgot your password?',
                             style: AppTextStyles.regular16.copyWith(
-                              color: AppColors.greyTextColor,
+                              color: AppColors.blue,
+                              fontWeight: FontWeight.w500,
+                              decoration: TextDecoration.underline,
                             ),
                           ),
-                          value: controller.isChecked.value,
-                          onChanged: (val) => controller.checked(),
-                          controlAffinity: ListTileControlAffinity.leading,
-                        ),
-                      ),
+                       ),
+
                       SizedBox(height: 16.h),
                       SizedBox(
                         width: double.infinity,
                         height: 48.h,
                         child: ElevatedButton(
                           onPressed: () {
-                            if (controller.formKey.currentState!.validate()) {
-                              // Form is valid, proceed with login
-                              controller.login();
-                            }
+                            controller.signIn();
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.lightBlack,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.r),
-                            ),
                           ),
                           child: Text(
                             'Log In',
@@ -96,9 +90,6 @@ class LoginInInputView extends GetView<LoginInInputController> {
                           onPressed: () {},
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.backGroundGrey,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.r),
-                            ),
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,

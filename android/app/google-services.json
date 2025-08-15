@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "50340198995",
+    "project_id": "tanit-tanit",
+    "storage_bucket": "tanit-tanit.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:50340198995:android:75cb7de708e3e60f8664a6",
+        "android_client_info": {
+          "package_name": "com.tanit.tanit_tanit_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBa0BnWsO1sPQIfm28hcE23AWAoJU2yX-U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
