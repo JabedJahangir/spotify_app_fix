@@ -79,10 +79,11 @@ class UserSignUpView extends GetView<UserSignUpController> {
                 width: double.infinity,
                 height: 48.h,
                 child: ElevatedButton(
-                  onPressed: controller.loading.value ? null :
-                  (){
-                    controller.signUp();
-                  },
+                  onPressed: controller.loading.value
+                      ? null
+                      : () {
+                          controller.signUp();
+                        },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.lightBlack,
                     foregroundColor: AppColors.white,
@@ -98,4 +99,3 @@ class UserSignUpView extends GetView<UserSignUpController> {
     );
   }
 }
-

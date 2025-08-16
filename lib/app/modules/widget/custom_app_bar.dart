@@ -35,6 +35,7 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: backGroundColor,
+      scrolledUnderElevation: 0,
       leadingWidth: 56.w,
       leading: Padding(
         padding: EdgeInsets.only(left: 16),
