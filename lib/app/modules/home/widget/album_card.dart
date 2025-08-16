@@ -28,22 +28,29 @@ class AlbumCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 3),
-              child: Column(
+              padding: const EdgeInsets.symmetric(horizontal: 6,vertical: 8),
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Music Album Name',
-                    style: AppTextStyles.regular14.copyWith(
-                      color: AppColors.black,
-                    ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Music Album Name',
+                        style: AppTextStyles.regular14.copyWith(
+                          color: AppColors.black,
+                        ),
+                      ),
+                      Text(
+                        "Michel Jaction",
+                        style: AppTextStyles.light10.copyWith(
+                          color: AppColors.darkGrey,
+                        ),
+                      ),
+                    ],
                   ),
-                  Text(
-                    "Michel Jaction",
-                    style: AppTextStyles.light10.copyWith(
-                      color: AppColors.darkGrey,
-                    ),
-                  ),
+                  Spacer(),
+                  Icon(Icons.star_border_outlined,color: Colors.amber,),
                 ],
               ),
             ),
