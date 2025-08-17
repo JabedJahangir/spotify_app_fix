@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
-import 'package:tanit_tanit_app/app/data/image_path.dart';
 import 'package:tanit_tanit_app/app/modules/artist_profile/widget/album_card_list.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/artist_profile_controller.dart';
 import '../../widget/elevated_button_widget.dart';
 import '../widget/tour_card.dart';
@@ -13,6 +13,13 @@ class ArtistProfileView extends GetView<ArtistProfileController> {
 
   @override
   Widget build(BuildContext context) {
+    final args = Get.arguments;
+    final artistName = args?["artistName"] ?? "Unknown Artist";
+    final albumName = args?["albumName"] ?? "Unknown Album";
+    final imageUrl = args?["imageUrl"] ?? "";
+    final artistAlbums =
+        (Get.arguments['artistAlbums'] as List<Map<String, String>>?) ?? [];
+
     return Scaffold(
       backgroundColor: AppColors.backGroundWhite,
       body: SafeArea(
@@ -26,11 +33,13 @@ class ArtistProfileView extends GetView<ArtistProfileController> {
                     backgroundColor: Colors.white,
                     child: CircleAvatar(
                       radius: 60,
-                      backgroundImage: AssetImage(ImagePath.personImage),
+                      backgroundImage: imageUrl.isNotEmpty
+                          ? NetworkImage(imageUrl)
+                          : null,
                     ),
                   ),
                   const SizedBox(height: 6),
-                  Text('Artist Name', style: AppTextStyles.medium16),
+                  Text(artistName, style: AppTextStyles.medium16),
                   const SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -112,20 +121,27 @@ class ArtistProfileView extends GetView<ArtistProfileController> {
               ),
             ),
             Obx(() {
-              final selectedIndex=controller.selectedIndex.value;
-              if(selectedIndex==0){
-                return  SliverList.builder(
+              final selectedIndex = controller.selectedIndex.value;
+              if (selectedIndex == 0) {
+                return SliverList.builder(
                   itemCount: 3,
                   itemBuilder: (context, index) => TourCard(),
                 );
-              }
-              else{
+              } else {
+                print('✅all albums:$artistAlbums');
                 return SliverList.builder(
-                  itemCount: 5,
-                  itemBuilder: (context, index) => AlbumCardList(),
+                  itemCount: artistAlbums.length,
+                  itemBuilder: (context, index) => AlbumCardList(
+                    artistName: artistName,
+                    musicName: artistAlbums[index]['name'] ?? 'Unknown Album',
+                    image: artistAlbums[index]['image'] ?? '',
+                    onTap: () {
+                      Get.toNamed(Routes.ALBUM_CHAT_ROOM);
+                    },
+                  ),
                 );
               }
-            },)
+            }),
           ],
         ),
       ),
