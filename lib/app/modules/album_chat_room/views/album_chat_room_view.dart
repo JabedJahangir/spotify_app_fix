@@ -22,7 +22,7 @@ class AlbumChatRoomView extends GetView<AlbumChatRoomController> {
     final albumId = args?["albumId"] ?? '';
     final imageUrl = args?["image"] ?? '';
     final albumName = args?["albumName"] ?? '';
-    final artistName = args?["name"] ?? '';
+    final artistName = args?["artistName"] ?? '';
     return DefaultTabController(
       length: 2,
       child: Scaffold(

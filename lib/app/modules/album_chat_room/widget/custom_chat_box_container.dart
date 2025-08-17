@@ -1,61 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 
-import '../../../data/app_colors.dart';
-import '../../../data/app_text_styles.dart';
-import '../../../data/image_path.dart';
-import '../controllers/album_chat_room_controller.dart';
-
-class CustomChatBoxContainer extends GetView<AlbumChatRoomController> {
+class CustomChatBoxContainer extends StatelessWidget {
+  final bool isSender;
+  final Color backGroundColor;
+  final Color? textColor;
+  final String messageText;
 
   const CustomChatBoxContainer({
     super.key,
-    required this.index,
-    this.isSender = false,
-    this.backGroundColor,
-    this.textColor = AppColors.black,
+    required this.isSender,
+    required this.backGroundColor,
+    this.textColor,
+    required this.messageText,
   });
-
-  final int index;
-  final bool isSender;
-  final Color? backGroundColor;
-  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment:
-      isSender ? MainAxisAlignment.end : MainAxisAlignment.start,
-      children: [
-        if (!isSender)
-          CircleAvatar(backgroundImage: AssetImage(ImagePath.personImage)),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Container(
-            constraints: BoxConstraints(maxWidth: 230.w),
-            padding: EdgeInsets.all(6),
-            decoration: BoxDecoration(
-              color: backGroundColor,
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: Text(
-              controller.messages[index],
-              softWrap: true,
-              overflow: TextOverflow.visible,
-              style: AppTextStyles.regular14.copyWith(
-                color: textColor,
-              ),
-            ),
-          ),
+    return Container(
+      padding: const EdgeInsets.all(12),
+      constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.7),
+      decoration: BoxDecoration(
+        color: backGroundColor,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(isSender ? 12 : 0),
+          topRight: Radius.circular(isSender ? 0 : 12),
+          bottomLeft: const Radius.circular(12),
+          bottomRight: const Radius.circular(12),
         ),
-        if (isSender)
-          CircleAvatar(backgroundImage: AssetImage(ImagePath.personImage)),
-        Text(
-          '5:16',
-          style: AppTextStyles.light8.copyWith(color: AppColors.white),
-        ),
-      ],
+      ),
+      child: Text(
+        messageText,
+        style: TextStyle(color: textColor ?? Colors.black),
+      ),
     );
   }
 }
+

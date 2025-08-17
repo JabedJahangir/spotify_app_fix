@@ -9,7 +9,8 @@ class SongsTab extends StatelessWidget {
     required this.albumId,
     required this.controller,
     required artistId,
-    required this.image, required this.artistName,
+    required this.image,
+    required this.artistName,
   });
 
   final String albumId;
@@ -19,6 +20,7 @@ class SongsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('✅ $artistName');
     return FutureBuilder<List<Map<String, String>>>(
       future: controller.spotifyService.getAlbumTracksWithImages(albumId),
       builder: (context, snapshot) {

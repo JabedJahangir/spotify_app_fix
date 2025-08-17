@@ -1,58 +1,101 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:just_audio/just_audio.dart';
-
-import '../../../../spotify_service.dart';
+import 'package:tanit_tanit_app/spotify_service.dart';
 
 class AlbumChatRoomController extends GetxController {
   final SpotifyService spotifyService = SpotifyService();
-  var messages = <String>[].obs;
-  var messageText = ''.obs;
+  final ScrollController scrollController = ScrollController();
+  final TextEditingController textController = TextEditingController();
 
-  final textController = TextEditingController();
-  final scrollController = ScrollController();
+  // Current logged-in user from Firebase Auth
+  late String currentUserId;
 
-  // Audio player for track previews
-  final AudioPlayer audioPlayer = AudioPlayer();
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
-  void sendMessage() {
-    if (textController.text.trim().isNotEmpty) {
-      messages.add(textController.text.trim());
-      textController.clear();
-
-      Future.delayed(const Duration(milliseconds: 100), () {
-        if (scrollController.hasClients) {
-          scrollController.animateTo(
-            scrollController.position.maxScrollExtent,
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.easeOut,
-          );
-        }
-      });
-    }
-  }
-
-  /// Play a Spotify preview URL
-  void playPreview(String url) async {
-    try {
-      await audioPlayer.setUrl(url);
-      audioPlayer.play();
-    } catch (e) {
-      print("❌ Error playing track: $e");
-    }
-  }
-
-  /// Stop any currently playing preview
-  void stopPreview() {
-    audioPlayer.stop();
-  }
+  // Cache user profiles to avoid multiple reads
+  final Map<String, Map<String, dynamic>> userCache = {};
 
   @override
-  void onClose() {
-    audioPlayer.dispose();
-    textController.dispose();
-    scrollController.dispose();
-    super.onClose();
+  void onInit() {
+    super.onInit();
+    final user = auth.currentUser;
+    if (user != null) {
+      currentUserId = user.uid;
+    } else {
+      currentUserId = '';
+    }
   }
-}
 
+  Stream<QuerySnapshot> get messagesStream => firestore
+      .collection('chat_rooms')
+      .doc('room1')
+      .collection('messages')
+      .orderBy('timestamp')
+      .snapshots();
+
+  void sendMessage() {
+    if (textController.text.trim().isNotEmpty && currentUserId.isNotEmpty) {
+      firestore
+          .collection('chat_rooms')
+          .doc('room1')
+          .collection('messages')
+          .add({
+            "senderId": currentUserId,
+            "text": textController.text.trim(),
+            "timestamp": FieldValue.serverTimestamp(),
+          });
+      textController.clear();
+
+      // Scroll to bottom smoothly after sending
+      if (scrollController.hasClients) {
+        scrollController.animateTo(
+          scrollController.position.maxScrollExtent + 60,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
+    }
+  }
+
+  // Fetch user profile from Firestore and cache it
+  Future<Map<String, dynamic>> getUserProfile(String userId) async {
+    if (userCache.containsKey(userId)) {
+      return userCache[userId]!;
+    } else {
+      final doc = await firestore.collection('users').doc(userId).get();
+      if (doc.exists) {
+        final data = doc.data() as Map<String, dynamic>;
+        userCache[userId] = data;
+        return data;
+      } else {
+        return {"profilePic": ""};
+      }
+    }
+  }
+
+  // /// Play a Spotify preview URL
+  // void playPreview(String url) async {
+  //   try {
+  //     await audioPlayer.setUrl(url);
+  //     audioPlayer.play();
+  //   } catch (e) {
+  //     print("❌ Error playing track: $e");
+  //   }
+  // }
+
+  // /// Stop any currently playing preview
+  // void stopPreview() {
+  //   audioPlayer.stop();
+  // }
+
+  // @override
+  // void onClose() {
+  //   audioPlayer.dispose();
+  //   textController.dispose();
+  //   scrollController.dispose();
+  //   super.onClose();
+  // }
+}

@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:tanit_tanit_app/app/routes/app_pages.dart';
 
 class UserSignUpController extends GetxController {
@@ -43,6 +46,10 @@ class UserSignUpController extends GetxController {
   final passwordController = TextEditingController();
   FirebaseAuth auth = FirebaseAuth.instance;
   var loading = false.obs;
+  var profileImage = Rx<File?>(null);
+  final ImagePicker picker = ImagePicker();
+
+
 
   void checked() {
     isChecked.value = !isChecked.value;
@@ -53,6 +60,10 @@ class UserSignUpController extends GetxController {
   void selectDay(String item) => selectedDay.value = item;
 
   void selectYear(String item) => selectedYear.value = item;
+
+  void setProfileImage(File file) {
+    profileImage.value = file;
+  }
 
   void signUp() async {
     if (!formKey.currentState!.validate()) return;
@@ -81,6 +92,19 @@ class UserSignUpController extends GetxController {
       );
     } finally{
       loading.value = false;
+    }
+  }
+  Future<void> pickImageFromCamera() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
+    if (pickedFile != null) {
+      setProfileImage(File(pickedFile.path));
+    }
+  }
+
+  Future<void> pickImageFromGallery() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setProfileImage(File(pickedFile.path));
     }
   }
 }

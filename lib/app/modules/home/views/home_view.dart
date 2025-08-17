@@ -87,8 +87,8 @@ class HomeView extends GetView<HomeController> {
                       return GridView.builder(
                         itemCount: controller.showAll.value
                             ? controller.trendingAlbums.length
-                            : (controller.trendingAlbums.length > 6
-                                  ? 6
+                            : (controller.trendingAlbums.length > 2
+                                  ? 2
                                   : controller.trendingAlbums.length),
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
