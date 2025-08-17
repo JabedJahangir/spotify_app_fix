@@ -22,7 +22,6 @@ class SignUpForm extends GetView<UserSignUpController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('First Name', style: AppTextStyles.regular12),
-          SizedBox(height: 10.h),
           TextFormField(
             controller: controller.firstNameController,
             validator: (value) {
@@ -41,8 +40,8 @@ class SignUpForm extends GetView<UserSignUpController> {
               ),
             ),
           ),
+          SizedBox(height: 8.h),
           Text('Last Name', style: AppTextStyles.regular12),
-          SizedBox(height: 10.h),
           TextFormField(
             controller: controller.lastNameController,
             validator: (value) {
@@ -61,8 +60,8 @@ class SignUpForm extends GetView<UserSignUpController> {
               ),
             ),
           ),
+          SizedBox(height: 8.h),
           Text('User Name', style: AppTextStyles.regular12),
-          SizedBox(height: 10.h),
           TextFormField(
             controller: controller.userNameController,
             validator: (value) {
@@ -83,11 +82,11 @@ class SignUpForm extends GetView<UserSignUpController> {
               ),
             ),
           ),
+          SizedBox(height: 8.h),
           Align(
             alignment: AlignmentDirectional.centerStart,
             child: Text('Date of Birth', style: AppTextStyles.regular12),
           ),
-          SizedBox(height: 8.h),
           Row(
             children: [
               Expanded(
@@ -132,9 +131,8 @@ class SignUpForm extends GetView<UserSignUpController> {
               ),
             ],
           ),
-          SizedBox(height: 12.h),
+          SizedBox(height: 8.h),
           Text('Email', style: AppTextStyles.regular12),
-          SizedBox(height: 10.h),
           TextFormField(
             controller: controller.emailController,
             validator: (value) {
@@ -155,8 +153,8 @@ class SignUpForm extends GetView<UserSignUpController> {
               ),
             ),
           ),
+          SizedBox(height: 8.h),
           Text('Password', style: AppTextStyles.regular12),
-          SizedBox(height: 10.h),
           TextFormField(
             controller: controller.passwordController,
             validator: (value) {

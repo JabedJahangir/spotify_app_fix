@@ -82,11 +82,35 @@ class VerifyEmailAddressView extends GetView<VerifyEmailAddressController> {
                         ),
                       ),
                       SizedBox(height: 16.h),
-                      RichText(text: TextSpan(
-                        children: [
-                          TextSpan(text: '00:29',style: TextStyle(fontSize: 12.sp,fontWeight: FontWeight.w900,color: AppColors.blue)),
-                          TextSpan(text: '   Resend Confirmation Code',style: AppTextStyles.regular12.copyWith(color: AppColors.black)),
-                        ]
+                      Obx(() => RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: controller.timerText.value,
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w900,
+                                color: AppColors.blue,
+                              ),
+                            ),
+                            WidgetSpan(
+                              child: GestureDetector(
+                                onTap: controller.resendCode,
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: 8.w),
+                                  child: Text(
+                                    'Resend Confirmation Code',
+                                    style: AppTextStyles.regular12.copyWith(
+                                      color: controller.timerText.value == "00:00"
+                                          ? AppColors.black
+                                          : AppColors.black.withOpacity(0.5),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ))
                     ],
                   ),
