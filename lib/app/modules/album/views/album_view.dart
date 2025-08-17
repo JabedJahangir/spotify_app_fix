@@ -10,7 +10,6 @@ import 'package:tanit_tanit_app/app/modules/widget/custom_app_bar.dart';
 import '../controllers/album_controller.dart';
 
 class AlbumView extends GetView<AlbumController> {
-
   const AlbumView({super.key});
   @override
   Widget build(BuildContext context) {
@@ -23,12 +22,14 @@ class AlbumView extends GetView<AlbumController> {
         child: Column(
           children: [
             SizedBox(
-              height: MediaQuery.of(context).size.height*.84,
+              height: MediaQuery.of(context).size.height * .84,
               child: ListView.builder(
                 physics: ScrollPhysics(),
                 itemCount: 20,
                 shrinkWrap: true,
-                itemBuilder: (context, index) => AlbumCardList(isTrue: true,),),
+                itemBuilder: (context, index) =>
+                    AlbumCardList(isTrue: true, artistName: '', musicName: ''),
+              ),
             ),
           ],
         ),

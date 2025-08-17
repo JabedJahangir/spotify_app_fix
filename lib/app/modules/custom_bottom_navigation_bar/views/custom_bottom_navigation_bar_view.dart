@@ -6,7 +6,6 @@ import 'package:tanit_tanit_app/app/data/image_path.dart';
 import 'package:tanit_tanit_app/app/modules/album/views/album_view.dart';
 import 'package:tanit_tanit_app/app/modules/my_chat_room/views/my_chat_room_view.dart';
 import 'package:tanit_tanit_app/app/modules/profile/views/profile_view.dart';
-import 'package:tanit_tanit_app/app/modules/search/views/Albums.dart';
 import 'package:tanit_tanit_app/app/modules/search/views/search_view.dart';
 import '../../home/views/home_view.dart';
 import '../controllers/custom_bottom_navigation_bar_controller.dart';
@@ -27,15 +26,17 @@ class CustomBottomNavigationBarView
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
+        extendBody: true,
         body: _pages[controller.currentIndex.value],
         bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           currentIndex: controller.currentIndex.value,
           onTap: controller.changeTab,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Color(0xFFF9F9F9).withOpacity(0.9),
           selectedItemColor: AppColors.darkBlue,
+          unselectedItemColor: AppColors.grey,
           showSelectedLabels: true,
           showUnselectedLabels: true,
-          unselectedItemColor: AppColors.grey,
           items: [
             _buildItem(0, ImagePath.house, 'Home'),
             _buildItem(1, ImagePath.messageText, 'My Chatrooms'),
@@ -47,6 +48,7 @@ class CustomBottomNavigationBarView
       ),
     );
   }
+
   BottomNavigationBarItem _buildItem(int index, String iconPath, String label) {
     final isSelected = controller.currentIndex.value == index;
     return BottomNavigationBarItem(

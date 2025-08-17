@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
-import 'package:tanit_tanit_app/app/data/image_path.dart';
 import 'package:tanit_tanit_app/app/modules/album_chat_room/views/chat_rooms_tab.dart';
 import 'package:tanit_tanit_app/app/modules/album_chat_room/views/songs_tab.dart';
 import 'package:tanit_tanit_app/app/modules/widget/custom_album_chat_room_player.dart';

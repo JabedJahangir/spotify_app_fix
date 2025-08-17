@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
 import 'package:tanit_tanit_app/app/data/image_path.dart';
-import 'package:tanit_tanit_app/app/modules/all_search/views/all_search_view.dart';
 import 'package:tanit_tanit_app/app/modules/home/widget/album_card.dart';
 import 'package:tanit_tanit_app/app/modules/home/widget/home_carousel_slider.dart';
 import 'package:tanit_tanit_app/app/modules/home/widget/party_list_card.dart';
@@ -70,7 +69,7 @@ class HomeView extends GetView<HomeController> {
                           () => GestureDetector(
                             onTap: controller.toggleShowAll,
                             child: Text(
-                              controller.showAll.value ? 'See all' : 'See less',
+                              controller.showAll.value ? 'See less' : 'See all',
                               style: AppTextStyles.regular16.copyWith(
                                 color: AppColors.greyTextColor,
                               ),
@@ -80,26 +79,76 @@ class HomeView extends GetView<HomeController> {
                       ],
                     ),
                     const SizedBox(height: 10),
-                    Obx(
-                      () => GridView.builder(
-                        itemCount: controller.showAll.value ? 2 : 6,
+                    Obx(() {
+                      if (controller.isLoading.value) {
+                        return const Center(child: CircularProgressIndicator());
+                      }
+
+                      return GridView.builder(
+                        itemCount: controller.showAll.value
+                            ? controller.trendingAlbums.length
+                            : (controller.trendingAlbums.length > 6
+                                  ? 6
+                                  : controller.trendingAlbums.length),
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          mainAxisSpacing: 6,
-                          crossAxisSpacing: 8,
-                        ),
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              mainAxisSpacing: 6,
+                              crossAxisSpacing: 8,
+                            ),
                         itemBuilder: (context, index) {
+                          final album = controller.trendingAlbums[index];
+                          final imageUrl = album["images"].isNotEmpty
+                              ? album["images"][0]["url"]
+                              : "";
+                          final albumName = album["name"] ?? "Unknown Album";
+                          final artistName =
+                              album["artists"]
+                                  ?.map((a) => a["name"])
+                                  ?.join(", ") ??
+                              "Unknown Artist";
+
                           return GestureDetector(
-                            onTap: () {
-                              Get.toNamed(Routes.ARTIST_PROFILE);
+                            onTap: () async {
+                              final artistId = album["artists"][0]["id"];
+                              final artistData = await controller.spotifyService
+                                  .getArtist(artistId);
+                              final artistImage =
+                                  artistData?["images"]?.isNotEmpty == true
+                                  ? artistData!["images"][0]["url"]
+                                  : "";
+                              // Fetch all album names
+                              final artistAlbums = await controller
+                                  .spotifyService
+                                  .getArtistAlbums(artistId);
+                              print(
+                                artistAlbums,
+                              ); // This should print 22 albums
+
+                              Get.toNamed(
+                                Routes.ARTIST_PROFILE,
+                                arguments: {
+                                  "artistName": artistName,
+                                  "albumName": albumName,
+                                  "imageUrl": artistImage,
+                                  "albumData": album,
+                                  "artistAlbums":
+                                      artistAlbums, // <-- key matches what you read later
+                                },
+                              );
                             },
-                            child: AlbumCard(),
+                            child: AlbumCard(
+                              albumName: albumName,
+                              artistName: artistName,
+                              imageUrl: imageUrl,
+                              
+                            ),
                           );
                         },
-                      ),
-                    ),
+                      );
+                    }),
                   ],
                 ),
               ),
