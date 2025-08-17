@@ -17,6 +17,12 @@ class AlbumChatRoomView extends GetView<AlbumChatRoomController> {
 
   @override
   Widget build(BuildContext context) {
+    final args = Get.arguments;
+    final artistId = args?["artistId"] ?? '';
+    final albumId = args?["albumId"] ?? '';
+    final imageUrl = args?["image"] ?? '';
+    final albumName = args?["albumName"] ?? '';
+    final artistName = args?["name"] ?? '';
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -24,7 +30,7 @@ class AlbumChatRoomView extends GetView<AlbumChatRoomController> {
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(kToolbarHeight),
           child: CustomAppBar(
-            title: "Chatroom Name",
+            title: albumName,
             backGroundColor: AppColors.darkBlue,
             titleColor: AppColors.white,
           ),
@@ -61,15 +67,17 @@ class AlbumChatRoomView extends GetView<AlbumChatRoomController> {
                       Text('Chatroom', style: AppTextStyles.regular14),
                     ],
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * .02,
-                  ),
+                  SizedBox(width: MediaQuery.of(context).size.width * .02),
                   GestureDetector(
                     onTap: () {
                       Get.toNamed(Routes.SUB_CHAT_ROOM);
                     },
                     child: Container(
-                      height: MediaQuery.of(context).orientation == Orientation.portrait ? 42.h : 70.h,
+                      height:
+                          MediaQuery.of(context).orientation ==
+                              Orientation.portrait
+                          ? 42.h
+                          : 70.h,
                       width: 110.w,
                       decoration: BoxDecoration(
                         color: AppColors.shadeBlue,
@@ -89,7 +97,16 @@ class AlbumChatRoomView extends GetView<AlbumChatRoomController> {
               ),
               Expanded(
                 child: TabBarView(
-                  children: [SongsTab(), ChatRoomsTab()],
+                  children: [
+                    SongsTab(
+                      artistId: artistId,
+                      controller: controller,
+                      albumId: albumId,
+                      image: imageUrl,
+                      artistName: artistName,
+                    ),
+                    ChatRoomsTab(),
+                  ],
                 ),
               ),
             ],
@@ -99,4 +116,3 @@ class AlbumChatRoomView extends GetView<AlbumChatRoomController> {
     );
   }
 }
-

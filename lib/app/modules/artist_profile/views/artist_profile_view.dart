@@ -15,8 +15,9 @@ class ArtistProfileView extends GetView<ArtistProfileController> {
   Widget build(BuildContext context) {
     final args = Get.arguments;
     final artistName = args?["artistName"] ?? "Unknown Artist";
-    final albumName = args?["albumName"] ?? "Unknown Album";
     final imageUrl = args?["imageUrl"] ?? "";
+    final artistId = args?["artistId"] ?? "";
+    final albumId = args?["albumId"] ?? "";
     final artistAlbums =
         (Get.arguments['artistAlbums'] as List<Map<String, String>>?) ?? [];
 
@@ -85,7 +86,7 @@ class ArtistProfileView extends GetView<ArtistProfileController> {
                               onPressed: () {
                                 controller.valueSelected(0);
                               },
-                              text: 'Tour',
+                              text: 'Albums',
                               fontSize: 16,
                               height: 37,
                               width: 164.5,
@@ -101,7 +102,7 @@ class ArtistProfileView extends GetView<ArtistProfileController> {
                               onPressed: () {
                                 controller.valueSelected(1);
                               },
-                              text: 'Albums',
+                              text: 'Tours',
                               fontSize: 16,
                               height: 37,
                               width: 164.5,
@@ -124,21 +125,29 @@ class ArtistProfileView extends GetView<ArtistProfileController> {
               final selectedIndex = controller.selectedIndex.value;
               if (selectedIndex == 0) {
                 return SliverList.builder(
-                  itemCount: 3,
-                  itemBuilder: (context, index) => TourCard(),
-                );
-              } else {
-                print('✅all albums:$artistAlbums');
-                return SliverList.builder(
                   itemCount: artistAlbums.length,
                   itemBuilder: (context, index) => AlbumCardList(
                     artistName: artistName,
-                    musicName: artistAlbums[index]['name'] ?? 'Unknown Album',
+                    albumName: artistAlbums[index]['name'] ?? 'Unknown Album',
                     image: artistAlbums[index]['image'] ?? '',
                     onTap: () {
-                      Get.toNamed(Routes.ALBUM_CHAT_ROOM);
+                      Get.toNamed(
+                        Routes.ALBUM_CHAT_ROOM,
+                        arguments: {
+                          "artistId": artistId,
+                          "albumId": albumId,
+                          "artistName": artistName,
+                          "image": artistAlbums[index]['image'],
+                          "albumName": artistAlbums[index]['name'],
+                        },
+                      );
                     },
                   ),
+                );
+              } else {
+                return SliverList.builder(
+                  itemCount: 3,
+                  itemBuilder: (context, index) => TourCard(),
                 );
               }
             }),

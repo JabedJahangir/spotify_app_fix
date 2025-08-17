@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
-import 'package:tanit_tanit_app/app/data/image_path.dart';
 
 import '../controllers/album_chat_room_controller.dart';
 import '../widget/custom_chat_box_container.dart';
@@ -13,7 +12,6 @@ class ChatRoomsTab extends GetView<AlbumChatRoomController> {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController textEditingController = TextEditingController();
 
     return Column(
       children: [

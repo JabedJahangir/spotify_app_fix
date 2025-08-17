@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 class ArtistProfileController extends GetxController {
   final RxInt selectedIndex = 0.obs;
-// Add artist info
+  // Add artist info
   var artistName = "".obs;
   var artistImage = "".obs;
   var albumCount = 0.obs;
@@ -19,6 +19,7 @@ class ArtistProfileController extends GetxController {
     albumCount.value = albums;
     songCount.value = songs;
   }
+
   void valueSelected(int index) {
     selectedIndex.value = index;
   }

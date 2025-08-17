@@ -109,6 +109,7 @@ class HomeView extends GetView<HomeController> {
                                   ?.map((a) => a["name"])
                                   ?.join(", ") ??
                               "Unknown Artist";
+                          final albumId = album["id"];
 
                           return GestureDetector(
                             onTap: () async {
@@ -123,19 +124,17 @@ class HomeView extends GetView<HomeController> {
                               final artistAlbums = await controller
                                   .spotifyService
                                   .getArtistAlbums(artistId);
-                              print(
-                                artistAlbums,
-                              ); // This should print 22 albums
 
                               Get.toNamed(
                                 Routes.ARTIST_PROFILE,
                                 arguments: {
+                                  "albumId": albumId,
                                   "artistName": artistName,
                                   "albumName": albumName,
                                   "imageUrl": artistImage,
                                   "albumData": album,
-                                  "artistAlbums":
-                                      artistAlbums, // <-- key matches what you read later
+                                  "artistId": artistId,
+                                  "artistAlbums": artistAlbums,
                                 },
                               );
                             },
@@ -143,7 +142,6 @@ class HomeView extends GetView<HomeController> {
                               albumName: albumName,
                               artistName: artistName,
                               imageUrl: imageUrl,
-                              
                             ),
                           );
                         },

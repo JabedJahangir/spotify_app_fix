@@ -7,7 +7,7 @@ import '../../../data/app_text_styles.dart';
 class AlbumCardList extends StatelessWidget {
   final bool? isTrue;
   final String? image;
-  final String musicName;
+  final String albumName;
   final String artistName;
   final Function()? onTap;
 
@@ -16,7 +16,7 @@ class AlbumCardList extends StatelessWidget {
     this.isTrue = false,
     this.image = ImagePath.ellipsisVertical,
     this.onTap,
-    required this.musicName,
+    required this.albumName,
     required this.artistName,
   });
 
@@ -50,7 +50,7 @@ class AlbumCardList extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        musicName,
+                        albumName,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: AppTextStyles.regular16.copyWith(

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
-import 'package:tanit_tanit_app/app/data/image_path.dart';
-import 'package:tanit_tanit_app/app/routes/app_pages.dart';
 
 import '../../data/app_colors.dart';
 
@@ -59,6 +57,8 @@ class CustomAppBar extends StatelessWidget {
         ),
       ),
       title: RichText(
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
         text: richText1 != null
             ? TextSpan(
                 children: [

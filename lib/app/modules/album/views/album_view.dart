@@ -28,7 +28,7 @@ class AlbumView extends GetView<AlbumController> {
                 itemCount: 20,
                 shrinkWrap: true,
                 itemBuilder: (context, index) =>
-                    AlbumCardList(isTrue: true, artistName: '', musicName: ''),
+                    AlbumCardList(isTrue: true, artistName: '', albumName: ''),
               ),
             ),
           ],

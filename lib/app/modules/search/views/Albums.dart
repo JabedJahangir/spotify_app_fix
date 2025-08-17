@@ -21,7 +21,7 @@ class Albums extends StatelessWidget {
             shrinkWrap: true,
             itemCount: 20,
             itemBuilder: (context, index) =>
-                AlbumCardList(artistName: '', musicName: ''),
+                AlbumCardList(artistName: '', albumName: ''),
           ),
         ),
       ],

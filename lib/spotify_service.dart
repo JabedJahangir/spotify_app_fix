@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class SpotifyService {
@@ -144,4 +145,65 @@ class SpotifyService {
       return [];
     }
   }
+  Future<List<Map<String, String>>> getAlbumTracksWithImages(String albumId) async {
+  try {
+    final token = await getAccessToken();
+
+    // Fetch basic album tracks
+    final url = 'https://api.spotify.com/v1/albums/$albumId/tracks?limit=50';
+    final response = await http.get(
+      Uri.parse(url),
+      headers: {'Authorization': 'Bearer $token'},
+    );
+
+    if (response.statusCode != 200) {
+      debugPrint("❌ Failed to fetch album tracks: ${response.body}");
+      return [];
+    }
+
+    final data = jsonDecode(response.body);
+    final List tracksList = data['items'];
+
+    // Fetch track details individually to get image
+    final List<Future<Map<String, String>>> trackFutures = tracksList.map<Future<Map<String, String>>>((track) async {
+      final trackId = (track['id'] ?? '').toString();
+      final trackResponse = await http.get(
+        Uri.parse('https://api.spotify.com/v1/tracks/$trackId'),
+        headers: {'Authorization': 'Bearer $token'},
+      );
+
+      if (trackResponse.statusCode != 200) {
+        return {
+          'id': trackId,
+          'name': (track['name'] ?? '').toString(),
+          'duration': (track['duration_ms'] ?? '').toString(),
+          'preview_url': (track['preview_url'] ?? '').toString(),
+          'image_url': '',
+        };
+      }
+
+      final trackData = jsonDecode(trackResponse.body);
+
+      final imageUrl = (trackData['album']?['images'] as List?)?.isNotEmpty == true
+          ? (trackData['album']['images'][0]['url'] ?? '').toString()
+          : '';
+
+      return {
+        'id': trackId,
+        'name': (track['name'] ?? '').toString(),
+        'duration': (track['duration_ms'] ?? '').toString(),
+        'preview_url': (track['preview_url'] ?? '').toString(),
+        'image_url': imageUrl,
+      };
+    }).toList();
+
+    final tracksWithImages = await Future.wait(trackFutures);
+    return tracksWithImages;
+  } catch (e) {
+    debugPrint("❌ Error in getAlbumTracksWithImages: $e");
+    return [];
+  }
+}
+
+
 }
