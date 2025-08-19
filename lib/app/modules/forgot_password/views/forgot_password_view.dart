@@ -1,9 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
-import 'package:tanit_tanit_app/app/routes/app_pages.dart';
 
 import '../../../data/app_colors.dart';
 import '../../../data/app_text_styles.dart';
@@ -11,7 +9,7 @@ import '../../widget/custom_app_bar.dart';
 import '../controllers/forgot_password_controller.dart';
 
 class ForgotPasswordView extends GetView<ForgotPasswordController> {
-  ForgotPasswordView({super.key});
+  const ForgotPasswordView({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -11,10 +11,14 @@ class HomeController extends GetxController {
   // Trending albums list
   var trendingAlbums = <dynamic>[].obs;
 
+  // Party tracks list
+  var partyTracks = <Map<String, String>>[].obs;
+
   @override
   void onInit() {
     super.onInit();
     fetchTrendingAlbums();
+    fetchPartyTracks(); // <-- fetch party tracks
   }
 
   void toggleShowAll() => showAll.value = !showAll.value;
@@ -30,5 +34,15 @@ class HomeController extends GetxController {
       isLoading.value = false;
     }
   }
-}
 
+  // Fetch party tracks from Spotify
+  void fetchPartyTracks() async {
+    try {
+      isLoading.value = true;
+      final tracks = await spotifyService.searchTracks("Parties", limit: 50);
+      partyTracks.assignAll(tracks);
+    } finally {
+      isLoading.value = false;
+    }
+  }
+}

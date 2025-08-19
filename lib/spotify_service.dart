@@ -145,65 +145,109 @@ class SpotifyService {
       return [];
     }
   }
-  Future<List<Map<String, String>>> getAlbumTracksWithImages(String albumId) async {
-  try {
-    final token = await getAccessToken();
 
-    // Fetch basic album tracks
-    final url = 'https://api.spotify.com/v1/albums/$albumId/tracks?limit=50';
-    final response = await http.get(
-      Uri.parse(url),
-      headers: {'Authorization': 'Bearer $token'},
-    );
+  Future<List<Map<String, String>>> getAlbumTracksWithImages(
+    String albumId,
+  ) async {
+    try {
+      final token = await getAccessToken();
 
-    if (response.statusCode != 200) {
-      debugPrint("❌ Failed to fetch album tracks: ${response.body}");
-      return [];
-    }
-
-    final data = jsonDecode(response.body);
-    final List tracksList = data['items'];
-
-    // Fetch track details individually to get image
-    final List<Future<Map<String, String>>> trackFutures = tracksList.map<Future<Map<String, String>>>((track) async {
-      final trackId = (track['id'] ?? '').toString();
-      final trackResponse = await http.get(
-        Uri.parse('https://api.spotify.com/v1/tracks/$trackId'),
+      // Fetch basic album tracks
+      final url = 'https://api.spotify.com/v1/albums/$albumId/tracks?limit=50';
+      final response = await http.get(
+        Uri.parse(url),
         headers: {'Authorization': 'Bearer $token'},
       );
 
-      if (trackResponse.statusCode != 200) {
-        return {
-          'id': trackId,
-          'name': (track['name'] ?? '').toString(),
-          'duration': (track['duration_ms'] ?? '').toString(),
-          'preview_url': (track['preview_url'] ?? '').toString(),
-          'image_url': '',
-        };
+      if (response.statusCode != 200) {
+        debugPrint("❌ Failed to fetch album tracks: ${response.body}");
+        return [];
       }
 
-      final trackData = jsonDecode(trackResponse.body);
+      final data = jsonDecode(response.body);
+      final List tracksList = data['items'];
 
-      final imageUrl = (trackData['album']?['images'] as List?)?.isNotEmpty == true
-          ? (trackData['album']['images'][0]['url'] ?? '').toString()
-          : '';
+      // Fetch track details individually to get image
+      final List<Future<Map<String, String>>> trackFutures = tracksList
+          .map<Future<Map<String, String>>>((track) async {
+            final trackId = (track['id'] ?? '').toString();
+            final trackResponse = await http.get(
+              Uri.parse('https://api.spotify.com/v1/tracks/$trackId'),
+              headers: {'Authorization': 'Bearer $token'},
+            );
 
-      return {
-        'id': trackId,
-        'name': (track['name'] ?? '').toString(),
-        'duration': (track['duration_ms'] ?? '').toString(),
-        'preview_url': (track['preview_url'] ?? '').toString(),
-        'image_url': imageUrl,
-      };
-    }).toList();
+            if (trackResponse.statusCode != 200) {
+              return {
+                'id': trackId,
+                'name': (track['name'] ?? '').toString(),
+                'duration': (track['duration_ms'] ?? '').toString(),
+                'preview_url': (track['preview_url'] ?? '').toString(),
+                'image_url': '',
+              };
+            }
 
-    final tracksWithImages = await Future.wait(trackFutures);
-    return tracksWithImages;
-  } catch (e) {
-    debugPrint("❌ Error in getAlbumTracksWithImages: $e");
-    return [];
+            final trackData = jsonDecode(trackResponse.body);
+
+            final imageUrl =
+                (trackData['album']?['images'] as List?)?.isNotEmpty == true
+                ? (trackData['album']['images'][0]['url'] ?? '').toString()
+                : '';
+
+            return {
+              'id': trackId,
+              'name': (track['name'] ?? '').toString(),
+              'duration': (track['duration_ms'] ?? '').toString(),
+              'preview_url': (track['preview_url'] ?? '').toString(),
+              'image_url': imageUrl,
+            };
+          })
+          .toList();
+
+      final tracksWithImages = await Future.wait(trackFutures);
+      return tracksWithImages;
+    } catch (e) {
+      debugPrint("❌ Error in getAlbumTracksWithImages: $e");
+      return [];
+    }
   }
-}
 
+  // Search tracks by keyword
+  Future<List<Map<String, String>>> searchTracks(
+    String query, {
+    int limit = 50,
+  }) async {
+    final token = await getAccessToken();
+    if (token == null) return [];
 
+    final response = await http.get(
+      Uri.parse(
+        "https://api.spotify.com/v1/search?q=$query&type=track&limit=$limit",
+      ),
+      headers: {"Authorization": "Bearer $token"},
+    );
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      final tracks = data['tracks']['items'] as List<dynamic>;
+
+      return tracks.map<Map<String, String>>((track) {
+        final albumImages = track['album']?['images'] as List<dynamic>?;
+        final imageUrl = (albumImages != null && albumImages.isNotEmpty)
+            ? albumImages[0]['url']
+            : '';
+
+        return {
+          'id': track['id'] ?? '',
+          'name': track['name'] ?? '',
+          'artist': (track['artists'] as List).map((a) => a['name']).join(', '),
+          'preview_url': track['preview_url'] ?? '',
+          'image_url': imageUrl,
+          'duration_ms': (track['duration_ms'] ?? 0).toString(),
+        };
+      }).toList();
+    } else {
+      print("❌ Track search failed: ${response.body}");
+      return [];
+    }
+  }
 }

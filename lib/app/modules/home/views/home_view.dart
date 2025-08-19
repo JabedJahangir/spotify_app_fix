@@ -184,7 +184,13 @@ class HomeView extends GetView<HomeController> {
                     const SizedBox(height: 10),
                     Obx(
                       () => GridView.builder(
-                        itemCount: controller.showLess.value ? 2 : 6,
+                        itemCount: controller.showLess.value
+                            ? (controller.partyTracks.length > 2
+                                  ? 2
+                                  : controller.partyTracks.length)
+                            : (controller.partyTracks.length > 6
+                                  ? 6
+                                  : controller.partyTracks.length),
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -193,11 +199,18 @@ class HomeView extends GetView<HomeController> {
                           crossAxisSpacing: 8,
                         ),
                         itemBuilder: (context, index) {
+                          final track = controller.partyTracks[index];
                           return GestureDetector(
                             onTap: () {
-                              Get.toNamed(Routes.ARTIST_PROFILE);
+                              // Navigate to track details if needed
                             },
-                            child: PartyListCard(),
+                            child: PartyListCard(
+                              trackName: track['name'] ?? 'Unknown',
+                              imageUrl: track['image_url'] ?? '',
+                              artistName: track['artist'] ?? '',
+                              time: '11:30 PM',
+                              date: '1 Feb, 2025',
+                            ),
                           );
                         },
                       ),
