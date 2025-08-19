@@ -5,8 +5,7 @@ import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
 import 'package:tanit_tanit_app/app/data/image_path.dart';
-import 'package:tanit_tanit_app/app/modules/home/views/home_view.dart';
-import 'package:tanit_tanit_app/app/modules/login_in_input/views/login_in_input_view.dart';
+import 'package:tanit_tanit_app/app/modules/login/logInServices/log_in_service.dart';
 import 'package:tanit_tanit_app/app/routes/app_pages.dart';
 
 import '../controllers/login_controller.dart';
@@ -41,7 +40,9 @@ class LoginView extends GetView<LoginController> {
                     ),
                     SizedBox(height: 20.h),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        LogInService.signInWithGoogle();
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.darkBlue,
                         shape: RoundedRectangleBorder(

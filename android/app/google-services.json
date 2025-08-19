@@ -12,7 +12,20 @@
           "package_name": "com.tanit.tanit_tanit_app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "50340198995-t56t7f86fj74rlogdtg5ib8u1k8cvq8r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tanit.tanit_tanit_app",
+            "certificate_hash": "76fefedc42b8da47cfcdf26f7454eb9227f94843"
+          }
+        },
+        {
+          "client_id": "50340198995-6lu74jr1me214vnrvfr7su85r3mp6bmo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBa0BnWsO1sPQIfm28hcE23AWAoJU2yX-U"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "50340198995-6lu74jr1me214vnrvfr7su85r3mp6bmo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "50340198995-7ksm21m5r6pafogthe650uis7huqag30.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.tanit.tanitTanitApp"
+              }
+            }
+          ]
         }
       }
     }

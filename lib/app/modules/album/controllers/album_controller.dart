@@ -1,23 +1,9 @@
 import 'package:get/get.dart';
 
 class AlbumController extends GetxController {
-  //TODO: Implement AlbumController
+  RxBool isSelected = false.obs;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  void changeFavourite() {
+    isSelected.value = !isSelected.value;
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

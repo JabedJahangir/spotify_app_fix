@@ -1,11 +1,9 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
 
 import '../../data/app_colors.dart';
-import '../user_sign_up/controllers/user_sign_up_controller.dart';
 
 class CustomDropDown extends StatelessWidget {
   final List<String> items;
