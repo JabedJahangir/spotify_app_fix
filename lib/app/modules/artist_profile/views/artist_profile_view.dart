@@ -127,9 +127,11 @@ class ArtistProfileView extends GetView<ArtistProfileController> {
                 return SliverList.builder(
                   itemCount: artistAlbums.length,
                   itemBuilder: (context, index) => AlbumCardList(
+                    showIcon: false,
                     artistName: artistName,
                     albumName: artistAlbums[index]['name'] ?? 'Unknown Album',
                     image: artistAlbums[index]['image'] ?? '',
+                    icon: Icons.favorite_outline_rounded,
                     onTap: () {
                       Get.toNamed(
                         Routes.ALBUM_CHAT_ROOM,

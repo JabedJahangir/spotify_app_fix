@@ -20,8 +20,11 @@ class Albums extends StatelessWidget {
           child: ListView.builder(
             shrinkWrap: true,
             itemCount: 20,
-            itemBuilder: (context, index) =>
-                AlbumCardList(artistName: '', albumName: ''),
+            itemBuilder: (context, index) => AlbumCardList(
+              artistName: '',
+              albumName: '',
+              icon: Icons.favorite_outline_rounded,
+            ),
           ),
         ),
       ],

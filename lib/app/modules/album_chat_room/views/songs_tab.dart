@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:tanit_tanit_app/app/modules/artist_profile/widget/album_card_list.dart';
 
 import '../controllers/album_chat_room_controller.dart';
@@ -20,7 +21,6 @@ class SongsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('✅ $artistName');
     return FutureBuilder<List<Map<String, String>>>(
       future: controller.spotifyService.getAlbumTracksWithImages(albumId),
       builder: (context, snapshot) {
@@ -39,10 +39,11 @@ class SongsTab extends StatelessWidget {
             itemBuilder: (context, index) {
               final track = tracks[index];
               return AlbumCardList(
-                isTrue: true,
+                showIcon: true,
                 image: image,
                 artistName: artistName, // fill if needed
                 albumName: track['name'] ?? '',
+                icon: Icons.favorite_border_outlined,
               );
             },
           );

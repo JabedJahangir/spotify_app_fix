@@ -1,9 +1,8 @@
 import 'package:get/get.dart';
 
-class AlbumController extends GetxController {
-  RxBool isSelected = false.obs;
+import '../../../models/album_model.dart';
 
-  void changeFavourite() {
-    isSelected.value = !isSelected.value;
-  }
+class AlbumController extends GetxController {
+  var favouriteAlbums = <Album>[].obs;
+
 }
