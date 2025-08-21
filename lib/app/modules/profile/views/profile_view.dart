@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -8,7 +7,6 @@ import 'package:tanit_tanit_app/app/data/app_colors.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
 import 'package:tanit_tanit_app/app/modules/profile/widget/profile_editable_field.dart';
 
-import '../../../data/image_path.dart';
 import '../controllers/profile_controller.dart';
 import '../widget/custom_profile_container.dart';
 import '../widget/custom_toggle_button.dart';
@@ -19,9 +17,10 @@ class ProfileView extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
-    Future<void> _signOut () async {
+    Future<void> signOut() async {
       await FirebaseAuth.instance.signOut();
-    };
+    }
+
     return Scaffold(
       backgroundColor: AppColors.backGroundWhite,
       body: SafeArea(
@@ -86,7 +85,7 @@ class ProfileView extends GetView<ProfileController> {
                         Padding(
                           padding: const EdgeInsets.only(top: 8, bottom: 24),
                           child: GestureDetector(
-                            onTap: _signOut,
+                            onTap: signOut,
                             child: Container(
                               color: AppColors.backGroundWhite,
                               child: Padding(
@@ -119,4 +118,3 @@ class ProfileView extends GetView<ProfileController> {
     );
   }
 }
-

@@ -12,6 +12,7 @@ class SignUpForm extends GetView<UserSignUpController> {
   SignUpForm({super.key, required this.controller});
 
   final List<String> existingUsernames = ['admin', 'johndoe', 'flutter_dev'];
+  @override
   final UserSignUpController controller;
 
   @override

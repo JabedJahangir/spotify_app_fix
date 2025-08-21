@@ -7,6 +7,7 @@ import 'package:tanit_tanit_app/app/routes/app_pages.dart';
 
 import '../../../data/app_text_styles.dart';
 import '../../../data/image_path.dart';
+import '../../login/logInServices/log_in_service.dart';
 import '../controllers/login_in_input_controller.dart';
 import 'login_form.dart';
 
@@ -38,7 +39,7 @@ class LoginInInputView extends GetView<LoginInInputController> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Login_Form(),
+                      LoginForm(),
                       SizedBox(height: 12.h),
                        InkWell(
                          onTap: (){
@@ -87,7 +88,9 @@ class LoginInInputView extends GetView<LoginInInputController> {
                         width: double.infinity,
                         height: 48.h,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            LogInService.signInWithGoogle();
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.backGroundGrey,
                           ),

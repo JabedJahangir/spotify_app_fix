@@ -17,7 +17,7 @@ class AlbumCardList extends StatelessWidget {
 
   const AlbumCardList({
     super.key,
-    this.showIcon = true,
+    this.showIcon = false,
     this.image = ImagePath.ellipsisVertical,
     this.onTap,
     required this.albumName,
@@ -28,8 +28,6 @@ class AlbumCardList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<AlbumController>();
-    final isSelected = false.obs; // RxBool
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: InkWell(
@@ -80,35 +78,31 @@ class AlbumCardList extends StatelessWidget {
                     ],
                   ),
                 ),
-                if (!showIcon!)
-                  Obx(
-                    () => InkWell(
+                if (showIcon!)
+                  Obx(() {
+                    final selected = controller.isAlbumSelected(
+                      albumName,
+                      artistName,
+                    );
+
+                    return InkWell(
                       onTap: () {
-                        isSelected.value = !isSelected.value;
-
-                        if (isSelected.value) {
-                          controller.favouriteAlbums.add(
-                            Album(
-                              image: image!,
-                              name: albumName,
-                              artist: artistName,
-                            ),
-                          );
-                        } else {
-                          controller.favouriteAlbums.removeWhere(
-                            (album) =>
-                                album.name == albumName &&
-                                album.artist == artistName,
-                          );
-                        }
+                        controller.toggleAlbumSelection(
+                          albumName,
+                          artistName,
+                          Album(
+                            image: image!,
+                            name: albumName,
+                            artist: artistName,
+                          ),
+                        );
                       },
-
                       child: Icon(
-                        isSelected.value ? Icons.favorite : icon,
-                        color: isSelected.value ? Colors.red : Colors.grey,
+                        selected ? Icons.favorite : icon,
+                        color: selected ? Colors.red : Colors.grey,
                       ),
-                    ),
-                  ),
+                    );
+                  }),
               ],
             ),
           ),

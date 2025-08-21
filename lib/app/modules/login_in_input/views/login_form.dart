@@ -6,8 +6,8 @@ import '../../../data/app_colors.dart';
 import '../../../data/app_text_styles.dart';
 import '../controllers/login_in_input_controller.dart';
 
-class Login_Form extends GetView<LoginInInputController> {
-  Login_Form({super.key});
+class LoginForm extends GetView<LoginInInputController> {
+  const LoginForm({super.key});
 
   @override
   Widget build(BuildContext context) {

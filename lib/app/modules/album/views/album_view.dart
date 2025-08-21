@@ -14,7 +14,7 @@ class AlbumView extends GetView<AlbumController> {
       backgroundColor: AppColors.backGroundWhite,
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        backgroundColor: Colors.white  ,
+        backgroundColor: Colors.white,
         title: Text('Favourite Albums', style: AppTextStyles.medium24),
       ),
       body: Obx(() {
@@ -37,7 +37,7 @@ class AlbumView extends GetView<AlbumController> {
               albumName: album.name,
               image: album.image,
               icon: Icons.favorite,
-              showIcon: true, // show the heart icon
+              showIcon: false, // show the heart icon
             );
           },
         );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
@@ -38,80 +37,74 @@ class VerifyEmailAddressView extends GetView<VerifyEmailAddressController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('Verify email address', style: AppTextStyles.bold20),
+                      SizedBox(height: 8.h),
+                      // New header
                       Text(
-                        'Verification code sent',
+                        'A confirmation link has been sent to your email',
+                        style: AppTextStyles.regular16,
+                      ),
+                      SizedBox(height: 8.h),
+                      // Description
+                      Text(
+                        'Please check your inbox for the confirmation email. '
+                        'If you don’t see it, check your spam folder or promotions tab.',
                         style: AppTextStyles.regular12,
                       ),
-                      SizedBox(height: 16.h),
-                      OtpTextField(
-                        numberOfFields: 4,
-                        borderColor: Color(0xFF512DA8),
-                        showFieldAsBox: true,
-                        onCodeChanged: (String code) {
-                        },
-                        //runs when every textfield is filled
-                        onSubmit: (String verificationCode){
-                          showDialog(
-                              context: context,
-                              builder: (context){
-                                return AlertDialog(
-                                  title: Text("Verification Code"),
-                                  content: Text('Code entered is $verificationCode'),
-                                );
-                              }
-                          );
-                        }, // end onSubmit
-                      ),
-                      SizedBox(height: 16.h),
+                      SizedBox(height: 24.h),
+                      // Confirm button
                       SizedBox(
                         width: double.infinity,
                         height: 48.h,
                         child: ElevatedButton(
                           onPressed: () {
-                            Get.toNamed(Routes.NEW_PASSWORD);
+                            Get.toNamed(Routes.LOGIN_IN_INPUT);
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.lightBlack,
                           ),
                           child: Text(
-                            'Confirm Code',
+                            'Okay',
                             style: AppTextStyles.regular16.copyWith(
                               color: AppColors.white,
                             ),
                           ),
                         ),
                       ),
-                      SizedBox(height: 16.h),
-                      Obx(() => RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text: controller.timerText.value,
-                              style: TextStyle(
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w900,
-                                color: AppColors.blue,
-                              ),
-                            ),
-                            WidgetSpan(
-                              child: GestureDetector(
-                                onTap: controller.resendCode,
-                                child: Padding(
-                                  padding: EdgeInsets.only(left: 8.w),
-                                  child: Text(
-                                    'Resend Confirmation Code',
-                                    style: AppTextStyles.regular12.copyWith(
-                                      color: controller.timerText.value == "00:00"
-                                          ? AppColors.black
-                                          : AppColors.black.withOpacity(0.5),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ))
+                      // SizedBox(height: 16.h),
+                      // Obx(
+                      //   () => RichText(
+                      //     text: TextSpan(
+                      //       children: [
+                      //         TextSpan(
+                      //           text: controller.timerText.value,
+                      //           style: TextStyle(
+                      //             fontSize: 12.sp,
+                      //             fontWeight: FontWeight.w900,
+                      //             color: AppColors.blue,
+                      //           ),
+                      //         ),
+                      //         // WidgetSpan(
+                      //         //   child: GestureDetector(
+                      //         //     onTap: controller.resendCode,
+                      //         //     child: Padding(
+                      //         //       padding: EdgeInsets.only(left: 8.w),
+                      //         //       child: Text(
+                      //         //         'Resend Confirmation Email',
+                      //         //         style: AppTextStyles.regular12.copyWith(
+                      //         //           color:
+                      //         //               controller.timerText.value ==
+                      //         //                   "00:00"
+                      //         //               ? AppColors.black
+                      //         //               : AppColors.black.withOpacity(0.5),
+                      //         //         ),
+                      //         //       ),
+                      //         //     ),
+                      //         //   ),
+                      //         // ),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),

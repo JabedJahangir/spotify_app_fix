@@ -127,7 +127,7 @@ class ArtistProfileView extends GetView<ArtistProfileController> {
                 return SliverList.builder(
                   itemCount: artistAlbums.length,
                   itemBuilder: (context, index) => AlbumCardList(
-                    showIcon: false,
+                    showIcon: true,
                     artistName: artistName,
                     albumName: artistAlbums[index]['name'] ?? 'Unknown Album',
                     image: artistAlbums[index]['image'] ?? '',
