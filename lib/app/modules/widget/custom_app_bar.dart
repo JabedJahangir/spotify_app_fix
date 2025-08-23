@@ -43,7 +43,27 @@ class CustomAppBar extends StatelessWidget {
               radius: 28.r,
               backgroundColor: AppColors.blue,
               child: image != null
-                  ? ClipOval(child: Image.asset(image!, fit: BoxFit.cover))
+                  ? ClipOval(
+                      child: image!.startsWith("http")
+                          ? Image.network(
+                              image!,
+                              fit: BoxFit.cover,
+                              // width: 56.w,
+                              // height: 40.w,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Image.asset(
+                                  'assets/images/person.png', // your default asset
+                                  fit: BoxFit.cover,
+                                );
+                              },
+                            )
+                          : Image.asset(
+                              image!,
+                              fit: BoxFit.cover,
+                              // width: 56.w,
+                              // height: 56.w,
+                            ),
+                    )
                   : IconButton(
                       onPressed: () {
                         Get.back();

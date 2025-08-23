@@ -23,13 +23,17 @@ class HomeView extends GetView<HomeController> {
         child: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(
-              child: CustomAppBar(
-                backGroundColor: AppColors.backGroundWhite,
-                image: ImagePath.personImage,
-                richText1: 'Hello, ',
-                richText2: 'Remon Howlader',
-                icon: Icons.notifications_none,
-                iconPath: Routes.ALL_SEARCH,
+              child: Obx(
+                () => CustomAppBar(
+                  backGroundColor: AppColors.backGroundWhite,
+                  image: controller.userPhoto.value.isNotEmpty
+                      ? controller.userPhoto.value
+                      : ImagePath.personImage,
+                  richText1: 'Hello, ',
+                  richText2: controller.userName.value,
+                  icon: Icons.notifications_none,
+                  iconPath: Routes.ALL_SEARCH,
+                ),
               ),
             ),
             SliverToBoxAdapter(

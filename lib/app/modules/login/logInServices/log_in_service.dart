@@ -14,25 +14,31 @@ class LogInService {
   }
 
   static Future<User?> signInWithGoogle() async {
-    await _initialize();
+  await _initialize();
 
-    const scopes = ['email'];
-    GoogleSignInAccount user;
-    try {
-      user = await _google.authenticate(scopeHint: scopes);
-    } on GoogleSignInException catch (e) {
-      print('GoogleSignIn canceled or failed: ${e.code}');
-      return null;
-    }
+  final googleUser = await GoogleSignIn.instance.authenticate();
+  if (googleUser == null) return null; // user cancelled
 
-    // For Firebase login — no need to fetch access token
-    final auth = user.authentication;
-    final credential = GoogleAuthProvider.credential(
-      accessToken: auth.idToken,
-      idToken: auth.idToken,
-    );
-    return (await _auth.signInWithCredential(credential)).user;
-  }
+  final googleAuth = googleUser.authentication;
+  final credential = GoogleAuthProvider.credential(
+    idToken: googleAuth.idToken,
+    // Note: no accessToken here
+  );
+  
+  final userCredential =
+      await _auth.signInWithCredential(credential);
+  final firebaseUser = userCredential.user;
+
+  // If you need an accessToken (e.g. for additional scopes):
+  const scopes = ['email']; // or more scopes
+  final authz = await googleUser.authorizationClient
+      .authorizationForScopes(scopes);
+  final accessToken = authz?.accessToken;
+  // use accessToken as needed
+
+  return firebaseUser;
+}
+
 
   static Future<void> signOut() async {
     await _auth.signOut();

@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/routes/app_pages.dart';
 
 class LoginInInputController extends GetxController {
-  //TODO: Implement LoginInInputController
 
   var isChecked = false.obs;
   final emailController = TextEditingController();

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tanit_tanit_app/spotify_service.dart';
 
 class HomeController extends GetxController {
@@ -14,11 +15,16 @@ class HomeController extends GetxController {
   // Party tracks list
   var partyTracks = <Map<String, String>>[].obs;
 
+  // Google/Firebase user data
+  var userName = ''.obs;
+  var userPhoto = ''.obs;
+
   @override
   void onInit() {
     super.onInit();
     fetchTrendingAlbums();
-    fetchPartyTracks(); // <-- fetch party tracks
+    fetchPartyTracks();
+    fetchGoogleUser(); // 👈 load user info when controller starts
   }
 
   void toggleShowAll() => showAll.value = !showAll.value;
@@ -43,6 +49,15 @@ class HomeController extends GetxController {
       partyTracks.assignAll(tracks);
     } finally {
       isLoading.value = false;
+    }
+  }
+
+  // 👇 Get Google signed-in user from Firebase
+  void fetchGoogleUser() {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      userName.value = user.displayName ?? "Guest";
+      userPhoto.value = user.photoURL ?? "";
     }
   }
 }
