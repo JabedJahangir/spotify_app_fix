@@ -133,11 +133,12 @@ class ArtistProfileView extends GetView<ArtistProfileController> {
                     image: artistAlbums[index]['image'] ?? '',
                     icon: Icons.favorite_outline_rounded,
                     onTap: () {
+                      print('❤️${artistAlbums[index]}');
                       Get.toNamed(
                         Routes.ALBUM_CHAT_ROOM,
                         arguments: {
                           "artistId": artistId,
-                          "albumId": albumId,
+                          "albumId": artistAlbums[index]['id'],
                           "artistName": artistName,
                           "image": artistAlbums[index]['image'],
                           "albumName": artistAlbums[index]['name'],

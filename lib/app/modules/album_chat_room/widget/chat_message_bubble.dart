@@ -31,10 +31,8 @@ class ChatMessageBubble extends StatelessWidget {
                 padding: const EdgeInsets.only(),
                 child: CircleAvatar(
                   radius: 16,
-                  backgroundImage: NetworkImage(
-                    message['senderProfilePic'] ??
-                        'https://via.placeholder.com/150',
-                  ),
+                  backgroundColor: Colors.grey[300],
+                  child: _buildProfileImage(),
                 ),
               ),
             const SizedBox(width: 6),
@@ -54,5 +52,33 @@ class ChatMessageBubble extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget _buildProfileImage() {
+    final profilePicUrl = message['senderProfilePic'] as String?;
+
+    // Check if we have a valid profile picture URL
+    if (profilePicUrl != null &&
+        profilePicUrl.isNotEmpty &&
+        !profilePicUrl.contains('placeholder')) {
+      return ClipOval(
+        child: Image.network(
+          profilePicUrl,
+          width: 32,
+          height: 32,
+          fit: BoxFit.cover,
+          errorBuilder: (context, error, stackTrace) {
+            return const Icon(Icons.person, color: Colors.grey, size: 20);
+          },
+          loadingBuilder: (context, child, loadingProgress) {
+            if (loadingProgress == null) return child;
+            return const Icon(Icons.person, color: Colors.grey, size: 20);
+          },
+        ),
+      );
+    }
+
+    // Default icon if no profile picture
+    return const Icon(Icons.person, color: Colors.grey, size: 20);
   }
 }

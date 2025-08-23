@@ -12,6 +12,9 @@ class AlbumChatRoomController extends GetxController {
   // Current logged-in user from Firebase Auth
   late String currentUserId;
 
+  // Current album ID for this chat room
+  late String currentAlbumId;
+
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -27,26 +30,33 @@ class AlbumChatRoomController extends GetxController {
     } else {
       currentUserId = '';
     }
+
+    // Get the albumId from the arguments
+    final args = Get.arguments;
+    currentAlbumId = args?["albumId"] ?? '';
   }
 
+  // Dynamic messages stream based on current album ID
   Stream<QuerySnapshot> get messagesStream => firestore
-      .collection('chat_rooms')
-      .doc('room1')
+      .collection('album_chat_rooms')
+      .doc(currentAlbumId) // Use albumId as document ID
       .collection('messages')
       .orderBy('timestamp')
       .snapshots();
 
   void sendMessage() {
-    if (textController.text.trim().isNotEmpty && currentUserId.isNotEmpty) {
+    if (textController.text.trim().isNotEmpty &&
+        currentUserId.isNotEmpty &&
+        currentAlbumId.isNotEmpty) {
       firestore
-          .collection('chat_rooms')
-          .doc('room1')
+          .collection('album_chat_rooms')
+          .doc(currentAlbumId) // Use albumId as document ID
           .collection('messages')
           .add({
-            "senderId": currentUserId,
-            "text": textController.text.trim(),
-            "timestamp": FieldValue.serverTimestamp(),
-          });
+        "senderId": currentUserId,
+        "text": textController.text.trim(),
+        "timestamp": FieldValue.serverTimestamp(),
+      });
       textController.clear();
 
       // Scroll to bottom smoothly after sending
@@ -75,27 +85,4 @@ class AlbumChatRoomController extends GetxController {
       }
     }
   }
-
-  // /// Play a Spotify preview URL
-  // void playPreview(String url) async {
-  //   try {
-  //     await audioPlayer.setUrl(url);
-  //     audioPlayer.play();
-  //   } catch (e) {
-  //     print("❌ Error playing track: $e");
-  //   }
-  // }
-
-  // /// Stop any currently playing preview
-  // void stopPreview() {
-  //   audioPlayer.stop();
-  // }
-
-  // @override
-  // void onClose() {
-  //   audioPlayer.dispose();
-  //   textController.dispose();
-  //   scrollController.dispose();
-  //   super.onClose();
-  // }
 }

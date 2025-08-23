@@ -1,4 +1,3 @@
-// chat_rooms_tab.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,20 +10,29 @@ class ChatRoomsTab extends GetView<AlbumChatRoomController> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(AlbumChatRoomController());
-
+    // Use the existing controller instance instead of creating new one
     return Column(
       children: [
         // Message List
         Expanded(
           child: StreamBuilder<QuerySnapshot>(
-            stream: controller.messagesStream,
+            stream: controller.messagesStream, // This now uses album-specific stream
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return const Center(child: CircularProgressIndicator());
               }
 
               final messages = snapshot.data!.docs;
+
+              // If no messages for this specific album
+              if (messages.isEmpty) {
+                return const Center(
+                  child: Text(
+                    'No messages yet. Start the conversation!',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                );
+              }
 
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 if (controller.scrollController.hasClients) {
