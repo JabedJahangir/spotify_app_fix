@@ -123,14 +123,19 @@ class SpotifyService {
       final data = jsonDecode(response.body) as Map<String, dynamic>;
       final albums = data['items'] as List<dynamic>;
 
-      // Map to name + image
+      // Extract name, image, and id
       final albumsList = albums.map((a) {
         final album = a as Map<String, dynamic>;
         final name = album['name']?.toString() ?? 'Unknown Album';
+        final id = album['id']?.toString() ?? '';
         final imageUrl = (album['images'] as List<dynamic>?)?.isNotEmpty == true
             ? album['images'][0]['url'].toString()
             : '';
-        return {'name': name, 'image': imageUrl};
+        return {
+          'id': id,
+          'name': name,
+          'image': imageUrl,
+        };
       }).toList();
 
       // Remove duplicates by name
@@ -145,6 +150,7 @@ class SpotifyService {
       return [];
     }
   }
+
 
   Future<List<Map<String, String>>> getAlbumTracksWithImages(
     String albumId,
