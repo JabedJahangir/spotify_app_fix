@@ -15,8 +15,22 @@ import 'package:tanit_tanit_app/app/modules/search/views/Genres.dart';
 
 import '../controllers/search_controller.dart';
 
-class SearchView extends GetView<SearchController> {
+class SearchView extends StatefulWidget {
   const SearchView({super.key});
+
+  @override
+  State<SearchView> createState() => _SearchViewState();
+}
+
+class _SearchViewState extends State<SearchView> {
+final CustomSearchController controller = Get.find<CustomSearchController>();
+  final TextEditingController searchController = TextEditingController();
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +65,13 @@ class SearchView extends GetView<SearchController> {
                 ],
               ),
               child: TextFormField(
+                controller: searchController,
+                onFieldSubmitted: (value) async {
+                  if (value.isNotEmpty) {
+                    await controller.search(value);
+                    searchController.clear();
+                  }
+                },
                 decoration: InputDecoration(
                   hintText: 'Search...',
                   hintStyle: AppTextStyles.regular16.copyWith(

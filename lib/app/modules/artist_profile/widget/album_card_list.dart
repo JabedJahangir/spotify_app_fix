@@ -48,8 +48,23 @@ class AlbumCardList extends StatelessWidget {
                     top: Radius.circular(8),
                     bottom: Radius.circular(8),
                   ),
-                  child: Image.network(image!, height: 65, fit: BoxFit.cover),
+                  child: Image.network(
+                    image!,
+                    height: 65,
+                    width: 65,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      // Fallback to local asset if network image fails
+                      return Image.asset(
+                        ImagePath.ellipsisVertical, // default image
+                        height: 65,
+                        width: 65,
+                        fit: BoxFit.cover,
+                      );
+                    },
+                  ),
                 ),
+
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
