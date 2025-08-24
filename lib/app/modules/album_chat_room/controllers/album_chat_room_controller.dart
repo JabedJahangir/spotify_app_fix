@@ -9,15 +9,18 @@ class AlbumChatRoomController extends GetxController {
   final ScrollController scrollController = ScrollController();
   final TextEditingController textController = TextEditingController();
 
+  // Current logged-in user from Firebase Auth (SAME AS LOGIN/SIGNUP)
   late String currentUserId;
   late String currentUserName;
   late String currentUserProfilePic;
 
+  // Current album ID for this chat room
   late String currentAlbumId;
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final FirebaseAuth auth = FirebaseAuth.instance;
 
+  // Cache user profiles to avoid multiple reads
   final Map<String, Map<String, dynamic>> userCache = {};
 
   @override
@@ -25,8 +28,12 @@ class AlbumChatRoomController extends GetxController {
     super.onInit();
     _initializeUser();
 
+    // Get the albumId from the arguments
     final args = Get.arguments;
     currentAlbumId = args?["albumId"] ?? '';
+
+    // Store album info when user enters the chat room
+    storeAlbumInfo();
   }
 
   @override
@@ -42,23 +49,23 @@ class AlbumChatRoomController extends GetxController {
       currentUserId = user.uid;
 
       try {
-        DocumentSnapshot userDoc = await firestore
-            .collection("users")
-            .doc(user.uid)
-            .get();
+        DocumentSnapshot userDoc =
+        await firestore.collection("users").doc(user.uid).get();
 
         if (userDoc.exists) {
           final userData = userDoc.data() as Map<String, dynamic>;
-          currentUserName = userData['username'] ?? userData['firstName'] ?? 'Unknown User';
+          currentUserName =
+              userData['username'] ?? userData['firstName'] ?? 'Unknown User';
           currentUserProfilePic = userData['profileImage'] ?? '';
-
           userCache[currentUserId] = userData;
         } else {
-          currentUserName = user.displayName ?? user.email?.split('@')[0] ?? 'Unknown User';
+          currentUserName =
+              user.displayName ?? user.email?.split('@')[0] ?? 'Unknown User';
           currentUserProfilePic = user.photoURL ?? '';
         }
       } catch (e) {
-        currentUserName = user.displayName ?? user.email?.split('@')[0] ?? 'Unknown User';
+        currentUserName =
+            user.displayName ?? user.email?.split('@')[0] ?? 'Unknown User';
         currentUserProfilePic = user.photoURL ?? '';
         print('Error fetching user data: $e');
       }
@@ -69,6 +76,39 @@ class AlbumChatRoomController extends GetxController {
     }
   }
 
+  // ✅ Store album information in Firebase when user enters the chat room
+  Future<void> storeAlbumInfo() async {
+    if (currentAlbumId.isEmpty) return;
+
+    try {
+      final args = Get.arguments;
+      final albumName = args?["albumName"] ?? '';
+      final artistName = args?["artistName"] ?? '';
+      final imageUrl = args?["image"] ?? '';
+      final artistId = args?["artistId"] ?? '';
+
+      final albumDoc = await firestore
+          .collection('album_chat_rooms')
+          .doc(currentAlbumId)
+          .get();
+
+      if (!albumDoc.exists || !albumDoc.data()!.containsKey('albumName')) {
+        await firestore.collection('album_chat_rooms').doc(currentAlbumId).set({
+          'albumName': albumName,
+          'artistName': artistName,
+          'imageUrl': imageUrl,
+          'artistId': artistId,
+          'createdAt': FieldValue.serverTimestamp(),
+        }, SetOptions(merge: true));
+
+        print('✅ Album info stored for $albumName');
+      }
+    } catch (e) {
+      print('❌ Error storing album info: $e');
+    }
+  }
+
+  // Dynamic messages stream
   Stream<QuerySnapshot> get messagesStream => firestore
       .collection('album_chat_rooms')
       .doc(currentAlbumId)
@@ -80,7 +120,6 @@ class AlbumChatRoomController extends GetxController {
     if (textController.text.trim().isNotEmpty &&
         currentUserId.isNotEmpty &&
         currentAlbumId.isNotEmpty) {
-
       try {
         await firestore
             .collection('album_chat_rooms')
@@ -156,18 +195,14 @@ class AlbumChatRoomController extends GetxController {
     if (userId == currentUserId) {
       return currentUserName;
     }
-
     final profile = await getUserProfile(userId);
-    return profile['username'] ??
-        profile['firstName'] ??
-        'Unknown User';
+    return profile['username'] ?? profile['firstName'] ?? 'Unknown User';
   }
 
   Future<String> getUserProfilePic(String userId) async {
     if (userId == currentUserId) {
       return currentUserProfilePic;
     }
-
     final profile = await getUserProfile(userId);
     return profile['profileImage'] ?? '';
   }
