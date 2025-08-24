@@ -12,6 +12,9 @@ class MyChatRoomView extends GetView<MyChatRoomController> {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.refreshChatRooms();
+    });
     return Scaffold(
       backgroundColor: AppColors.backGroundWhite,
       appBar: AppBar(

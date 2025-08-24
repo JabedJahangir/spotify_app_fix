@@ -81,8 +81,14 @@ class MyChatRoomController extends GetxController {
           if (latestMessageSnapshot.docs.isNotEmpty) {
             final latestMsg = latestMessageSnapshot.docs.first.data();
             latestMessage = latestMsg['text'] ?? '';
-            senderName = latestMsg['senderName'] ?? 'Unknown';
+            // if current user is the sender, show "You" instead of their name
+            if (latestMsg['senderId'] == currentUserId) {
+              senderName = 'You';
+            } else {
+              senderName = latestMsg['senderName'] ?? 'Unknown';
+            }
           }
+
 
           // Check if album info exists in the document
           final albumDocData = albumDoc.data() as Map<String, dynamic>?;
@@ -156,8 +162,13 @@ class MyChatRoomController extends GetxController {
             if (latestSubMessageSnapshot.docs.isNotEmpty) {
               final latestMsg = latestSubMessageSnapshot.docs.first.data();
               latestSubMessage = latestMsg['text'] ?? '';
-              subSenderName = latestMsg['senderName'] ?? 'Unknown';
+              if (latestMsg['senderId'] == currentUserId) {
+                subSenderName = 'You';
+              } else {
+                subSenderName = latestMsg['senderName'] ?? 'Unknown';
+              }
             }
+
 
             // Get subroom data
             final subRoomData = subRoomDoc.data() as Map<String, dynamic>;
