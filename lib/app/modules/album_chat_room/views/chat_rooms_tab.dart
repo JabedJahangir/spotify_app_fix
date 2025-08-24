@@ -10,13 +10,12 @@ class ChatRoomsTab extends GetView<AlbumChatRoomController> {
 
   @override
   Widget build(BuildContext context) {
-    // Use the existing controller instance instead of creating new one
     return Column(
       children: [
         // Message List
         Expanded(
           child: StreamBuilder<QuerySnapshot>(
-            stream: controller.messagesStream, // This now uses album-specific stream
+            stream: controller.messagesStream,
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
                 return const Center(child: CircularProgressIndicator());
@@ -24,7 +23,6 @@ class ChatRoomsTab extends GetView<AlbumChatRoomController> {
 
               final messages = snapshot.data!.docs;
 
-              // If no messages for this specific album
               if (messages.isEmpty) {
                 return const Center(
                   child: Text(
