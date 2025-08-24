@@ -39,6 +39,18 @@ class ChatMessageBubble extends StatelessWidget {
             Column(
               crossAxisAlignment: isSender ? CrossAxisAlignment.end : CrossAxisAlignment.start,
               children: [
+                // Show sender name only for received messages (not for sent messages)
+                if (!isSender) ...[
+                  Text(
+                    message['senderName'] ?? 'Unknown',
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                ],
                 CustomChatBoxContainer(
                   isSender: isSender,
                   backGroundColor: isSender ? Colors.blue : Colors.grey[200]!,

@@ -104,6 +104,34 @@ class SpotifyService {
     }
   }
 
+  // Get single album by ID - NEW METHOD
+  Future<Map<String, dynamic>?> getAlbum(String albumId) async {
+    try {
+      final token = await getAccessToken();
+      if (token == null) return null;
+
+      final response = await http.get(
+        Uri.parse('https://api.spotify.com/v1/albums/$albumId'),
+        headers: {
+          'Authorization': 'Bearer $token',
+          'Content-Type': 'application/json',
+        },
+      );
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        return data;
+      } else {
+        print('❌ Failed to get album: ${response.statusCode}');
+        print('Response body: ${response.body}');
+        return null;
+      }
+    } catch (e) {
+      print('❌ Error getting album: $e');
+      return null;
+    }
+  }
+
   // Fetch all albums of an artist
   Future<List<Map<String, String>>> getArtistAlbums(String artistId) async {
     final token = await getAccessToken();
@@ -151,10 +179,9 @@ class SpotifyService {
     }
   }
 
-
   Future<List<Map<String, String>>> getAlbumTracksWithImages(
-    String albumId,
-  ) async {
+      String albumId,
+      ) async {
     try {
       final token = await getAccessToken();
 
@@ -176,37 +203,37 @@ class SpotifyService {
       // Fetch track details individually to get image
       final List<Future<Map<String, String>>> trackFutures = tracksList
           .map<Future<Map<String, String>>>((track) async {
-            final trackId = (track['id'] ?? '').toString();
-            final trackResponse = await http.get(
-              Uri.parse('https://api.spotify.com/v1/tracks/$trackId'),
-              headers: {'Authorization': 'Bearer $token'},
-            );
+        final trackId = (track['id'] ?? '').toString();
+        final trackResponse = await http.get(
+          Uri.parse('https://api.spotify.com/v1/tracks/$trackId'),
+          headers: {'Authorization': 'Bearer $token'},
+        );
 
-            if (trackResponse.statusCode != 200) {
-              return {
-                'id': trackId,
-                'name': (track['name'] ?? '').toString(),
-                'duration': (track['duration_ms'] ?? '').toString(),
-                'preview_url': (track['preview_url'] ?? '').toString(),
-                'image_url': '',
-              };
-            }
+        if (trackResponse.statusCode != 200) {
+          return {
+            'id': trackId,
+            'name': (track['name'] ?? '').toString(),
+            'duration': (track['duration_ms'] ?? '').toString(),
+            'preview_url': (track['preview_url'] ?? '').toString(),
+            'image_url': '',
+          };
+        }
 
-            final trackData = jsonDecode(trackResponse.body);
+        final trackData = jsonDecode(trackResponse.body);
 
-            final imageUrl =
-                (trackData['album']?['images'] as List?)?.isNotEmpty == true
-                ? (trackData['album']['images'][0]['url'] ?? '').toString()
-                : '';
+        final imageUrl =
+        (trackData['album']?['images'] as List?)?.isNotEmpty == true
+            ? (trackData['album']['images'][0]['url'] ?? '').toString()
+            : '';
 
-            return {
-              'id': trackId,
-              'name': (track['name'] ?? '').toString(),
-              'duration': (track['duration_ms'] ?? '').toString(),
-              'preview_url': (track['preview_url'] ?? '').toString(),
-              'image_url': imageUrl,
-            };
-          })
+        return {
+          'id': trackId,
+          'name': (track['name'] ?? '').toString(),
+          'duration': (track['duration_ms'] ?? '').toString(),
+          'preview_url': (track['preview_url'] ?? '').toString(),
+          'image_url': imageUrl,
+        };
+      })
           .toList();
 
       final tracksWithImages = await Future.wait(trackFutures);
@@ -219,9 +246,9 @@ class SpotifyService {
 
   // Search tracks by keyword
   Future<List<Map<String, String>>> searchTracks(
-    String query, {
-    int limit = 50,
-  }) async {
+      String query, {
+        int limit = 50,
+      }) async {
     final token = await getAccessToken();
     if (token == null) return [];
 

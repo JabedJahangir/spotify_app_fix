@@ -26,7 +26,7 @@ class CustomBottomNavigationBarView
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-        // extendBody: true,
+        //extendBody: true,
         body: _pages[controller.currentIndex.value],
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,

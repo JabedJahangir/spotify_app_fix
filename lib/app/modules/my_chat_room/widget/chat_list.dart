@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
-import 'package:tanit_tanit_app/app/data/image_path.dart';
 
 class ChatList extends StatelessWidget {
+  final String albumName;
+  final String artistName;
+  final String imageUrl;
+  final String latestMessage;
+  final String latestSenderName;
+
   const ChatList({
     super.key,
+    required this.albumName,
+    required this.artistName,
+    required this.imageUrl,
+    required this.latestMessage,
+    required this.latestSenderName,
   });
 
   @override
@@ -27,25 +37,47 @@ class ChatList extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 22,
-                  child: Image.asset(
-                    ImagePath.babyImage,
-                    fit: BoxFit.cover,
-                  ),
+                  backgroundColor: Colors.grey[300],
+                  child: imageUrl.isNotEmpty
+                      ? ClipOval(
+                    child: Image.network(
+                      imageUrl,
+                      width: 44,
+                      height: 44,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Icon(Icons.album, color: Colors.grey, size: 24);
+                      },
+                    ),
+                  )
+                      : Icon(Icons.album, color: Colors.grey, size: 24),
                 ),
-                const SizedBox(width: 12,),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Music Name Here",style: AppTextStyles.regular16.copyWith(color: AppColors.black),),
-                    Row(
-                      children: [
-                        Text("George: This one’s going platinum",style: AppTextStyles.light12.copyWith(color: AppColors.greyTextColor),),
-                      ],
-                    )
-
-                  ],
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        albumName.isNotEmpty ? albumName : "Unknown Album",
+                        style: AppTextStyles.regular16.copyWith(color: AppColors.black),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              "${latestSenderName.isNotEmpty ? latestSenderName : 'Unknown'}: ${latestMessage.isNotEmpty ? latestMessage : 'No messages'}",
+                              style: AppTextStyles.light12.copyWith(color: AppColors.greyTextColor),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 )
-
               ],
             ),
           ),
