@@ -7,6 +7,7 @@ import 'package:tanit_tanit_app/app/data/app_colors.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
 import 'package:tanit_tanit_app/app/modules/profile/widget/profile_editable_field.dart';
 
+import '../../album/controllers/album_controller.dart';
 import '../controllers/profile_controller.dart';
 import '../widget/custom_profile_container.dart';
 import '../widget/custom_toggle_button.dart';
@@ -14,13 +15,13 @@ import '../widget/profile_state_box.dart';
 
 class ProfileView extends GetView<ProfileController> {
   const ProfileView({super.key});
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
-    Future<void> signOut() async {
-      await FirebaseAuth.instance.signOut();
-    }
-
+    final albumController = Get.find<AlbumController>();
     return Scaffold(
       backgroundColor: AppColors.backGroundWhite,
       body: SafeArea(
@@ -51,12 +52,15 @@ class ProfileView extends GetView<ProfileController> {
                         ),
                         ProfileStatBox(title: 'Total Minutes', value: '42305'),
                         ProfileStatBox(title: 'Top Genre', value: 'Indie Pop'),
-                        ProfileStatBox(
-                          title: 'Favorite Albums',
-                          value: '23',
-                          icon: Icon(
-                            Icons.star_border_outlined,
-                            color: AppColors.greyTextColor,
+                        Obx(
+                          () => ProfileStatBox(
+                            title: 'Favorite Albums',
+                            value: albumController.favouriteAlbums.length
+                                .toString(),
+                            icon: Icon(
+                              Icons.star_border_outlined,
+                              color: AppColors.greyTextColor,
+                            ),
                           ),
                         ),
 

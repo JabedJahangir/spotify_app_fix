@@ -35,9 +35,7 @@ class MyChatRoomView extends GetView<MyChatRoomController> {
       body: Obx(() {
         if (controller.isLoading.value) {
           return Center(
-            child: CircularProgressIndicator(
-              color: AppColors.darkBlue,
-            ),
+            child: CircularProgressIndicator(color: AppColors.darkBlue),
           );
         }
 
@@ -45,7 +43,10 @@ class MyChatRoomView extends GetView<MyChatRoomController> {
           slivers: [
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
                 child: Obx(() {
                   final selected = controller.selectedIndex.value;
                   return Row(
@@ -148,7 +149,8 @@ class MyChatRoomView extends GetView<MyChatRoomController> {
                         },
                         child: ChatList(
                           albumName: chatRoom['albumName'] ?? 'Unknown Album',
-                          artistName: chatRoom['artistName'] ?? 'Unknown Artist',
+                          artistName:
+                              chatRoom['artistName'] ?? 'Unknown Artist',
                           imageUrl: chatRoom['imageUrl'] ?? '',
                           latestMessage: chatRoom['latestMessage'] ?? '',
                           latestSenderName: chatRoom['latestSenderName'] ?? '',
@@ -203,14 +205,17 @@ class MyChatRoomView extends GetView<MyChatRoomController> {
                       final subRoom = subRooms[index];
                       return InkWell(
                         onTap: () {
-                          Get.toNamed(Routes.SUB_CHAT_ROOM, arguments: {
-                            "albumId": subRoom['albumId'],
-                            "subRoomId": subRoom['subRoomId'],
-                            "subRoomName": subRoom['subRoomName'],
-                            "albumName": subRoom['albumName'],
-                            "artistName": subRoom['artistName'],
-                            "imageUrl": subRoom['imageUrl'],
-                          });
+                          Get.toNamed(
+                            Routes.SUB_CHAT_ROOM,
+                            arguments: {
+                              "albumId": subRoom['albumId'],
+                              "subRoomId": subRoom['subRoomId'],
+                              "subRoomName": subRoom['subRoomName'],
+                              "albumName": subRoom['albumName'],
+                              "artistName": subRoom['artistName'],
+                              "imageUrl": subRoom['imageUrl'],
+                            },
+                          );
                         },
                         child: ChatList(
                           albumName: subRoom['subRoomName'] ?? 'Subroom',

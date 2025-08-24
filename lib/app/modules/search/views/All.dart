@@ -20,9 +20,18 @@ class All extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 20.h),
-            Text(
-              'Recent Searches',
-              style: AppTextStyles.regular24.copyWith(fontSize: 24.sp),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Recent Searches',
+                  style: AppTextStyles.regular24.copyWith(fontSize: 24.sp),
+                ),
+                InkWell(
+                  onTap: controller.clearRecentSearches,
+                  child: Text('clear all'),
+                ),
+              ],
             ),
             Obx(() {
               if (controller.isLoading.value) {

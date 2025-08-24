@@ -175,8 +175,7 @@ class HomeView extends GetView<HomeController> {
                             onTap: controller.toggleShowLess,
                             child: Text(
                               controller.showLess.value
-                                  ? 'See all'
-                                  : 'See less',
+                                  ? 'See less' : 'See all',
                               style: AppTextStyles.regular16.copyWith(
                                 color: AppColors.greyTextColor,
                               ),
@@ -199,6 +198,7 @@ class HomeView extends GetView<HomeController> {
                           crossAxisCount: 2,
                           mainAxisSpacing: 6,
                           crossAxisSpacing: 8,
+                          childAspectRatio: 0.90,
                         ),
                         itemBuilder: (context, index) {
                           final track = controller.partyTracks[index];

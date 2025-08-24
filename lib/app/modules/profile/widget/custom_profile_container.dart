@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../../data/app_colors.dart';
 import '../../../data/app_text_styles.dart';
 import '../../../data/image_path.dart';
+import '../../home/controllers/home_controller.dart';
 
 class CustomProfileContainer extends StatelessWidget {
-  const CustomProfileContainer({
-    super.key,
-  });
+  const CustomProfileContainer({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final homeController = Get.find<HomeController>();
     return Container(
-      height:
-      MediaQuery.of(context).orientation == Orientation.portrait
+      height: MediaQuery.of(context).orientation == Orientation.portrait
           ? 220.h
           : 350.h,
       width: double.infinity,
@@ -35,17 +35,17 @@ class CustomProfileContainer extends StatelessWidget {
               backgroundImage: AssetImage(ImagePath.personImage),
             ),
           ),
-          Text(
-            '@melodylover22',
-            style: AppTextStyles.medium20.copyWith(
-              color: AppColors.white,
+          Obx(
+            () => Text(
+              homeController.userName.value.isEmpty
+                  ? 'MelodyLover22'
+                  : homeController.userName.value,
+              style: AppTextStyles.medium20.copyWith(color: AppColors.white),
             ),
           ),
           Text(
             'Living life one beat at a time.',
-            style: AppTextStyles.light16.copyWith(
-              color: AppColors.white,
-            ),
+            style: AppTextStyles.light16.copyWith(color: AppColors.white),
           ),
         ],
       ),

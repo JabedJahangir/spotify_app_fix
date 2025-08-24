@@ -17,7 +17,7 @@ class ArtistProfileView extends GetView<ArtistProfileController> {
     final artistName = args?["artistName"] ?? "Unknown Artist";
     final imageUrl = args?["imageUrl"] ?? "";
     final artistId = args?["artistId"] ?? "";
-    final albumId = args?["albumId"] ?? "";
+    // final albumId = args?["albumId"] ?? "";
     final artistAlbums =
         (Get.arguments['artistAlbums'] as List<Map<String, String>>?) ?? [];
 
@@ -122,7 +122,17 @@ class ArtistProfileView extends GetView<ArtistProfileController> {
               ),
             ),
             Obx(() {
+              if (controller.isLoading.value) {
+                return SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: 200, // adjust height if needed
+                    child: const Center(child: CircularProgressIndicator()),
+                  ),
+                );
+              }
+
               final selectedIndex = controller.selectedIndex.value;
+
               if (selectedIndex == 0) {
                 return SliverList.builder(
                   itemCount: artistAlbums.length,
@@ -133,7 +143,6 @@ class ArtistProfileView extends GetView<ArtistProfileController> {
                     image: artistAlbums[index]['image'] ?? '',
                     icon: Icons.favorite_outline_rounded,
                     onTap: () {
-                      print('❤️${artistAlbums[index]}');
                       Get.toNamed(
                         Routes.ALBUM_CHAT_ROOM,
                         arguments: {

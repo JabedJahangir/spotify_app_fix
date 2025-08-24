@@ -7,6 +7,16 @@ class ArtistProfileController extends GetxController {
   var artistImage = "".obs;
   var albumCount = 0.obs;
   var songCount = 0.obs;
+  var isLoading = true.obs; // ← add this
+
+  @override
+  void onInit() {
+    super.onInit();
+    // Simulate 2 seconds loading
+    Future.delayed(const Duration(seconds: 1), () {
+      isLoading.value = false;
+    });
+  }
 
   void setArtistInfo({
     required String name,
