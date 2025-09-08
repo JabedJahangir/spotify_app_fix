@@ -15,20 +15,16 @@ class ListeningPartyView extends GetView<ListeningPartyController> {
     return Scaffold(
       backgroundColor: AppColors.backGroundWhite,
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(kToolbarHeight), child: CustomAppBar(
-        title: "Listening Parties",
-      )),
+        preferredSize: Size.fromHeight(kToolbarHeight),
+        child: CustomAppBar(title: "Listening Parties"),
+      ),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
-            child: Column(
-              children: [
-                CustomAlbumChatRoomPlayer()
-              ],
-            ),
-          )
+            child: Column(children: [CustomAlbumChatRoomPlayer(albumName: '')]),
+          ),
         ],
-      )
+      ),
     );
   }
 }

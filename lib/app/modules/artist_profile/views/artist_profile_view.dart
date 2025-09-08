@@ -46,7 +46,7 @@ class ArtistProfileView extends GetView<ArtistProfileController> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButtonWidget(
-                        text: '6 Albums',
+                        text: '${artistAlbums.length.toString()} albums',
                         backgroundColor: AppColors.lavenderLight,
                         textColor: AppColors.darkBlue,
                         onPressed: () {},

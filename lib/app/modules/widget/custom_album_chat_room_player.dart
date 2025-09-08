@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:tanit_tanit_app/app/spotify_player_controller.dart';
 
 import '../../data/app_colors.dart';
 import '../../data/app_text_styles.dart';
 import '../../data/image_path.dart';
-import '../album_chat_room/controllers/album_chat_room_controller.dart';
 
 class CustomAlbumChatRoomPlayer extends StatelessWidget {
-  const CustomAlbumChatRoomPlayer({super.key});
+  const CustomAlbumChatRoomPlayer({super.key, required this.albumName});
+  final String albumName;
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<AlbumChatRoomController>();
+    final controller = Get.find<SpotifyPlayerController>();
     return Obx(
       () => Container(
         width: MediaQuery.of(context).orientation == Orientation.portrait
@@ -70,7 +71,7 @@ class CustomAlbumChatRoomPlayer extends StatelessWidget {
                         Text(
                           controller.currentAlbumName.value.isNotEmpty
                               ? controller.currentAlbumName.value
-                              : 'Album Name here',
+                              : albumName,
                           style: AppTextStyles.light16,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,

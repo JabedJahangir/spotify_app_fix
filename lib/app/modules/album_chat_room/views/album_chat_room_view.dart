@@ -40,7 +40,7 @@ class AlbumChatRoomView extends GetView<AlbumChatRoomController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              CustomAlbumChatRoomPlayer(),
+              CustomAlbumChatRoomPlayer(albumName: albumName,),
               SizedBox(height: 20.h),
               Row(
                 children: [
@@ -100,7 +100,6 @@ class AlbumChatRoomView extends GetView<AlbumChatRoomController> {
                   children: [
                     SongsTab(
                       artistId: artistId,
-                      controller: controller,
                       albumId: albumId,
                       image: imageUrl,
                       artistName: artistName,

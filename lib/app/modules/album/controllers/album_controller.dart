@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../spotify_service.dart';
 import '../../../models/album_model.dart';
 
 class AlbumController extends GetxController {
+  final SpotifyService spotifyService = SpotifyService();
   var favouriteAlbums = <Album>[].obs;
 
   // Hold selection state for each album

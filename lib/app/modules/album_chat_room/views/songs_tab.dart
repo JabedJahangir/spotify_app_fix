@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/modules/artist_profile/widget/album_card_list.dart';
+import 'package:tanit_tanit_app/app/spotify_player_controller.dart';
 
-import '../controllers/album_chat_room_controller.dart';
 
 class SongsTab extends StatelessWidget {
   const SongsTab({
     super.key,
     required this.albumId,
-    required this.controller,
     required this.artistId,
     required this.image,
     required this.artistName,
@@ -18,10 +18,11 @@ class SongsTab extends StatelessWidget {
   final String image;
   final String artistName;
   final String artistId;
-  final AlbumChatRoomController controller;
+  
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<SpotifyPlayerController>();
     return FutureBuilder<List<Map<String, String>>>(
       future: controller.spotifyService.getAlbumTracksWithImages(albumId),
       builder: (context, snapshot) {
@@ -35,7 +36,7 @@ class SongsTab extends StatelessWidget {
           final tracks = snapshot.data!;
           // Store tracks in controller for navigation
           controller.setTracksList(tracks, image);
-          
+
           return ListView.builder(
             shrinkWrap: true,
             physics: const ScrollPhysics(),
@@ -44,9 +45,9 @@ class SongsTab extends StatelessWidget {
               final track = tracks[index];
               final trackId = track['id'] ?? '';
               final trackName = track['name'] ?? '';
-              
+
               return AlbumCardList(
-                showIcon: true,
+                showIcon: false,
                 image: image,
                 artistName: artistName,
                 albumName: trackName,

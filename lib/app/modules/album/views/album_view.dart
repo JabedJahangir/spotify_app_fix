@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:tanit_tanit_app/app/data/app_colors.dart';
 import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
 import 'package:tanit_tanit_app/app/modules/artist_profile/widget/album_card_list.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/album_controller.dart';
 
 class AlbumView extends GetView<AlbumController> {
@@ -38,6 +39,12 @@ class AlbumView extends GetView<AlbumController> {
               image: album.image,
               icon: Icons.favorite,
               showIcon: false, // show the heart icon
+              onTap: () {
+                Get.toNamed(
+                  Routes.ALBUM_CHAT_ROOM,
+                 
+                );
+              },
             );
           },
         );

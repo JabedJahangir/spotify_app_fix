@@ -30,7 +30,7 @@ class AlbumCardList extends StatelessWidget {
     final controller = Get.find<AlbumController>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: InkWell(
+      child: GestureDetector(
         onTap: onTap,
         child: Card(
           elevation: 1.2,
