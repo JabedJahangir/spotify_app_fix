@@ -9,7 +9,7 @@ class SongsTab extends StatelessWidget {
     super.key,
     required this.albumId,
     required this.controller,
-    required artistId,
+    required this.artistId,
     required this.image,
     required this.artistName,
   });
@@ -17,6 +17,7 @@ class SongsTab extends StatelessWidget {
   final String albumId;
   final String image;
   final String artistName;
+  final String artistId;
   final AlbumChatRoomController controller;
 
   @override
@@ -32,18 +33,25 @@ class SongsTab extends StatelessWidget {
           return const Center(child: Text('No songs found'));
         } else {
           final tracks = snapshot.data!;
+          // Store tracks in controller for navigation
+          controller.setTracksList(tracks, image);
+          
           return ListView.builder(
             shrinkWrap: true,
             physics: const ScrollPhysics(),
             itemCount: tracks.length,
             itemBuilder: (context, index) {
               final track = tracks[index];
+              final trackId = track['id'] ?? '';
+              final trackName = track['name'] ?? '';
+              
               return AlbumCardList(
                 showIcon: true,
                 image: image,
-                artistName: artistName, // fill if needed
-                albumName: track['name'] ?? '',
+                artistName: artistName,
+                albumName: trackName,
                 icon: Icons.favorite_border_outlined,
+                onTap: () => controller.playTrack(index),
               );
             },
           );
