@@ -26,3 +26,9 @@ plugins {
 }
 
 include(":app")
+// ✅ Add Spotify SDK modules
+include(":spotify-app-remote")
+project(":spotify-app-remote").projectDir = File(rootProject.projectDir, "app/libs/spotify-app-remote")
+
+include(":spotify-auth")
+project(":spotify-auth").projectDir = File(rootProject.projectDir, "app/libs/spotify-auth")

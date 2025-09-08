@@ -119,9 +119,7 @@ class UserSignUpView extends GetView<UserSignUpController> {
                 width: double.infinity,
                 height: 48.h,
                 child: ElevatedButton(
-                  onPressed: controller.loading.value
-                      ? null
-                      : () {
+                  onPressed: () {
                           controller.signUp();
                         },
                   style: ElevatedButton.styleFrom(

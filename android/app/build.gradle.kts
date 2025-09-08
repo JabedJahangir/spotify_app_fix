@@ -27,10 +27,14 @@ android {
         applicationId = "com.tanit.tanit_tanit_app"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = 23
+        minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+
+        // Spotify redirect placeholders
+        manifestPlaceholders["redirectSchemeName"] = "mumu"
+        manifestPlaceholders["redirectHostName"] = "callback"
     }
 
     buildTypes {
@@ -44,4 +48,8 @@ android {
 
 flutter {
     source = "../.."
+}
+dependencies {
+    implementation(project(":spotify-app-remote"))
+    implementation(project(":spotify-auth"))
 }

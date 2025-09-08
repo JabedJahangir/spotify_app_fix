@@ -6,6 +6,7 @@ import 'package:tanit_tanit_app/app/data/app_text_styles.dart';
 import 'package:tanit_tanit_app/app/data/image_path.dart';
 import 'package:tanit_tanit_app/app/modules/widget/custom_app_bar.dart';
 import 'package:tanit_tanit_app/app/routes/app_pages.dart';
+import 'package:tanit_tanit_app/spotify_service.dart';
 
 import '../controllers/platforms_link_controller.dart';
 
@@ -42,9 +43,42 @@ class PlatformsLinkView extends GetView<PlatformsLinkController> {
                 ),
                 SizedBox(height: 40.h), // Reduced spacing for responsiveness
                 ElevatedButton(
-                  onPressed: () {
-                    Get.toNamed(Routes.ALBUM_SELECTION);
+                  onPressed: () async {
+                    try {
+                      // Step 1: Get Access Token
+                      final token = await SpotifyService.getAccessToken();
+
+                      if (token.isNotEmpty) {
+                        // Step 2: After token is retrieved, connect remote
+                        final connected =
+                            await SpotifyService.connectToSpotifyRemote();
+
+                        if (connected) {
+                          Get.toNamed(Routes.CUSTOM_BOTTOM_NAVIGATION_BAR);
+                        } else {
+                          Get.snackbar(
+                            "Remote Failed",
+                            "Could not connect to Spotify remote. Please try again.",
+                            snackPosition: SnackPosition.BOTTOM,
+                          );
+                        }
+                      } else {
+                        Get.snackbar(
+                          "Login Failed",
+                          "Could not retrieve Spotify token. Please try again.",
+                          snackPosition: SnackPosition.BOTTOM,
+                        );
+                      }
+                    } catch (e) {
+                      print("Spotify login error: $e");
+                      Get.snackbar(
+                        "Error",
+                        e.toString(),
+                        snackPosition: SnackPosition.BOTTOM,
+                      );
+                    }
                   },
+
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.backGroundBlack,
                     minimumSize: Size(double.infinity, 48.h),

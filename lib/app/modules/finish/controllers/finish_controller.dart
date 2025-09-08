@@ -1,23 +1,9 @@
 import 'package:get/get.dart';
 
 class FinishController extends GetxController {
-  //TODO: Implement FinishController
-
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    print("✅ FinishController created");
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

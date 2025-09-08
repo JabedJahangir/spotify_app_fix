@@ -91,7 +91,7 @@ class UserSignUpController extends GetxController {
         });
       }
 
-      Get.offAllNamed(Routes.FINISH);
+      Get.offAllNamed(Routes.FINISH);         
     } on FirebaseAuthException catch (e) {
       Get.snackbar(
         "Sign Up Failed",

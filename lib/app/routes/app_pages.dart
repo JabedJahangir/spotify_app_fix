@@ -4,8 +4,6 @@ import '../modules/album/bindings/album_binding.dart';
 import '../modules/album/views/album_view.dart';
 import '../modules/album_chat_room/bindings/album_chat_room_binding.dart';
 import '../modules/album_chat_room/views/album_chat_room_view.dart';
-import '../modules/album_selection/bindings/album_selection_binding.dart';
-import '../modules/album_selection/views/album_selection_view.dart';
 import '../modules/all_search/bindings/all_search_binding.dart';
 import '../modules/all_search/views/all_search_view.dart';
 import '../modules/artist_profile/bindings/artist_profile_binding.dart';
@@ -88,11 +86,6 @@ class AppPages {
       name: _Paths.PLATFORMS_LINK,
       page: () => const PlatformsLinkView(),
       binding: PlatformsLinkBinding(),
-    ),
-    GetPage(
-      name: _Paths.ALBUM_SELECTION,
-      page: () => const AlbumSelectionView(),
-      binding: AlbumSelectionBinding(),
     ),
     GetPage(
       name: _Paths.ALL_SEARCH,

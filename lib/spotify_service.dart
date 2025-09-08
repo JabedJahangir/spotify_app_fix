@@ -1,54 +1,59 @@
 import 'dart:convert';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
+import 'package:spotify_sdk/spotify_sdk.dart';
 
 class SpotifyService {
-  // Fetch client id & secret from Firestore
-  Future<Map<String, String>?> _getSecrets() async {
-    final doc = await FirebaseFirestore.instance
-        .collection('config')
-        .doc('spotify')
-        .get();
-    if (!doc.exists) return null;
-    final data = doc.data()!;
-    return {
-      "client_id": data["client_id"],
-      "client_secret": data["client_secret"],
-    };
+  static String? _token; // cache token
+  static bool _isConnecting = false; // lock to prevent double call
+  static Future<String> getAccessToken() async {
+    if (_token != null) {
+      print("✅ Returning cached token");
+      return _token!;
+    }
+
+    if (_isConnecting) {
+      print("⚠️ Already connecting, skipping duplicate call");
+      return "";
+    }
+
+    try {
+      _isConnecting = true;
+
+      final authenticationToken = await SpotifySdk.getAccessToken(
+        clientId: dotenv.env['CLIENT_ID']!,
+        redirectUrl: dotenv.env['REDIRECT_URL']!,
+        scope:
+            'app-remote-control,user-modify-playback-state,playlist-read-private,playlist-modify-public,user-read-currently-playing',
+      );
+
+      _token = authenticationToken;
+      print("💡 Got a token: $_token");
+      return _token!;
+    } catch (e) {
+      print("💡 error $e");
+      return "";
+    } finally {
+      _isConnecting = false;
+    }
   }
 
-  // Get access token using Client Credentials Flow
-  Future<String?> getAccessToken() async {
-    final secrets = await _getSecrets();
-    if (secrets == null) return null;
-
-    final creds = base64Encode(
-      utf8.encode('${secrets["client_id"]}:${secrets["client_secret"]}'),
-    );
-
-    final response = await http.post(
-      Uri.parse("https://accounts.spotify.com/api/token"),
-      headers: {
-        "Authorization": "Basic $creds",
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: {"grant_type": "client_credentials"},
-    );
-
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      return data["access_token"];
-    } else {
-      print("❌ Failed to get token: ${response.body}");
-      return null;
+  static Future<bool> connectToSpotifyRemote() async {
+    try {
+      return await SpotifySdk.connectToSpotifyRemote(
+        clientId: dotenv.env['CLIENT_ID']!,
+        redirectUrl: dotenv.env['REDIRECT_URL']!,
+      );
+    } catch (e) {
+      print("💡 Remote connection error: $e");
+      return false;
     }
   }
 
   // Search albums
   Future<List<dynamic>> searchAlbums(String query) async {
     final token = await getAccessToken();
-    if (token == null) return [];
 
     final response = await http.get(
       Uri.parse(
@@ -69,7 +74,6 @@ class SpotifyService {
   // Get trending albums (New Releases)
   Future<List<dynamic>> getTrendingAlbums() async {
     final token = await getAccessToken();
-    if (token == null) return [];
 
     final response = await http.get(
       Uri.parse(
@@ -89,7 +93,6 @@ class SpotifyService {
 
   Future<Map<String, dynamic>?> getArtist(String artistId) async {
     final token = await getAccessToken();
-    if (token == null) return null;
 
     final response = await http.get(
       Uri.parse("https://api.spotify.com/v1/artists/$artistId"),
@@ -108,7 +111,6 @@ class SpotifyService {
   Future<Map<String, dynamic>?> getAlbum(String albumId) async {
     try {
       final token = await getAccessToken();
-      if (token == null) return null;
 
       final response = await http.get(
         Uri.parse('https://api.spotify.com/v1/albums/$albumId'),
@@ -159,11 +161,7 @@ class SpotifyService {
         final imageUrl = (album['images'] as List<dynamic>?)?.isNotEmpty == true
             ? album['images'][0]['url'].toString()
             : '';
-        return {
-          'id': id,
-          'name': name,
-          'image': imageUrl,
-        };
+        return {'id': id, 'name': name, 'image': imageUrl};
       }).toList();
 
       // Remove duplicates by name
@@ -180,8 +178,8 @@ class SpotifyService {
   }
 
   Future<List<Map<String, String>>> getAlbumTracksWithImages(
-      String albumId,
-      ) async {
+    String albumId,
+  ) async {
     try {
       final token = await getAccessToken();
 
@@ -203,37 +201,37 @@ class SpotifyService {
       // Fetch track details individually to get image
       final List<Future<Map<String, String>>> trackFutures = tracksList
           .map<Future<Map<String, String>>>((track) async {
-        final trackId = (track['id'] ?? '').toString();
-        final trackResponse = await http.get(
-          Uri.parse('https://api.spotify.com/v1/tracks/$trackId'),
-          headers: {'Authorization': 'Bearer $token'},
-        );
+            final trackId = (track['id'] ?? '').toString();
+            final trackResponse = await http.get(
+              Uri.parse('https://api.spotify.com/v1/tracks/$trackId'),
+              headers: {'Authorization': 'Bearer $token'},
+            );
 
-        if (trackResponse.statusCode != 200) {
-          return {
-            'id': trackId,
-            'name': (track['name'] ?? '').toString(),
-            'duration': (track['duration_ms'] ?? '').toString(),
-            'preview_url': (track['preview_url'] ?? '').toString(),
-            'image_url': '',
-          };
-        }
+            if (trackResponse.statusCode != 200) {
+              return {
+                'id': trackId,
+                'name': (track['name'] ?? '').toString(),
+                'duration': (track['duration_ms'] ?? '').toString(),
+                'preview_url': (track['preview_url'] ?? '').toString(),
+                'image_url': '',
+              };
+            }
 
-        final trackData = jsonDecode(trackResponse.body);
+            final trackData = jsonDecode(trackResponse.body);
 
-        final imageUrl =
-        (trackData['album']?['images'] as List?)?.isNotEmpty == true
-            ? (trackData['album']['images'][0]['url'] ?? '').toString()
-            : '';
+            final imageUrl =
+                (trackData['album']?['images'] as List?)?.isNotEmpty == true
+                ? (trackData['album']['images'][0]['url'] ?? '').toString()
+                : '';
 
-        return {
-          'id': trackId,
-          'name': (track['name'] ?? '').toString(),
-          'duration': (track['duration_ms'] ?? '').toString(),
-          'preview_url': (track['preview_url'] ?? '').toString(),
-          'image_url': imageUrl,
-        };
-      })
+            return {
+              'id': trackId,
+              'name': (track['name'] ?? '').toString(),
+              'duration': (track['duration_ms'] ?? '').toString(),
+              'preview_url': (track['preview_url'] ?? '').toString(),
+              'image_url': imageUrl,
+            };
+          })
           .toList();
 
       final tracksWithImages = await Future.wait(trackFutures);
@@ -246,11 +244,10 @@ class SpotifyService {
 
   // Search tracks by keyword
   Future<List<Map<String, String>>> searchTracks(
-      String query, {
-        int limit = 50,
-      }) async {
+    String query, {
+    int limit = 50,
+  }) async {
     final token = await getAccessToken();
-    if (token == null) return [];
 
     final response = await http.get(
       Uri.parse(

@@ -96,7 +96,9 @@ class SignUpForm extends GetView<UserSignUpController> {
                     validator: (value){
                       if(value == null){
                         return 'Please select an option';
-                      } else null;
+                      } else {
+                        null;
+                      }
                       return null;
                     },
                     items: controller.months,
