@@ -51,5 +51,5 @@ flutter {
 }
 dependencies {
     implementation(project(":spotify-app-remote"))
-    implementation(project(":spotify-auth"))
+    // implementation(project(":spotify-auth"))
 }

@@ -42,7 +42,13 @@ class AlbumView extends GetView<AlbumController> {
               onTap: () {
                 Get.toNamed(
                   Routes.ALBUM_CHAT_ROOM,
-                 
+                  arguments: {
+                    // "artistId": artistId,
+                    // "albumId": artistAlbums[index]['id'],
+                    // "artistName": artistName,
+                    // "image": artistAlbums[index]['image'],
+                    // "albumName": artistAlbums[index]['name'],
+                  },
                 );
               },
             );

@@ -20,6 +20,7 @@ class ArtistProfileView extends GetView<ArtistProfileController> {
     // final albumId = args?["albumId"] ?? "";
     final artistAlbums =
         (Get.arguments['artistAlbums'] as List<Map<String, String>>?) ?? [];
+    print(imageUrl);
 
     return Scaffold(
       backgroundColor: AppColors.backGroundWhite,
