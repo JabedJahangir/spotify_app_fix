@@ -52,6 +52,8 @@ class SongsTab extends StatelessWidget {
                 artistName: artistName,
                 albumName: trackName,
                 icon: Icons.favorite_border_outlined,
+                albumId: trackName,
+                artistId: trackId,
                 onTap: () => controller.playTrack(index),
               );
             },

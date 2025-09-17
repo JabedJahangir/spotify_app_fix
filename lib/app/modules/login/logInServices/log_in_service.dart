@@ -16,8 +16,7 @@ class LogInService {
   static Future<User?> signInWithGoogle() async {
   await _initialize();
 
-  final googleUser = await GoogleSignIn.instance.authenticate();
-  if (googleUser == null) return null; // user cancelled
+  final googleUser = await GoogleSignIn.instance.authenticate(); // user cancelled
 
   final googleAuth = googleUser.authentication;
   final credential = GoogleAuthProvider.credential(

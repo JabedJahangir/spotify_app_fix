@@ -39,15 +39,17 @@ class AlbumView extends GetView<AlbumController> {
               image: album.image,
               icon: Icons.favorite,
               showIcon: false, // show the heart icon
+              albumId: album.id, // ✅ now available
+              artistId: album.artistId, // ✅ now available
               onTap: () {
                 Get.toNamed(
                   Routes.ALBUM_CHAT_ROOM,
                   arguments: {
-                    // "artistId": artistId,
-                    // "albumId": artistAlbums[index]['id'],
-                    // "artistName": artistName,
-                    // "image": artistAlbums[index]['image'],
-                    // "albumName": artistAlbums[index]['name'],
+                    "artistId": album.artistId,
+                    "albumId": album.id,
+                    "artistName": album.artist,
+                    "image": album.image,
+                    "albumName": album.name,
                   },
                 );
               },

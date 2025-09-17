@@ -88,12 +88,14 @@ class HomeView extends GetView<HomeController> {
                         return const Center(child: CircularProgressIndicator());
                       }
 
+                      final items = controller.trendingAlbums; // List<Items>
+
+                      final visibleCount = controller.showAll.value
+                          ? items.length
+                          : (items.length > 4 ? 4 : items.length);
+
                       return GridView.builder(
-                        itemCount: controller.showAll.value
-                            ? controller.trendingAlbums.length
-                            : (controller.trendingAlbums.length > 4
-                                  ? 4
-                                  : controller.trendingAlbums.length),
+                        itemCount: visibleCount,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         gridDelegate:
@@ -103,28 +105,38 @@ class HomeView extends GetView<HomeController> {
                               crossAxisSpacing: 8,
                             ),
                         itemBuilder: (context, index) {
-                          final album = controller.trendingAlbums[index];
-                          final imageUrl = album["images"].isNotEmpty
-                              ? album["images"][0]["url"]
-                              : "";
-                          final albumName = album["name"] ?? "Unknown Album";
-                          final artistName =
-                              album["artists"]
-                                  ?.map((a) => a["name"])
-                                  ?.join(", ") ??
-                              "Unknown Artist";
-                          final albumId = album["id"];
+                          final album = items[index];
+
+                          final imageUrl =
+                              (album.images.isNotEmpty
+                                  ? album.images.first.url
+                                  : '') ??
+                              '';
+                          final albumName = album.name ?? 'Unknown Album';
+                          final artistName = album.artists.isNotEmpty
+                              ? album.artists
+                                    .map((a) => a.name ?? 'Unknown')
+                                    .join(', ')
+                              : 'Unknown Artist';
+                          final albumId = album.id ?? '';
+                          final artistId = album.artists.isNotEmpty
+                              ? (album.artists.first.id ?? '')
+                              : '';
 
                           return GestureDetector(
                             onTap: () async {
-                              final artistId = album["artists"][0]["id"];
+                              // getArtist / getArtistAlbums assumed to return Map<String, dynamic> / List
                               final artistData = await controller.spotifyService
                                   .getArtist(artistId);
+
                               final artistImage =
-                                  artistData?["images"]?.isNotEmpty == true
-                                  ? artistData!["images"][0]["url"]
-                                  : "";
-                              // Fetch all album names
+                                  (artistData?['images'] != null &&
+                                      artistData!['images'] is List &&
+                                      (artistData['images'] as List).isNotEmpty)
+                                  ? artistData['images'][0]['url'] as String? ??
+                                        ''
+                                  : '';
+
                               final artistAlbums = await controller
                                   .spotifyService
                                   .getArtistAlbums(artistId);
@@ -132,13 +144,13 @@ class HomeView extends GetView<HomeController> {
                               Get.toNamed(
                                 Routes.ARTIST_PROFILE,
                                 arguments: {
-                                  "albumId": albumId,
-                                  "artistName": artistName,
-                                  "albumName": albumName,
-                                  "imageUrl": artistImage,
-                                  "albumData": album,
-                                  "artistId": artistId,
-                                  "artistAlbums": artistAlbums,
+                                  'albumId': albumId,
+                                  'artistName': artistName,
+                                  'albumName': albumName,
+                                  'imageUrl': artistImage,
+                                  'albumData': album, // passing the typed model
+                                  'artistId': artistId,
+                                  'artistAlbums': artistAlbums,
                                 },
                               );
                             },
@@ -175,7 +187,8 @@ class HomeView extends GetView<HomeController> {
                             onTap: controller.toggleShowLess,
                             child: Text(
                               controller.showLess.value
-                                  ? 'See less' : 'See all',
+                                  ? 'See less'
+                                  : 'See all',
                               style: AppTextStyles.regular16.copyWith(
                                 color: AppColors.greyTextColor,
                               ),

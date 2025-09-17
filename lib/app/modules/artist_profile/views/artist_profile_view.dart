@@ -20,7 +20,6 @@ class ArtistProfileView extends GetView<ArtistProfileController> {
     // final albumId = args?["albumId"] ?? "";
     final artistAlbums =
         (Get.arguments['artistAlbums'] as List<Map<String, String>>?) ?? [];
-    print(imageUrl);
 
     return Scaffold(
       backgroundColor: AppColors.backGroundWhite,
@@ -137,25 +136,29 @@ class ArtistProfileView extends GetView<ArtistProfileController> {
               if (selectedIndex == 0) {
                 return SliverList.builder(
                   itemCount: artistAlbums.length,
-                  itemBuilder: (context, index) => AlbumCardList(
-                    showIcon: true,
-                    artistName: artistName,
-                    albumName: artistAlbums[index]['name'] ?? 'Unknown Album',
-                    image: artistAlbums[index]['image'] ?? '',
-                    icon: Icons.favorite_outline_rounded,
-                    onTap: () {
-                      Get.toNamed(
-                        Routes.ALBUM_CHAT_ROOM,
-                        arguments: {
-                          "artistId": artistId,
-                          "albumId": artistAlbums[index]['id'],
-                          "artistName": artistName,
-                          "image": artistAlbums[index]['image'],
-                          "albumName": artistAlbums[index]['name'],
-                        },
-                      );
-                    },
-                  ),
+                  itemBuilder: (context, index) {
+                    return AlbumCardList(
+                      showIcon: true,
+                      artistName: artistName,
+                      albumName: artistAlbums[index]['name'] ?? 'Unknown Album',
+                      image: artistAlbums[index]['image'] ?? '',
+                      albumId: artistAlbums[index]['id'] ?? '', // ✅ pass id
+                      artistId: artistId, // ✅ pass artistId from args
+                      icon: Icons.favorite_outline_rounded,
+                      onTap: () {
+                        Get.toNamed(
+                          Routes.ALBUM_CHAT_ROOM,
+                          arguments: {
+                            "artistId": artistId,
+                            "albumId": artistAlbums[index]['id'],
+                            "artistName": artistName,
+                            "image": artistAlbums[index]['image'],
+                            "albumName": artistAlbums[index]['name'],
+                          },
+                        );
+                      },
+                    );
+                  },
                 );
               } else {
                 return SliverList.builder(

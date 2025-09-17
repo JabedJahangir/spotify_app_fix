@@ -32,15 +32,23 @@ class HomeController extends GetxController {
   void toggleShowLess() => showLess.value = !showLess.value;
 
   // Fetch trending albums from Spotify
-  void fetchTrendingAlbums() async {
-    try {
-      isLoading.value = true;
-      final data = await spotifyService.getTrendingAlbums();
-      trendingAlbums.assignAll(data);
-    } finally {
-      isLoading.value = false;
+void fetchTrendingAlbums() async {
+  try {
+    isLoading.value = true;
+
+    final albums = await SpotifyService.getNewReleaseItems();
+    trendingAlbums.assignAll(albums);
+
+    // Debug print
+    for (final album in albums) {
+      print("🎵 Album: ${album.name} by ${album.artists.isNotEmpty ? album.artists.first.name : "Unknown"}");
     }
+  } catch (e) {
+    print("❌ Error fetching trending albums: $e");
+  } finally {
+    isLoading.value = false;
   }
+}
 
   // Fetch party tracks from Spotify
   void fetchPartyTracks() async {

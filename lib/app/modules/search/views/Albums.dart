@@ -39,6 +39,8 @@ class Albums extends StatelessWidget {
                   icon: Icons.favorite_outline_rounded,
                   image: album['image_url'] ?? '',
                   showIcon: false,
+                  albumId: '',
+                  artistId: '',
                 );
               },
             );

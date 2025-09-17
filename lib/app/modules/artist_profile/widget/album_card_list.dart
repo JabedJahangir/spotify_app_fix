@@ -12,6 +12,8 @@ class AlbumCardList extends StatelessWidget {
   final String? image;
   final String albumName;
   final String artistName;
+  final String albumId; // NEW
+  final String artistId; // NEW
   final IconData icon;
   final Function()? onTap;
 
@@ -23,6 +25,8 @@ class AlbumCardList extends StatelessWidget {
     required this.albumName,
     required this.artistName,
     required this.icon,
+    required this.albumId,
+    required this.artistId,
   });
 
   @override
@@ -106,9 +110,11 @@ class AlbumCardList extends StatelessWidget {
                           albumName,
                           artistName,
                           Album(
-                            image: image!,
+                            id: albumId, // ✅ save albumId
                             name: albumName,
                             artist: artistName,
+                            artistId: artistId, // ✅ save artistId
+                            image: image ?? '',
                           ),
                         );
                       },
